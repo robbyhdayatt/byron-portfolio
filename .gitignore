@@ -1,0 +1,21 @@
+# Dependencies & Build Output
+node_modules/
+dist/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+
+# Editor & OS files
+.DS_Store
+.vscode/
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp root-level photos (should be in src/assets)
+pas-foto-formal.jpg
+foto-bebas-wisuda.jpeg
