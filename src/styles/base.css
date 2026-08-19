@@ -1,0 +1,91 @@
+@import './tokens.css';
+
+/* =========================================
+   BASE.CSS — Reset, typography, global
+   Fonts loaded via <link> tags in index.html
+   for optimal performance (no render-blocking @import)
+   ========================================= */
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  --scroll-progress: 0;
+}
+
+body {
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--ink-navy);
+  background-color: var(--cloud-white);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  overflow-x: hidden;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink-navy);
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); margin-bottom: var(--space-4); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background-color: var(--sun-gold);
+  color: var(--ink-navy);
+}
+
+/* Smooth scroll disable for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
