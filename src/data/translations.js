@@ -50,7 +50,8 @@ export const translations = {
     exp_label: 'PENGALAMAN',
     exp_title: 'Pengalaman',
     exp_col_title: 'Pengalaman Kerja',
-    org_col_title: 'Organisasi',
+    org_col_title: 'Pengalaman Organisasi',
+    org_title: 'Pengalaman Organisasi',
 
     // Boarding Pass
     bp_airline: 'BYRON AIRWAYS',
@@ -136,7 +137,8 @@ export const translations = {
     exp_label: 'EXPERIENCE',
     exp_title: 'Experience',
     exp_col_title: 'Work Experience',
-    org_col_title: 'Organizations',
+    org_col_title: 'Organizational Experience',
+    org_title: 'Organizational Experience',
 
     // Boarding Pass
     bp_airline: 'BYRON AIRWAYS',

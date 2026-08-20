@@ -23,7 +23,7 @@ export function t(key) {
 /**
  * Apply translations to all elements with data-i18n attribute
  */
-function applyTranslations() {
+export function applyTranslations() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     const value = t(key);

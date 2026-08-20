@@ -13,12 +13,12 @@ import { init as initSkyBackground } from './sky-background.js';
 import { init as initScrollReveal } from './scroll-reveal.js';
 import { init as initCertifications } from './certifications.js';
 import { init as initContactForm } from './contact-form.js';
-import { init as initI18n } from './i18n.js';
-import { renderProjects, renderTimeline } from './render.js';
+import { init as initI18n, applyTranslations } from './i18n.js';
+import { renderPersonal, renderProjects, renderTimeline, renderSkills } from './render.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Show body (was hidden by inline critical CSS to prevent FOUC)
@@ -27,15 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n (language system)
   initI18n();
 
-  // Render dynamic content
-  renderProjects();
-  renderTimeline();
-
   // Initialize Lenis smooth scroll
   const lenis = new Lenis({ lerp: 0.1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
+
+  // 1. Render all dynamic content first and wait for completion
+  await Promise.all([
+    renderPersonal(),
+    renderSkills(),
+    renderProjects(),
+    renderTimeline(),
+    initCertifications(prefersReducedMotion)
+  ]);
+
+  // Apply translations to dynamically inserted elements (timeline, etc.)
+  applyTranslations();
+
+  // Re-run renderPersonal on language switch if necessary
+  window.addEventListener('langchange', () => {
+    renderPersonal();
+  });
+
+  // 2. Initialize scroll reveal AFTER all dynamic elements are in the DOM
+  initScrollReveal(prefersReducedMotion);
+
+  // Refresh ScrollTrigger positions after all content has been rendered
+  ScrollTrigger.refresh();
 
   // ===================================
   // Side dot navigation — active state
@@ -76,12 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initialize animation modules
+  // Initialize remaining animation modules
   initPreloader(prefersReducedMotion);
   initIdCard(prefersReducedMotion);
   initFloatingPhoto(prefersReducedMotion);
   initSkyBackground(prefersReducedMotion);
-  initScrollReveal(prefersReducedMotion);
-  initCertifications(prefersReducedMotion);
   initContactForm();
 });

@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { certifications as fallbackCerts } from '../data/content.js';
+import { fetchContent } from './github-cms.js';
 
 export async function init(prefersReducedMotion) {
   const grid = document.querySelector('#certs-grid');
@@ -9,11 +10,8 @@ export async function init(prefersReducedMotion) {
 
   let certList = fallbackCerts;
   try {
-    const res = await fetch('./admin/content.json?v=' + Date.now());
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.certifications) certList = data.certifications;
-    }
+    const data = await fetchContent();
+    if (data && data.certifications) certList = data.certifications;
   } catch (e) {
     console.log('Using static certs fallback');
   }

@@ -9,7 +9,10 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: resolve(__dirname, 'src/index.html'),
+      input: {
+        main: resolve(__dirname, 'src/index.html'),
+        admin: resolve(__dirname, 'src/admin/index.html'),
+      },
     },
   },
   server: {
