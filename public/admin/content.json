@@ -180,9 +180,18 @@
     }
   ],
   "skills": {
-    "languages": [],
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "Python",
+      "HTML",
+      "CSS"
+    ],
     "frameworks": [
-      "TailwindCSS"
+      "Laravel",
+      "React MySQL",
+      "Git",
+      "Figma"
     ],
     "softSkills": [
       "Kepemimpinan",
