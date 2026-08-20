@@ -189,7 +189,8 @@
     ],
     "frameworks": [
       "Laravel",
-      "React MySQL",
+      "React",
+      "MySQL",
       "Git",
       "Figma"
     ],
