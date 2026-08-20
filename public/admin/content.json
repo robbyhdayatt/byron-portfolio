@@ -1,6 +1,6 @@
 {
   "personal": {
-    "name": "Robby Hidayat",
+    "name": "Robby",
     "title": "Software Developer",
     "tagline": "Software Developer yang membangun sistem dengan bebas & cermat.",
     "location": "Bandar Lampung, Indonesia",
@@ -18,7 +18,12 @@
       "subtitle": "Sistem Generator Akta PPAT",
       "period": "Jun 2026 – Jul 2026",
       "image": "./assets/images/sigap-preview.jpg",
-      "stack": ["Laravel", "MySQL", "PHP", "PHPWord"],
+      "stack": [
+        "Laravel",
+        "MySQL",
+        "PHP",
+        "PHPWord"
+      ],
       "description": "Aplikasi berbasis web untuk menghasilkan dokumen akta PPAT secara otomatis, menggantikan proses manual yang rawan kesalahan.",
       "impact": "Mempercepat pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten."
     },
@@ -28,7 +33,12 @@
       "subtitle": "Sistem Perangkat Ajar Terpadu",
       "period": "2024",
       "image": "./assets/images/spartan-preview.jpg",
-      "stack": ["Laravel 10", "MySQL", "PHP", "Livewire"],
+      "stack": [
+        "Laravel 10",
+        "MySQL",
+        "PHP",
+        "Livewire"
+      ],
       "description": "Platform pembelajaran terpadu untuk mengelola materi ajar, tugas, dan evaluasi dalam satu sistem.",
       "impact": "Digunakan untuk mendukung proses belajar mengajar yang lebih terstruktur dan efisien."
     },
@@ -38,7 +48,11 @@
       "subtitle": "Website Profil Perusahaan",
       "period": "2025",
       "image": "./assets/images/lautan-teduh-preview.jpg",
-      "stack": ["PHP Native", "Bootstrap", "MySQL"],
+      "stack": [
+        "PHP Native",
+        "Bootstrap",
+        "MySQL"
+      ],
       "description": "Website profil perusahaan untuk menampilkan informasi, layanan, dan portofolio bisnis PT. Lautan Teduh Interniaga.",
       "impact": "Meningkatkan kehadiran digital perusahaan dan mempermudah akses informasi bagi calon pelanggan."
     },
@@ -48,7 +62,11 @@
       "subtitle": "Platform Rental Kendaraan",
       "period": "2024",
       "image": "./assets/images/dreamride-preview.jpg",
-      "stack": ["PHP Native", "Bootstrap", "MySQL"],
+      "stack": [
+        "PHP Native",
+        "Bootstrap",
+        "MySQL"
+      ],
       "description": "Aplikasi web untuk manajemen penyewaan kendaraan, termasuk pemesanan, ketersediaan, dan pembayaran.",
       "impact": "Menyederhanakan proses rental kendaraan dari manual menjadi digital dan terorganisir."
     }
