@@ -178,5 +178,12 @@
       "period": "2023 — 2024",
       "description": "Berkontribusi dalam program kaderisasi dan pengembangan anggota."
     }
-  ]
+  ],
+  "skills": {
+    "languages": [],
+    "frameworks": [
+      "TailwindCSS"
+    ],
+    "softSkills": []
+  }
 }
