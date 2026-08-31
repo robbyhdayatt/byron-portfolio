@@ -73,9 +73,9 @@
       "title": "Repeat Order (RO) System",
       "subtitle": "CRM Retensi Pelanggan & Verifikasi STU Yamaha",
       "period": "2026",
-      "image": "./assets/images/repeat-order-preview.svg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788160348138_screenshot_2026-08-31_141217.png",
       "images": [
-        "./assets/images/repeat-order-preview.svg"
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788160348138_screenshot_2026-08-31_141217.png"
       ],
       "stack": [
         "PHP",
