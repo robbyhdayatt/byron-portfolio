@@ -91,7 +91,7 @@
       ],
       "description": "Sistem CRM retensi pelanggan dealer Yamaha untuk penugasan follow-up salesman, pencatatan hasil prospek, verifikasi digital dokumen STU (Surat Tanda Terima Unit), dan deduplikasi cerdas berbasis KTP & No. Rangka.",
       "impact": "Mencegah duplikasi data prospek dan mempercepat verifikasi dokumen STU penjualan antar level manajemen (Kacab hingga Main Dealer).",
-      "github": "https://github.com/robbyhdayatt/repeat-order-system"
+      "github": ""
     },
     {
       "id": 4,
