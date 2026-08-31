@@ -116,9 +116,9 @@
         "Tracking Status Unit dari Main Warehouse hingga STU",
         "Monitoring Alokasi Multi-Dealer Se-Lampung"
       ],
-      "description": "Aplikasi web pemantauan distribusi dan alokasi unit motor Yamaha dari gudang utama (Main Warehouse) hingga terbit faktur STU, tersinkronisasi langsung dengan database eksternal Maxwheels & DPACK.",
+      "description": "Aplikasi web pemantauan distribusi dan alokasi unit motor Yamaha dari gudang utama (Main Warehouse) hingga terbit faktur STU, tersinkronisasi langsung dengan database eksternal.",
       "impact": "Memberikan visibilitas real-time terhadap status ribuan unit kendaraan yang dialokasikan ke 34+ jaringan dealer.",
-      "github": "https://github.com/robbyhdayatt/alokasi_unit"
+      "github": ""
     },
     {
       "id": 5,
