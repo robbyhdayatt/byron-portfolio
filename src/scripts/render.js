@@ -27,11 +27,13 @@ export async function renderPersonal() {
     heroTaglineEl.textContent = personal.tagline;
   }
 
-  // 3. Boarding Pass Passenger Name
-  const bpPassengerEl = document.querySelector('.bp-passenger-val');
-  if (bpPassengerEl && personal.name) {
-    bpPassengerEl.textContent = personal.name.toUpperCase();
-  }
+  // 3. Hero Badge Developer Name & Role
+  document.querySelectorAll('.badge-name-val, .ide-name-val').forEach(el => {
+    if (personal.name) el.textContent = personal.name.toUpperCase();
+  });
+  document.querySelectorAll('.badge-role-val, .ide-role-val').forEach(el => {
+    if (personal.title) el.textContent = personal.title;
+  });
 
   // 4. Contact Email
   const emailTextEl = document.querySelector('#email-text');
@@ -145,6 +147,7 @@ export async function renderSkills() {
     trackEl.innerHTML = `
       <div class="marquee-group">${groupHtml}</div>
       <div class="marquee-group" aria-hidden="true">${groupHtml}</div>
+      <div class="marquee-group" aria-hidden="true">${groupHtml}</div>
     `;
   }
 
@@ -185,6 +188,20 @@ export async function renderProjects() {
         </div>
         <p>${project.description || ''}</p>
         ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
+        ${(project.link || project.github) ? `
+          <div class="project-links">
+            ${project.link ? `
+              <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo">
+                <span>🌐</span> Live Demo ↗
+              </a>
+            ` : ''}
+            ${project.github ? `
+              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github">
+                <span>📂</span> GitHub ↗
+              </a>
+            ` : ''}
+          </div>
+        ` : ''}
       </div>
     </div>
   `).join('');

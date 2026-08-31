@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 
 export function init(prefersReducedMotion) {
-  const clouds = document.querySelectorAll('.cloud');
+  const clouds = document.querySelectorAll('.cloud, .sky-cloud');
   
   if (prefersReducedMotion) {
     return;

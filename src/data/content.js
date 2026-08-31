@@ -1,39 +1,91 @@
 export const projects = [
   {
-    title: "SIGAP",
-    subtitle: "Sistem Generator Akta PPAT",
-    period: "Jun 2026 – Jul 2026",
-    image: "./assets/images/sigap-preview.jpg",
-    stack: ["Laravel", "MySQL", "PHP", "PHPWord"],
-    description: "Aplikasi berbasis web untuk menghasilkan dokumen akta PPAT secara otomatis, menggantikan proses manual yang rawan kesalahan.",
-    impact: "Mempercepat pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten."
-  },
-  {
-    title: "SPARTAN",
-    subtitle: "Sistem Perangkat Ajar Terpadu",
-    period: "2024",
+    title: "SPARTAN LTI",
+    subtitle: "Sistem Manajemen Sparepart, Inventori & Bengkel Dealer Yamaha",
+    period: "2024 – Sekarang",
     image: "./assets/images/spartan-preview.jpg",
-    stack: ["Laravel 10", "MySQL", "PHP", "Livewire"],
-    description: "Platform pembelajaran terpadu untuk mengelola materi ajar, tugas, dan evaluasi dalam satu sistem.",
-    impact: "Digunakan untuk mendukung proses belajar mengajar yang lebih terstruktur dan efisien."
+    stack: ["Laravel 8", "MySQL", "AdminLTE 3", "DomPDF", "Doctrine DBAL"],
+    description: "Aplikasi Enterprise Resource Planning (ERP) berstandar industri untuk Main Dealer Yamaha (PT Lautan Teduh Interniaga) dan 34+ jaringan dealer & bengkel resmi di Lampung. Mengelola stok sparepart multi-gudang, purchase order (PO), delivery order (DO), invoice, serta klaim garansi.",
+    impact: "Mendigitalkan dan menyinkronkan seluruh rantai pasok sparepart serta operasional servis 34+ dealer resmi se-provinsi Lampung.",
+    github: "https://github.com/robbyhdayatt/spartann"
   },
   {
-    title: "Company Profile PT. Lautan Teduh Interniaga",
-    subtitle: "Website Profil Perusahaan",
-    period: "2025",
-    image: "./assets/images/lautan-teduh-preview.jpg",
-    stack: ["PHP Native", "Bootstrap", "MySQL"],
-    description: "Website profil perusahaan untuk menampilkan informasi, layanan, dan portofolio bisnis PT. Lautan Teduh Interniaga.",
-    impact: "Meningkatkan kehadiran digital perusahaan dan mempermudah akses informasi bagi calon pelanggan."
+    title: "QMSERVICE",
+    subtitle: "Query Master Service & Workshop Analytics Engine",
+    period: "2026",
+    image: "./assets/images/qmservice-preview.svg",
+    stack: ["PHP", "MySQL", "PhpSpreadsheet", "SimpleXLSX", "JavaScript"],
+    description: "Sistem analitik performa bengkel resmi Yamaha se-provinsi Lampung yang mengelola produktivitas mekanik, kalkulasi achievement target servis bulanan, visualisasi performa dealer, hingga ekspor data transaksi API DPACK.",
+    impact: "Mengotomatisasi monitoring performa ratusan mekanik dan 34+ bengkel dengan metrik baku real-time.",
+    github: "https://github.com/robbyhdayatt/qmservice"
+  },
+  {
+    title: "Repeat Order (RO) System",
+    subtitle: "CRM Retensi Pelanggan & Verifikasi STU Yamaha",
+    period: "2026",
+    image: "./assets/images/repeat-order-preview.svg",
+    stack: ["PHP", "MySQL", "PhpSpreadsheet", "Bootstrap", "JavaScript"],
+    description: "Sistem CRM retensi pelanggan dealer Yamaha untuk penugasan follow-up salesman, pencatatan hasil prospek, verifikasi digital dokumen STU (Surat Tanda Terima Unit), dan deduplikasi cerdas berbasis KTP & No. Rangka.",
+    impact: "Mencegah duplikasi data prospek dan mempercepat verifikasi dokumen STU penjualan antar level manajemen (Kacab hingga Main Dealer).",
+    github: "https://github.com/robbyhdayatt/repeat-order-system"
+  },
+  {
+    title: "Sistem Alokasi Unit PLN",
+    subtitle: "Logistik & Pemantauan Distribusi Unit Kendaraan",
+    period: "2026",
+    image: "./assets/images/alokasi-unit-preview.svg",
+    stack: ["PHP", "MySQL Views", "SimpleXLSX", "Bootstrap"],
+    description: "Aplikasi web pemantauan distribusi dan alokasi unit motor Yamaha dari gudang utama (Main Warehouse) hingga terbit faktur STU, tersinkronisasi langsung dengan database eksternal Maxwheels & DPACK.",
+    impact: "Memberikan visibilitas real-time terhadap status ribuan unit kendaraan yang dialokasikan ke 34+ jaringan dealer.",
+    github: "https://github.com/robbyhdayatt/alokasi_unit"
+  },
+  {
+    title: "Undian Event & Stage Raffle",
+    subtitle: "Dual-Screen Realtime Sync Raffle App",
+    period: "2026",
+    image: "./assets/images/undian-preview.jpg",
+    stack: ["JavaScript ES6+", "BroadcastChannel API", "HTML5 Canvas", "SheetJS", "Tailwind CSS"],
+    description: "Aplikasi web undian offline-first berlatensi 0ms dengan arsitektur dua layar independen (Panel Operator + Layar Proyektor Penonton) dengan animasi gulungan tiket berputar dan efek confetti dinamis untuk event besar Yamaha & Festival Krakatau.",
+    impact: "Menjalankan pengundian ribuan nomor rangka motor secara transparan, aman, dan tanpa lag di panggung festival besar."
   },
   {
     title: "Dreamride",
-    subtitle: "Platform Rental Kendaraan",
-    period: "2024",
+    subtitle: "Modern Vehicle Rental & Fleet Booking Platform",
+    period: "2025 – 2026",
     image: "./assets/images/dreamride-preview.jpg",
-    stack: ["PHP Native", "Bootstrap", "MySQL"],
-    description: "Aplikasi web untuk manajemen penyewaan kendaraan, termasuk pemesanan, ketersediaan, dan pembayaran.",
-    impact: "Menyederhanakan proses rental kendaraan dari manual menjadi digital dan terorganisir."
+    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma ORM", "Framer Motion"],
+    description: "Platform rental kendaraan dan manajemen armada mobil modern dengan katalog interaktif, verifikasi identitas penyewa, kalkulasi durasi & tarif sewa otomatis, serta dashboard admin terpadu.",
+    impact: "Menyediakan pengalaman booking mobil yang seamless dengan performa tinggi (SSR) dan antarmuka modern.",
+    github: "https://github.com/robbyhdayatt/dream-ride"
+  },
+  {
+    title: "SIGAP",
+    subtitle: "Sistem Generator Akta PPAT Otomatis",
+    period: "2026",
+    image: "./assets/images/sigap-preview.jpg",
+    stack: ["Laravel", "MySQL", "PHPWord", "Bootstrap"],
+    description: "Aplikasi web untuk menghasilkan dokumen akta PPAT (Pejabat Pembuat Akta Tanah) secara otomatis berbasis form terstruktur dan template standar kenotariatan.",
+    impact: "Mempercepat proses pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten dan akurat.",
+    github: "https://github.com/robbyhdayatt/sigap"
+  },
+  {
+    title: "AGATHA",
+    subtitle: "Automated SPK & Document Generator Engine",
+    period: "2026",
+    image: "./assets/images/agatha-preview.svg",
+    stack: ["PHP", "PHPWord", "PhpSpreadsheet", "MySQL"],
+    description: "Sistem otomatisasi pembuatan dokumen Surat Pesanan Kendaraan (SPK) berbasis template Microsoft Word (.docx), upload target tahunan dealer, dan validasi DOA (Delegation of Authority).",
+    impact: "Mengotomatisasi pembuatan ribuan dokumen SPK bulanan secara instan dari input data transaksi YIS/DPACK."
+  },
+  {
+    title: "Company Profile PT. Lautan Teduh Interniaga",
+    subtitle: "Website Profil Perusahaan Main Dealer Yamaha Lampung",
+    period: "2025",
+    image: "./assets/images/lautan-teduh-preview.jpg",
+    stack: ["PHP Native", "Bootstrap 5", "MySQL", "JavaScript"],
+    description: "Website resmi profil perusahaan PT. Lautan Teduh Interniaga sebagai Main Dealer resmi Yamaha wilayah Lampung untuk menyajikan katalog motor, jaringan dealer, dan layanan purna jual.",
+    impact: "Meningkatkan brand authority dan mempermudah akses informasi produk bagi konsumen di seluruh Lampung.",
+    link: "https://lautanteduh.co.id"
   }
 ];
 

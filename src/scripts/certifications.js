@@ -41,6 +41,13 @@ export async function init(prefersReducedMotion) {
       <p><strong>Issuer:</strong> ${cert.issuer}</p>
       <p><strong>Year:</strong> ${cert.year}</p>
       ${cert.description ? `<p>${cert.description}</p>` : ''}
+      ${cert.link ? `
+        <div>
+          <a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="cert-modal-link">
+            <span>🏆</span> Lihat Kredensial / Sertifikat ↗
+          </a>
+        </div>
+      ` : ''}
     `;
 
     overlay.style.display = 'flex';

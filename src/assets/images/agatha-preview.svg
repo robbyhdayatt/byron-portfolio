@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgAG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E1E2E"/>
+      <stop offset="100%" stop-color="#2A2A3E"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgAG)"/>
+  <!-- Top Nav Bar -->
+  <rect x="0" y="0" width="800" height="50" fill="#2A2A3E" stroke="#3E3E5E" stroke-width="1"/>
+  <circle cx="30" cy="25" r="6" fill="#EF4444"/>
+  <circle cx="50" cy="25" r="6" fill="#F59E0B"/>
+  <circle cx="70" cy="25" r="6" fill="#10B981"/>
+  <text x="110" y="30" fill="#A6ADC8" font-family="monospace" font-size="13" font-weight="bold">AGATHA // AUTOMATED SPK & DOCUMENT GENERATOR</text>
+  <rect x="650" y="14" width="120" height="24" rx="12" fill="#7C3AED"/>
+  <text x="670" y="30" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">DOCX ENGINE</text>
+
+  <!-- Document Template Generator Visual -->
+  <g transform="translate(30, 75)">
+    <!-- Document Card -->
+    <rect x="0" y="0" width="340" height="345" rx="12" fill="#252538" stroke="#3E3E5E" stroke-width="1"/>
+    <rect x="25" y="25" width="290" height="295" rx="6" fill="#FFFFFF"/>
+    <!-- Word Document Simulation -->
+    <rect x="45" y="45" width="120" height="15" fill="#2B579A"/>
+    <text x="45" y="80" fill="#1E293B" font-family="sans-serif" font-size="12" font-weight="bold">SURAT PESANAN KENDARAAN (SPK)</text>
+    <line x1="45" y1="90" x2="295" y2="90" stroke="#CBD5E1" stroke-width="1"/>
+    <rect x="45" y="105" width="100" height="8" fill="#E2E8F0"/>
+    <rect x="155" y="105" width="120" height="8" fill="#93C5FD"/>
+    <rect x="45" y="125" width="100" height="8" fill="#E2E8F0"/>
+    <rect x="155" y="125" width="120" height="8" fill="#93C5FD"/>
+    <rect x="45" y="145" width="100" height="8" fill="#E2E8F0"/>
+    <rect x="155" y="145" width="120" height="8" fill="#93C5FD"/>
+    
+    <rect x="45" y="175" width="250" height="50" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="55" y="195" fill="#64748B" font-family="monospace" font-size="10">DOA Approval: APPROVED</text>
+    <text x="55" y="212" fill="#10B981" font-family="monospace" font-size="10">Hash: 8a9f...e201 (Valid)</text>
+
+    <!-- Right Panel: Automation Flow -->
+    <rect x="375" y="0" width="365" height="345" rx="12" fill="#252538" stroke="#3E3E5E" stroke-width="1"/>
+    <text x="400" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="bold">Batch Template Replacement</text>
+    <text x="400" y="60" fill="#94A3B8" font-family="sans-serif" font-size="12">Otomatisasi pengisian ribuan SPK per bulan.</text>
+
+    <rect x="400" y="85" width="315" height="65" rx="8" fill="#1E1E2E" stroke="#3E3E5E"/>
+    <text x="415" y="110" fill="#C4B5FD" font-family="sans-serif" font-size="12" font-weight="bold">1. Input YIS / DPACK Feed</text>
+    <text x="415" y="132" fill="#64748B" font-family="sans-serif" font-size="11">Data transaksi unit tervalidasi secara otomatis</text>
+
+    <rect x="400" y="165" width="315" height="65" rx="8" fill="#1E1E2E" stroke="#3E3E5E"/>
+    <text x="415" y="190" fill="#C4B5FD" font-family="sans-serif" font-size="12" font-weight="bold">2. PHPWord Template Engine</text>
+    <text x="415" y="212" fill="#64748B" font-family="sans-serif" font-size="11">Placeholder replace tanpa merusak layout .docx</text>
+
+    <rect x="400" y="245" width="315" height="65" rx="8" fill="#1E1E2E" stroke="#3E3E5E"/>
+    <text x="415" y="270" fill="#34D399" font-family="sans-serif" font-size="12" font-weight="bold">3. Auto Annual Target Upload</text>
+    <text x="415" y="292" fill="#64748B" font-family="sans-serif" font-size="11">Ekspor instan format siap cetak / arsip</text>
+  </g>
+</svg>

@@ -260,6 +260,12 @@ function renderProjects() {
         <input type="text" value="${escHtml((proj.stack || []).join(', '))}"
           onchange="state.projects[${idx}].stack = this.value.split(',').map(s=>s.trim())"
           placeholder="Tech Stack (pisah koma)" class="${inputCls}">
+        <input type="url" value="${escHtml(proj.link || '')}"
+          onchange="state.projects[${idx}].link = this.value"
+          placeholder="URL Live Demo (e.g. https://...)" class="${inputCls}">
+        <input type="url" value="${escHtml(proj.github || '')}"
+          onchange="state.projects[${idx}].github = this.value"
+          placeholder="URL GitHub Repo (e.g. https://github.com/...)" class="${inputCls}">
         <div class="md:col-span-2 flex items-center gap-2">
           <input type="text" id="proj-img-${idx}" value="${escHtml(proj.image || '')}"
             onchange="state.projects[${idx}].image = this.value"
@@ -406,6 +412,9 @@ function renderCertifications() {
         <input type="text" value="${escHtml(cert.year || '')}"
           onchange="state.certifications[${idx}].year = this.value"
           placeholder="Tahun" class="${inputCls}">
+        <input type="url" value="${escHtml(cert.link || '')}"
+          onchange="state.certifications[${idx}].link = this.value"
+          placeholder="URL Kredensial / Sertifikat (e.g. https://...)" class="${inputCls}">
         <textarea onchange="state.certifications[${idx}].description = this.value"
           placeholder="Keterangan Tambahan"
           class="md:col-span-2 ${inputCls}" rows="2">${escHtml(cert.description || '')}</textarea>

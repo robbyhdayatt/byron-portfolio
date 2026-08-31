@@ -1,186 +1,255 @@
 /**
- * idcard.js — Interactive draggable ID card with spring-back bounce
- * The card can be pulled/dragged and snaps back with elastic physics when released.
+ * idcard.js — High Performance 60/120fps Realistic Woven Lanyard & Badge Physics Engine
+ * Zero-lag real-time SVG ribbon tension stretching & unified single-phase elastic snap-back.
  */
 import gsap from 'gsap';
 
 export function init(prefersReducedMotion) {
-  const card = document.querySelector('.boarding-pass');
+  const card = document.getElementById('tech-badge');
+  const pathLeft = document.getElementById('lanyard-path-left');
+  const stitchLeft1 = document.getElementById('lanyard-stitch-left-1');
+  const stitchLeft2 = document.getElementById('lanyard-stitch-left-2');
+
+  const pathRight = document.getElementById('lanyard-path-right');
+  const stitchRight1 = document.getElementById('lanyard-stitch-right-1');
+  const stitchRight2 = document.getElementById('lanyard-stitch-right-2');
+
+  const clipGroup = document.getElementById('lanyard-clip-group');
+  const shimmer = document.querySelector('.badge-hologram-glow');
   const hero = document.querySelector('#hero');
+
   if (!card) return;
 
-  // Store resting position
-  const restX = 0;
-  const restY = 0;
-  const restRotation = -3;
+  // Lanyard SVG Geometry Constants (500x200 ViewBox)
+  const TOP_L_X = 160;
+  const TOP_R_X = 340;
+  const TOP_Y = -40;
+  const REST_CLIP_X = 250;
+  const REST_CLIP_Y = 158;
 
-  // State tracking
+  // Core Physics State
+  const state = {
+    x: 0,
+    y: 0,
+    rot: -2.5
+  };
+
   let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let velocityX = 0;
-  let velocityY = 0;
-  let lastX = 0;
-  let lastY = 0;
-  let lastTime = 0;
+  let isSpringing = false;
+  let currentTween = null;
+
+  // Fast direct renderer (zero layout thrashing)
+  function render() {
+    const { x, y, rot } = state;
+
+    // 1. Transform Badge Card
+    card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg)`;
+
+    // 2. Compute SVG dynamic bezier curves for woven ribbon straps
+    const clipX = REST_CLIP_X + x;
+    const clipY = REST_CLIP_Y + y;
+
+    const cpLeftX = (TOP_L_X + clipX - 6) * 0.5 + (x * 0.12);
+    const cpLeftY = (TOP_Y + clipY) * 0.5 + 14;
+
+    const cpRightX = (TOP_R_X + clipX + 6) * 0.5 + (x * 0.12);
+    const cpRightY = (TOP_Y + clipY) * 0.5 + 14;
+
+    const dL = `M ${TOP_L_X} ${TOP_Y} Q ${cpLeftX} ${cpLeftY} ${clipX - 6} ${clipY}`;
+    const dR = `M ${TOP_R_X} ${TOP_Y} Q ${cpRightX} ${cpRightY} ${clipX + 6} ${clipY}`;
+
+    if (pathLeft) pathLeft.setAttribute('d', dL);
+    if (stitchLeft1) stitchLeft1.setAttribute('d', dL);
+    if (stitchLeft2) stitchLeft2.setAttribute('d', dL);
+
+    if (pathRight) pathRight.setAttribute('d', dR);
+    if (stitchRight1) stitchRight1.setAttribute('d', dR);
+    if (stitchRight2) stitchRight2.setAttribute('d', dR);
+
+    if (clipGroup) {
+      clipGroup.setAttribute('transform', `translate(${clipX}, ${clipY}) rotate(${rot * 0.7})`);
+    }
+
+    if (shimmer) {
+      shimmer.style.transform = `rotate(25deg) translate3d(${(x / 200) * 45}px, 0, 0)`;
+    }
+  }
+
+  // Initial draw
+  render();
 
   if (prefersReducedMotion) {
-    gsap.set(card, { x: restX, y: restY, rotation: restRotation });
     return;
   }
 
-  // ===========================
-  // Entrance animation
-  // ===========================
-  gsap.fromTo(card,
-    { y: -150, rotation: 15, opacity: 0, scale: 0.8 },
-    {
-      y: restY,
-      rotation: restRotation,
-      opacity: 1,
-      scale: 1,
-      duration: 1.8,
-      ease: 'elastic.out(1, 0.4)',
-      delay: 0.8
-    }
-  );
+  // 1. Entrance Drop Animation
+  isSpringing = true;
+  state.y = -120;
+  state.rot = 14;
+  render();
 
-  // ===========================
-  // Make card draggable
-  // ===========================
+  currentTween = gsap.to(state, {
+    x: 0,
+    y: 0,
+    rot: -2.5,
+    duration: 1.6,
+    ease: 'elastic.out(1, 0.42)',
+    delay: 0.4,
+    onUpdate: render,
+    onComplete: () => {
+      isSpringing = false;
+    }
+  });
+
+  // 2. Ultra-Smooth Pointer Dragging
+  let startX = 0;
+  let startY = 0;
+  let lastX = 0;
+  let lastY = 0;
+  let lastTime = 0;
+  let vx = 0;
+  let vy = 0;
+
   card.style.cursor = 'grab';
-  card.style.touchAction = 'none'; // prevent scroll on touch
+  card.style.touchAction = 'none';
 
   function onPointerDown(e) {
-    if (e.target.closest('a')) return; // don't interfere with links
-    
+    if (e.target.closest('a') || e.target.closest('button')) return;
+
     isDragging = true;
+    isSpringing = false;
     card.style.cursor = 'grabbing';
-    
-    // Kill any running spring animations
-    gsap.killTweensOf(card);
 
-    const point = e.touches ? e.touches[0] : e;
-    startX = point.clientX - currentX;
-    startY = point.clientY - currentY;
-    lastX = point.clientX;
-    lastY = point.clientY;
-    lastTime = Date.now();
+    if (currentTween) {
+      currentTween.kill();
+      currentTween = null;
+    }
 
-    card.setPointerCapture(e.pointerId);
+    startX = e.clientX - state.x;
+    startY = e.clientY - state.y;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lastTime = performance.now();
+    vx = 0;
+    vy = 0;
+
+    try {
+      card.setPointerCapture(e.pointerId);
+    } catch (_) {}
+
     e.preventDefault();
   }
 
   function onPointerMove(e) {
     if (!isDragging) return;
 
-    const point = e.touches ? e.touches[0] : e;
-    const now = Date.now();
+    const now = performance.now();
     const dt = Math.max(now - lastTime, 1);
 
-    const newX = point.clientX - startX;
-    const newY = point.clientY - startY;
+    const rawX = e.clientX - startX;
+    const rawY = e.clientY - startY;
 
-    // Track velocity for throw effect
-    velocityX = (point.clientX - lastX) / dt * 16; // normalize to ~60fps
-    velocityY = (point.clientY - lastY) / dt * 16;
+    // Elastic rubber tension formula (smooth logarithmic resistance)
+    const dist = Math.hypot(rawX, rawY);
+    const tension = 1 / (1 + dist * 0.0018);
 
-    lastX = point.clientX;
-    lastY = point.clientY;
+    state.x = rawX * tension;
+    state.y = Math.max(-50, rawY * tension);
+    state.rot = Math.max(-28, Math.min(28, -2.5 + (state.x * 0.075)));
+
+    vx = ((e.clientX - lastX) / dt) * 16;
+    vy = ((e.clientY - lastY) / dt) * 16;
+
+    lastX = e.clientX;
+    lastY = e.clientY;
     lastTime = now;
 
-    currentX = newX;
-    currentY = newY;
-
-    // Calculate rotation based on horizontal drag (tilts like a pendulum)
-    const dragRotation = restRotation + (newX * 0.08);
-    const clampedRotation = Math.max(-25, Math.min(25, dragRotation));
-
-    // Apply with slight drag resistance at edges
-    const resistance = 1 - Math.min(Math.abs(newX) / 600, 0.5);
-    
-    gsap.set(card, {
-      x: newX * resistance + (newX * (1 - resistance) * 0.5),
-      y: newY * resistance + (newY * (1 - resistance) * 0.5),
-      rotation: clampedRotation,
-      scale: 1.03 // slightly bigger while dragging
-    });
-
+    render();
     e.preventDefault();
   }
 
   function onPointerUp(e) {
     if (!isDragging) return;
     isDragging = false;
+    isSpringing = true;
     card.style.cursor = 'grab';
 
-    // Clamp velocity
-    const maxVelocity = 30;
-    velocityX = Math.max(-maxVelocity, Math.min(maxVelocity, velocityX));
-    velocityY = Math.max(-maxVelocity, Math.min(maxVelocity, velocityY));
+    try {
+      card.releasePointerCapture(e.pointerId);
+    } catch (_) {}
 
-    // Calculate overshoot based on velocity (throw momentum)
-    const overshootX = velocityX * 3;
-    const overshootY = velocityY * 3;
+    // Clamp throw velocity
+    const maxV = 28;
+    vx = Math.max(-maxV, Math.min(maxV, vx));
+    vy = Math.max(-maxV, Math.min(maxV, vy));
 
-    // Phase 1: Momentum overshoot
-    gsap.to(card, {
-      x: currentX + overshootX,
-      y: currentY + overshootY,
-      rotation: restRotation + overshootX * 0.05,
-      duration: 0.25,
-      ease: 'power2.out',
+    // Single unified seamless elastic snap-back
+    state.x += vx * 1.5;
+    state.y += vy * 1.5;
+    state.rot += (vx * 0.04);
+    render();
+
+    currentTween = gsap.to(state, {
+      x: 0,
+      y: 0,
+      rot: -2.5,
+      duration: 1.4,
+      ease: 'elastic.out(1, 0.32)',
+      onUpdate: render,
       onComplete: () => {
-        // Phase 2: Spring back to rest with elastic bounce
-        gsap.to(card, {
-          x: restX,
-          y: restY,
-          rotation: restRotation,
-          scale: 1,
-          duration: 1.4,
-          ease: 'elastic.out(1, 0.3)',
-          onUpdate: function() {
-            // Add subtle rotation wobble during spring-back
-            const progress = this.progress();
-            const wobble = Math.sin(progress * Math.PI * 6) * (1 - progress) * 3;
-            // Already handled by elastic ease
-          }
-        });
+        isSpringing = false;
+        currentTween = null;
       }
     });
-
-    currentX = 0;
-    currentY = 0;
   }
 
-  // Bind events
   card.addEventListener('pointerdown', onPointerDown);
-  window.addEventListener('pointermove', onPointerMove);
-  window.addEventListener('pointerup', onPointerUp);
+  card.addEventListener('pointermove', onPointerMove);
+  card.addEventListener('pointerup', onPointerUp);
+  card.addEventListener('pointercancel', onPointerUp);
 
-  // ===========================
-  // Subtle hover tilt (when not dragging)
-  // ===========================
-  if (hero) {
-    const xTo = gsap.quickTo(card, 'rotation', { duration: 0.6, ease: 'power3' });
-
+  // 3. Subtle Parallax Hover when Idle
+  if (hero && window.innerWidth >= 768) {
     hero.addEventListener('mousemove', (e) => {
-      if (isDragging) return;
-      
+      if (isDragging || isSpringing) return;
+
       const rect = card.getBoundingClientRect();
       const cardCenterX = rect.left + rect.width / 2;
       const diffX = e.clientX - cardCenterX;
-      
-      const rotation = restRotation + (diffX / window.innerWidth) * 6;
-      xTo(Math.max(-8, Math.min(2, rotation)));
+
+      const targetRot = -2.5 + (diffX / window.innerWidth) * 5.5;
+      const targetX = (diffX / window.innerWidth) * 14;
+
+      if (currentTween) currentTween.kill();
+
+      currentTween = gsap.to(state, {
+        x: targetX,
+        rot: targetRot,
+        duration: 0.5,
+        ease: 'power2.out',
+        onUpdate: render,
+        onComplete: () => {
+          currentTween = null;
+        }
+      });
     });
 
     hero.addEventListener('mouseleave', () => {
-      if (!isDragging) {
-        xTo(restRotation);
-      }
+      if (isDragging || isSpringing) return;
+
+      if (currentTween) currentTween.kill();
+
+      currentTween = gsap.to(state, {
+        x: 0,
+        y: 0,
+        rot: -2.5,
+        duration: 0.8,
+        ease: 'power2.out',
+        onUpdate: render,
+        onComplete: () => {
+          currentTween = null;
+        }
+      });
     });
   }
 }

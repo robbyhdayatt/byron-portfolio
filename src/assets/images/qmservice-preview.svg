@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgQM" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="cardGradQM" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="barGradQM" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgQM)"/>
+  <!-- Top Nav Bar -->
+  <rect x="0" y="0" width="800" height="50" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <circle cx="30" cy="25" r="6" fill="#EF4444"/>
+  <circle cx="50" cy="25" r="6" fill="#F59E0B"/>
+  <circle cx="70" cy="25" r="6" fill="#10B981"/>
+  <text x="110" y="30" fill="#94A3B8" font-family="monospace" font-size="13" font-weight="bold">QMSERVICE // WORKSHOP ANALYTICS DASHBOARD</text>
+  <rect x="670" y="14" width="100" height="24" rx="12" fill="#0369A1"/>
+  <text x="690" y="30" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">LIVE SYNC</text>
+
+  <!-- Metric Cards -->
+  <g transform="translate(30, 75)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="225" height="95" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="32" fill="#94A3B8" font-family="sans-serif" font-size="12">Total Unit Service (UE)</text>
+    <text x="20" y="68" fill="#38BDF8" font-family="sans-serif" font-size="28" font-weight="bold">14,892</text>
+    <text x="145" y="68" fill="#10B981" font-family="sans-serif" font-size="13">▲ +18.4%</text>
+    
+    <!-- Card 2 -->
+    <rect x="255" y="0" width="225" height="95" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="275" y="32" fill="#94A3B8" font-family="sans-serif" font-size="12">Mechanic Productivity</text>
+    <text x="275" y="68" fill="#F8FAFC" font-family="sans-serif" font-size="28" font-weight="bold">94.8%</text>
+    <text x="400" y="68" fill="#10B981" font-family="sans-serif" font-size="13">Optimal</text>
+
+    <!-- Card 3 -->
+    <rect x="510" y="0" width="225" height="95" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="530" y="32" fill="#94A3B8" font-family="sans-serif" font-size="12">Revenue Achievement</text>
+    <text x="530" y="68" fill="#FBBF24" font-family="sans-serif" font-size="28" font-weight="bold">103.2%</text>
+    <text x="660" y="68" fill="#10B981" font-family="sans-serif" font-size="13">Target met</text>
+  </g>
+
+  <!-- Analytics Chart & Dealer Grid -->
+  <g transform="translate(30, 195)">
+    <!-- Chart Box -->
+    <rect x="0" y="0" width="480" height="225" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="24" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Monthly Service Achievement Trend</text>
+    <line x1="30" y1="180" x2="450" y2="180" stroke="#334155" stroke-width="1"/>
+    <line x1="30" y1="130" x2="450" y2="130" stroke="#334155" stroke-dasharray="4 4"/>
+    <line x1="30" y1="80" x2="450" y2="80" stroke="#334155" stroke-dasharray="4 4"/>
+    
+    <!-- Bars -->
+    <rect x="55" y="110" width="30" height="70" rx="4" fill="url(#barGradQM)"/>
+    <rect x="115" y="90" width="30" height="90" rx="4" fill="url(#barGradQM)"/>
+    <rect x="175" y="70" width="30" height="110" rx="4" fill="url(#barGradQM)"/>
+    <rect x="235" y="60" width="30" height="120" rx="4" fill="url(#barGradQM)"/>
+    <rect x="295" y="50" width="30" height="130" rx="4" fill="#38BDF8"/>
+    <rect x="355" y="75" width="30" height="105" rx="4" fill="url(#barGradQM)"/>
+    <rect x="415" y="65" width="30" height="115" rx="4" fill="url(#barGradQM)"/>
+
+    <!-- Dealer Table Box -->
+    <rect x="510" y="0" width="225" height="225" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <text x="530" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Top 34+ Dealer Network</text>
+    
+    <rect x="525" y="55" width="195" height="34" rx="6" fill="#0F172A"/>
+    <text x="540" y="77" fill="#E2E8F0" font-family="sans-serif" font-size="12">1. LT Sentral Yamaha</text>
+    <text x="680" y="77" fill="#38BDF8" font-family="monospace" font-size="12">99.4%</text>
+
+    <rect x="525" y="98" width="195" height="34" rx="6" fill="#0F172A"/>
+    <text x="540" y="120" fill="#E2E8F0" font-family="sans-serif" font-size="12">2. LT Kedaton Motor</text>
+    <text x="680" y="120" fill="#38BDF8" font-family="monospace" font-size="12">97.8%</text>
+
+    <rect x="525" y="141" width="195" height="34" rx="6" fill="#0F172A"/>
+    <text x="540" y="163" fill="#E2E8F0" font-family="sans-serif" font-size="12">3. LT Teluk Betung</text>
+    <text x="680" y="163" fill="#38BDF8" font-family="monospace" font-size="12">96.2%</text>
+  </g>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgRO" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="100%" stop-color="#1C2541"/>
+    </linearGradient>
+    <linearGradient id="tealGradRO" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgRO)"/>
+  <!-- Top Nav Bar -->
+  <rect x="0" y="0" width="800" height="50" fill="#1C2541" stroke="#3A506B" stroke-width="1"/>
+  <circle cx="30" cy="25" r="6" fill="#EF4444"/>
+  <circle cx="50" cy="25" r="6" fill="#F59E0B"/>
+  <circle cx="70" cy="25" r="6" fill="#10B981"/>
+  <text x="110" y="30" fill="#94A3B8" font-family="monospace" font-size="13" font-weight="bold">REPEAT ORDER SYSTEM // CRM & STU VERIFICATION</text>
+  <rect x="650" y="14" width="120" height="24" rx="12" fill="#0D9488"/>
+  <text x="668" y="30" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">DEDUPLICATED</text>
+
+  <!-- Metrics -->
+  <g transform="translate(30, 75)">
+    <rect x="0" y="0" width="225" height="90" rx="10" fill="#1C2541" stroke="#3A506B" stroke-width="1"/>
+    <text x="20" y="30" fill="#94A3B8" font-family="sans-serif" font-size="12">Total Leads Follow-Up</text>
+    <text x="20" y="65" fill="#22D3EE" font-family="sans-serif" font-size="28" font-weight="bold">8,420</text>
+
+    <rect x="255" y="0" width="225" height="90" rx="10" fill="#1C2541" stroke="#3A506B" stroke-width="1"/>
+    <text x="275" y="30" fill="#94A3B8" font-family="sans-serif" font-size="12">Closing Conversion Rate</text>
+    <text x="275" y="65" fill="#10B981" font-family="sans-serif" font-size="28" font-weight="bold">32.6%</text>
+
+    <rect x="510" y="0" width="225" height="90" rx="10" fill="#1C2541" stroke="#3A506B" stroke-width="1"/>
+    <text x="530" y="30" fill="#94A3B8" font-family="sans-serif" font-size="12">Verified STU Documents</text>
+    <text x="530" y="65" fill="#FBBF24" font-family="sans-serif" font-size="28" font-weight="bold">2,745</text>
+  </g>
+
+  <!-- CRM Pipeline & STU Upload Flow -->
+  <g transform="translate(30, 190)">
+    <rect x="0" y="0" width="735" height="230" rx="12" fill="#1C2541" stroke="#3A506B" stroke-width="1"/>
+    <text x="25" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Salesman Assignment & STU Verification Pipeline</text>
+
+    <!-- Table Header -->
+    <rect x="25" y="55" width="685" height="32" rx="6" fill="#0B132B"/>
+    <text x="45" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">CUSTOMER NAME</text>
+    <text x="220" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">MOTOR UNIT</text>
+    <text x="380" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">SALES ASSIGNED</text>
+    <text x="540" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">STATUS & STU</text>
+
+    <!-- Row 1 -->
+    <rect x="25" y="95" width="685" height="38" rx="6" fill="#141E33"/>
+    <text x="45" y="119" fill="#F8FAFC" font-family="sans-serif" font-size="12">Ahmad Fauzi (KTP Valid)</text>
+    <text x="220" y="119" fill="#22D3EE" font-family="sans-serif" font-size="12">Yamaha NMAX Turbo</text>
+    <text x="380" y="119" fill="#E2E8F0" font-family="sans-serif" font-size="12">Budi Santoso (Kacab LT)</text>
+    <rect x="540" y="103" width="130" height="22" rx="11" fill="#065F46"/>
+    <text x="555" y="118" fill="#34D399" font-family="sans-serif" font-size="11" font-weight="bold">✓ STU VERIFIED</text>
+
+    <!-- Row 2 -->
+    <rect x="25" y="140" width="685" height="38" rx="6" fill="#141E33"/>
+    <text x="45" y="164" fill="#F8FAFC" font-family="sans-serif" font-size="12">Siti Rahmawati</text>
+    <text x="220" y="164" fill="#22D3EE" font-family="sans-serif" font-size="12">Grand Filano Hybrid</text>
+    <text x="380" y="164" fill="#E2E8F0" font-family="sans-serif" font-size="12">Dedi Kurniawan</text>
+    <rect x="540" y="148" width="130" height="22" rx="11" fill="#0369A1"/>
+    <text x="555" y="163" fill="#38BDF8" font-family="sans-serif" font-size="11" font-weight="bold">FOLLOW UP</text>
+
+    <!-- Row 3 -->
+    <rect x="25" y="185" width="685" height="38" rx="6" fill="#141E33"/>
+    <text x="45" y="209" fill="#F8FAFC" font-family="sans-serif" font-size="12">Hendro Wijaya</text>
+    <text x="220" y="209" fill="#22D3EE" font-family="sans-serif" font-size="12">Aerox 155 Connected</text>
+    <text x="380" y="209" fill="#E2E8F0" font-family="sans-serif" font-size="12">Rian Saputra</text>
+    <rect x="540" y="193" width="130" height="22" rx="11" fill="#065F46"/>
+    <text x="555" y="208" fill="#34D399" font-family="sans-serif" font-size="11" font-weight="bold">✓ STU VERIFIED</text>
+  </g>
+</svg>

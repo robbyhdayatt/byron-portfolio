@@ -12,6 +12,7 @@ import { init as initFloatingPhoto } from './floating-photo.js';
 import { init as initSkyBackground } from './sky-background.js';
 import { init as initScrollReveal } from './scroll-reveal.js';
 import { init as initCertifications } from './certifications.js';
+import { init as initSkillsMarquee } from './skills-marquee.js';
 import { init as initContactForm } from './contact-form.js';
 import { init as initI18n, applyTranslations } from './i18n.js';
 import { renderPersonal, renderProjects, renderTimeline, renderSkills } from './render.js';
@@ -21,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener('DOMContentLoaded', async () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Show body (was hidden by inline critical CSS to prevent FOUC)
+  // Show body
   document.body.classList.add('ready');
 
   // Initialize i18n (language system)
@@ -95,10 +96,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // ===================================
+  // Floating Back to Top Button (Fly to Top)
+  // ===================================
+  const backToTopBtn = document.querySelector('#back-to-top');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      lenis.scrollTo(0, { duration: 1.2 });
+    });
+  }
+
   // Initialize remaining animation modules
   initPreloader(prefersReducedMotion);
   initIdCard(prefersReducedMotion);
   initFloatingPhoto(prefersReducedMotion);
   initSkyBackground(prefersReducedMotion);
+  initSkillsMarquee(prefersReducedMotion);
   initContactForm();
 });
