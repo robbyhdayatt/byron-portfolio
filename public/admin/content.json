@@ -88,11 +88,11 @@
         "JavaScript"
       ],
       "highlights": [
-        "Tiered Runtime Deduplication (KTP & No. Rangka)",
+        "Tiered Runtime Deduplication",
         "Penugasan Salesman & Tracking Follow-up CRM",
         "Verifikasi Digital STU & Batch Download ZIP Arsip"
       ],
-      "description": "Sistem CRM retensi pelanggan dealer Yamaha untuk penugasan follow-up salesman, pencatatan hasil prospek, verifikasi digital dokumen STU (Surat Tanda Terima Unit), dan deduplikasi cerdas berbasis KTP & No. Rangka.",
+      "description": "Sistem CRM retensi pelanggan dealer Yamaha untuk penugasan follow-up salesman, pencatatan hasil prospek, verifikasi digital dokumen STU (Surat Tanda Terima Unit), dan deduplikasi cerdas.",
       "impact": "Mencegah duplikasi data prospek dan mempercepat verifikasi dokumen STU penjualan antar level manajemen (Kacab hingga Main Dealer).",
       "github": ""
     },
