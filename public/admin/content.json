@@ -156,7 +156,8 @@
       "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
       "images": [
         "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
-        "./assets/images/dreamride-booking.svg"
+        "./assets/images/dreamride-booking.svg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166268581_screenshot_2026-08-31_155101.png"
       ],
       "stack": [
         "Next.js 15",
