@@ -62,9 +62,9 @@
       "highlights": [
         "Formulasi Baku Parameter Produktivitas Mekanik",
         "Monitoring Pencapaian Target Servis (UE) Bulanan",
-        "Ekspor Realtime Raw Data Transaksi & API DPACK"
+        "Ekspor Realtime Raw Data Transaksi & API"
       ],
-      "description": "Sistem analitik performa bengkel resmi Yamaha se-provinsi Lampung yang mengelola produktivitas mekanik, kalkulasi achievement target servis bulanan, visualisasi performa dealer, hingga ekspor data transaksi API DPACK.",
+      "description": "Sistem analitik performa bengkel resmi Yamaha se-provinsi Lampung yang mengelola produktivitas mekanik, kalkulasi achievement target servis bulanan, visualisasi performa dealer, hingga ekspor data transaksi API.",
       "impact": "Mengotomatisasi monitoring performa ratusan mekanik dan 34+ bengkel dengan metrik baku real-time.",
       "github": ""
     },
