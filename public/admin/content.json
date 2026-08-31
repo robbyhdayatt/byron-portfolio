@@ -20,7 +20,8 @@
       "image": "./assets/images/spartan-preview.jpg",
       "images": [
         "./assets/images/spartan-preview.jpg",
-        "./assets/images/spartan-detail.svg"
+        "./assets/images/spartan-inventory.svg",
+        "./assets/images/spartan-invoice.svg"
       ],
       "stack": [
         "Laravel 8",
@@ -46,7 +47,7 @@
       "image": "./assets/images/qmservice-preview.svg",
       "images": [
         "./assets/images/qmservice-preview.svg",
-        "./assets/images/qmservice-detail.svg"
+        "./assets/images/qmservice-mechanic.svg"
       ],
       "stack": [
         "PHP",
@@ -120,7 +121,8 @@
       "period": "2026",
       "image": "./assets/images/undian-preview.jpg",
       "images": [
-        "./assets/images/undian-preview.jpg"
+        "./assets/images/undian-preview.jpg",
+        "./assets/images/undian-operator.svg"
       ],
       "stack": [
         "JavaScript ES6+",
@@ -145,7 +147,7 @@
       "image": "./assets/images/dreamride-preview.jpg",
       "images": [
         "./assets/images/dreamride-preview.jpg",
-        "./assets/images/dreamride-detail.svg"
+        "./assets/images/dreamride-booking.svg"
       ],
       "stack": [
         "Next.js 15",
@@ -171,7 +173,8 @@
       "period": "2026",
       "image": "./assets/images/sigap-preview.jpg",
       "images": [
-        "./assets/images/sigap-preview.jpg"
+        "./assets/images/sigap-preview.jpg",
+        "./assets/images/sigap-editor.svg"
       ],
       "stack": [
         "Laravel",
@@ -187,30 +190,6 @@
       "description": "Aplikasi web untuk menghasilkan dokumen akta PPAT (Pejabat Pembuat Akta Tanah) secara otomatis berbasis form terstruktur dan template standar kenotariatan.",
       "impact": "Mempercepat proses pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten dan akurat.",
       "github": "https://github.com/robbyhdayatt/sigap"
-    },
-    {
-      "id": 8,
-      "title": "Company Profile PT. Lautan Teduh Interniaga",
-      "subtitle": "Website Profil Perusahaan Main Dealer Yamaha Lampung",
-      "period": "2025",
-      "image": "./assets/images/lautan-teduh-preview.jpg",
-      "images": [
-        "./assets/images/lautan-teduh-preview.jpg"
-      ],
-      "stack": [
-        "PHP Native",
-        "Bootstrap 5",
-        "MySQL",
-        "JavaScript"
-      ],
-      "highlights": [
-        "Katalog Produk Motor Yamaha Terkini",
-        "Informasi Jaringan 34+ Dealer & Bengkel Resmi",
-        "Layanan Purna Jual & Hubungi Kami Terintegrasi"
-      ],
-      "description": "Website resmi profil perusahaan PT. Lautan Teduh Interniaga sebagai Main Dealer resmi Yamaha wilayah Lampung untuk menyajikan katalog motor, jaringan dealer, dan layanan purna jual.",
-      "impact": "Meningkatkan brand authority dan mempermudah akses informasi produk bagi konsumen di seluruh Lampung.",
-      "link": "https://lautanteduh.co.id"
     }
   ],
   "certifications": [

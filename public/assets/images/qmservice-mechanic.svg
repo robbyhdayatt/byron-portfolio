@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+      <rect width="800" height="500" rx="12" fill="#0F172A"/>
+      <rect x="0" y="0" width="800" height="44" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <circle cx="25" cy="22" r="5" fill="#EF4444"/><circle cx="42" cy="22" r="5" fill="#F59E0B"/><circle cx="59" cy="22" r="5" fill="#10B981"/>
+      <text x="85" y="27" fill="#94A3B8" font-family="monospace" font-size="12" font-weight="bold">QMSERVICE // MECHANIC PRODUCTIVITY SCORING MATRIX</text>
+      <g transform="translate(30, 65)">
+        <rect x="0" y="0" width="740" height="400" rx="8" fill="#1E293B" stroke="#334155"/>
+        <text x="25" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="16" font-weight="bold">Individual Mechanic Benchmark Performance</text>
+        <rect x="25" y="60" width="690" height="55" rx="6" fill="#0F172A"/>
+        <text x="45" y="94" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Agus Pratama (Senior Mechanic)</text>
+        <text x="350" y="94" fill="#38BDF8" font-family="monospace" font-size="13">Flat Rate: 1.15 hr/UE</text>
+        <text x="580" y="94" fill="#10B981" font-family="sans-serif" font-size="14" font-weight="bold">Score: 98.4% (Tier 1)</text>
+        <rect x="25" y="130" width="690" height="55" rx="6" fill="#0F172A"/>
+        <text x="45" y="164" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Rudi Hermawan (Diagnostic Lead)</text>
+        <text x="350" y="164" fill="#38BDF8" font-family="monospace" font-size="13">Flat Rate: 1.08 hr/UE</text>
+        <text x="580" y="164" fill="#10B981" font-family="sans-serif" font-size="14" font-weight="bold">Score: 96.8% (Tier 1)</text>
+        <rect x="25" y="200" width="690" height="55" rx="6" fill="#0F172A"/>
+        <text x="45" y="234" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Bambang Susanto (Service Tech)</text>
+        <text x="350" y="234" fill="#38BDF8" font-family="monospace" font-size="13">Flat Rate: 1.28 hr/UE</text>
+        <text x="580" y="234" fill="#FBBF24" font-family="sans-serif" font-size="14" font-weight="bold">Score: 91.2% (Tier 2)</text>
+      </g>
+    </svg>

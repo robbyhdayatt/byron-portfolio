@@ -162,34 +162,36 @@ export async function renderProjects() {
   const list = (data && data.projects) ? data.projects : fallbackProjects;
   if (!list || list.length === 0) return;
 
-  grid.innerHTML = list.map((project, idx) => `
-    <div class="project-item reveal" data-project-idx="${idx}">
-      <div class="project-image-frame" data-project-idx="${idx}" role="button" tabindex="0" aria-label="Buka detail ${project.title}">
-        <img src="${project.image}" alt="${project.title}" loading="lazy" />
-        <div class="project-image-overlay">
-          <span class="view-project-chip">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
-            Detail Sistem
-          </span>
+  grid.innerHTML = list.map((project, idx) => {
+    const images = project.images && project.images.length > 0 ? project.images : (project.image ? [project.image] : []);
+    const imgCount = images.length;
+    const mainImg = project.image || (images[0] || '');
+
+    return `
+      <div class="project-clean-item reveal" data-project-idx="${idx}">
+        <div class="project-clean-preview">
+          <img src="${mainImg}" alt="${project.title} Preview" loading="lazy" />
+          ${imgCount > 1 ? `
+            <div class="project-preview-overlay">
+              <span>📸 ${imgCount} Gambar</span>
+            </div>
+          ` : ''}
         </div>
-      </div>
-      <div class="project-info">
-        <div class="project-title-row">
-          <h3 class="project-title">${project.title}</h3>
-          ${project.period ? `<span class="project-period">${project.period}</span>` : ''}
-        </div>
-        <p class="project-subtitle">${project.subtitle || ''}</p>
-        <div class="project-action">
-          <button type="button" class="btn-project-detail" data-project-idx="${idx}">
+        <div class="project-clean-meta">
+          <h3 class="project-clean-title">
+            <span>${project.title}</span>
+          </h3>
+          ${project.subtitle ? `<p class="project-clean-subtitle">${project.subtitle}</p>` : ''}
+          <button type="button" class="btn-clean-detail" data-project-idx="${idx}">
             <span>Lihat Detail</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span class="arrow-icon">→</span>
           </button>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
-  // Initialize Detail Modal & Stacked Card Deck
+  // Initialize Detail Modal & Interactive Card Stacks
   initProjectModal(list);
 }
 
@@ -198,164 +200,225 @@ function initProjectModal(projectList) {
   const modalContentWrapper = overlay ? overlay.querySelector('.modal-content') : null;
   if (!overlay || !modalContentWrapper) return;
 
-  const openModal = (idx) => {
-    const proj = projectList[idx];
-    if (!proj) return;
-
-    const stackArr = proj.stack ? (Array.isArray(proj.stack) ? proj.stack : proj.stack.split(',')) : [];
-    const highlights = proj.highlights || [];
-    const images = (proj.images && proj.images.length > 0) ? proj.images : (proj.image ? [proj.image] : []);
-
-    modalContentWrapper.className = 'modal-content project-modal-dialog';
-    modalContentWrapper.innerHTML = `
-      <button class="modal-close-btn" aria-label="Tutup modal">&times;</button>
-      <div class="project-modal-grid">
-        <!-- 🎴 Left: Interactive Stacked Card Deck -->
-        <div class="deck-container">
-          <div class="deck-stack" id="deck-stack" title="Klik untuk melihat gambar berikutnya">
-            ${images.map((img, i) => `
-              <div class="deck-card layer-${i < 3 ? i : 2}" data-card-idx="${i}">
-                <img src="${img}" alt="${proj.title} Screenshot ${i + 1}" />
-              </div>
-            `).join('')}
-          </div>
-          <div class="deck-footer">
-            <div class="deck-hint">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 14h6m-6 0l3-3m-3 3l3 3m16-4h-6m6 0l-3-3m3 3l-3 3"/></svg>
-              <span>Klik gambar untuk geser tumpukan</span>
-            </div>
-            <div class="deck-counter">
-              <span id="deck-current">1</span> / ${images.length}
-            </div>
-          </div>
-        </div>
-
-        <!-- 📝 Right: Project Details & Tech Stack -->
-        <div class="project-modal-details">
-          <h2 class="modal-project-title">${proj.title}</h2>
-          <p class="modal-project-subtitle">${proj.subtitle || ''} ${proj.period ? `· ${proj.period}` : ''}</p>
-
-          <div class="modal-label">Teknologi &amp; Tech Stack</div>
-          <div class="modal-stack-pills">
-            ${stackArr.map(t => `<span class="pill">${getTechIcon(t)}<span>${t.trim()}</span></span>`).join('')}
-          </div>
-
-          <div class="modal-label">Deskripsi Sistem &amp; Arsitektur</div>
-          <p class="modal-desc">${proj.description || ''}</p>
-
-          ${highlights.length > 0 ? `
-            <div class="modal-label">Fitur Unggulan &amp; Spesifikasi</div>
-            <ul class="modal-highlights">
-              ${highlights.map(h => `<li><span class="check">✓</span> <span>${h}</span></li>`).join('')}
-            </ul>
-          ` : ''}
-
-          ${proj.impact ? `
-            <div class="modal-label">Dampak Bisnis (Business Impact)</div>
-            <div class="modal-impact">${proj.impact}</div>
-          ` : ''}
-
-          <div class="modal-links-row">
-            ${proj.link ? `
-              <a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="modal-link-btn btn-primary-link">
-                <span>🌐</span> Kunjungi Website ↗
-              </a>
-            ` : ''}
-            ${proj.github ? `
-              <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="modal-link-btn btn-secondary-link">
-                <span>📂</span> Lihat Source Code (GitHub) ↗
-              </a>
-            ` : ''}
-          </div>
-        </div>
-      </div>
-    `;
-
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-
-    // GSAP Modal Entrance
-    gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
-    gsap.fromTo(modalContentWrapper, { scale: 0.92, opacity: 0, y: 20 }, { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: 'back.out(1.2)' });
-
-    // Close logic
-    const closeBtn = modalContentWrapper.querySelector('.modal-close-btn');
-    const closeModal = () => {
-      gsap.to(modalContentWrapper, { scale: 0.95, opacity: 0, duration: 0.2, ease: 'power2.in' });
-      gsap.to(overlay, { opacity: 0, duration: 0.2, onComplete: () => {
-        overlay.style.display = 'none';
-        document.body.style.overflow = '';
-      }});
-    };
-    if (closeBtn) closeBtn.onclick = closeModal;
-    overlay.onclick = (e) => {
-      if (e.target === overlay) closeModal();
-    };
-
-    // 🎴 Wire Interactive Deck Card Click
-    setupDeckInteraction(modalContentWrapper, images.length);
-  };
-
-  // Open triggers
-  document.querySelectorAll('.btn-project-detail, .project-image-frame').forEach(el => {
+  // Handle click on card or button
+  const triggerElements = document.querySelectorAll('.project-clean-item, .btn-clean-detail');
+  triggerElements.forEach(el => {
     el.addEventListener('click', (e) => {
       e.stopPropagation();
-      const idx = parseInt(el.dataset.projectIdx, 10);
-      if (!isNaN(idx)) openModal(idx);
+      const idxAttr = el.dataset.projectIdx;
+      if (idxAttr === undefined) return;
+      const idx = parseInt(idxAttr, 10);
+      const proj = projectList[idx];
+      if (!proj) return;
+
+      const images = proj.images && proj.images.length > 0 ? proj.images : (proj.image ? [proj.image] : []);
+      const stackArr = proj.stack ? (Array.isArray(proj.stack) ? proj.stack : proj.stack.split(',')) : [];
+      const highlights = proj.highlights || [];
+
+      modalContentWrapper.innerHTML = `
+        <div class="project-modal-dialog">
+          <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+          
+          <!-- Left: Interactive Image Stack Gallery -->
+          <div class="modal-gallery-deck">
+            <div class="deck-hint-bar">
+              <span>📸 Galeri Pratinjau Sistem</span>
+              <span class="deck-counter-badge" id="deck-counter">1 / ${images.length}</span>
+            </div>
+            
+            <div class="deck-stack-area" id="deck-stack-area" title="Klik gambar untuk beralih ke gambar berikutnya">
+              ${images.map((img, i) => `
+                <div class="deck-card" data-card-idx="${i}">
+                  <img src="${img}" alt="${proj.title} - Slide ${i+1}" />
+                </div>
+              `).join('')}
+              ${images.length > 1 ? `
+                <div class="deck-tap-indicator">
+                  <span>👆 Klik gambar untuk ganti</span>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          
+          <!-- Right: Project Details & Tech Stack -->
+          <div class="modal-info-panel">
+            <h2>${proj.title}</h2>
+            ${proj.subtitle ? `<p class="modal-sub">${proj.subtitle}</p>` : ''}
+            
+            <div class="modal-stack-pills">
+              ${stackArr.map(t => `<span class="pill">${getTechIcon(t)}<span>${t.trim()}</span></span>`).join('')}
+            </div>
+            
+            <div class="modal-section-label">Tentang Sistem &amp; Arsitektur</div>
+            <p>${proj.description || ''}</p>
+            
+            ${highlights.length > 0 ? `
+              <div class="modal-section-label">Fitur &amp; Spesifikasi Utama</div>
+              <ul class="modal-highlights-list">
+                ${highlights.map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
+              </ul>
+            ` : ''}
+            
+            ${proj.impact ? `
+              <div class="modal-impact-box">
+                <p>💡 <strong>Dampak Bisnis:</strong> ${proj.impact}</p>
+              </div>
+            ` : ''}
+            
+            <div class="modal-action-buttons">
+              ${proj.github ? `
+                <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="btn-action btn-github">
+                  <span>📂</span> GitHub Repository ↗
+                </a>
+              ` : ''}
+              ${proj.link ? `
+                <a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="btn-action btn-web">
+                  <span>🌐</span> Kunjungi Website ↗
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      // Setup close button and outside click
+      const closeBtn = modalContentWrapper.querySelector('.modal-close-btn');
+      if (closeBtn) {
+        closeBtn.onclick = closeModal;
+      }
+      overlay.onclick = (event) => {
+        if (event.target === overlay) closeModal();
+      };
+
+      function closeModal() {
+        gsap.to(modalContentWrapper, {
+          scale: 0.95,
+          opacity: 0,
+          duration: 0.2,
+          onComplete: () => {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      // Entrance animation
+      gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+      gsap.fromTo(modalContentWrapper, { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.2)' });
+
+      // Initialize Interactive Image Stack Deck Physics
+      const deckArea = modalContentWrapper.querySelector('#deck-stack-area');
+      initDeckAnimation(deckArea, images);
     });
   });
 }
 
-function setupDeckInteraction(modalWrapper, totalImages) {
-  const stack = modalWrapper.querySelector('#deck-stack');
-  const counter = modalWrapper.querySelector('#deck-current');
-  if (!stack || totalImages <= 1) return;
+function initDeckAnimation(deckArea, images) {
+  if (!deckArea || images.length <= 1) return;
 
-  let currentIndex = 0;
+  let activeIndex = 0;
+  const cards = Array.from(deckArea.querySelectorAll('.deck-card'));
+  const counterEl = document.getElementById('deck-counter');
   let isAnimating = false;
 
-  const updateCardLayers = () => {
-    const cards = stack.querySelectorAll('.deck-card');
-    cards.forEach((card, idx) => {
-      card.classList.remove('layer-0', 'layer-1', 'layer-2');
-      if (idx === 0) card.classList.add('layer-0');
-      else if (idx === 1) card.classList.add('layer-1');
-      else card.classList.add('layer-2');
+  function updateStackLayout(animate = true) {
+    const total = cards.length;
+    cards.forEach((card, index) => {
+      const offset = (index - activeIndex + total) % total;
+
+      let zIndex, rotate, translateY, scale, opacity;
+
+      if (offset === 0) {
+        // Active Top Card
+        zIndex = 10;
+        rotate = 0;
+        translateY = 0;
+        scale = 1;
+        opacity = 1;
+      } else if (offset === 1) {
+        // Second card (peeking with slight right tilt)
+        zIndex = 9;
+        rotate = 3.5;
+        translateY = 12;
+        scale = 0.95;
+        opacity = 0.88;
+      } else if (offset === 2) {
+        // Third card (peeking with slight left tilt)
+        zIndex = 8;
+        rotate = -3;
+        translateY = 22;
+        scale = 0.90;
+        opacity = 0.70;
+      } else {
+        // Any deeper cards
+        zIndex = 5;
+        rotate = 0;
+        translateY = 28;
+        scale = 0.85;
+        opacity = 0;
+      }
+
+      if (animate) {
+        gsap.to(card, {
+          zIndex,
+          rotation: rotate,
+          y: translateY,
+          scale: scale,
+          opacity: opacity,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      } else {
+        gsap.set(card, {
+          zIndex,
+          rotation: rotate,
+          y: translateY,
+          scale: scale,
+          opacity: opacity,
+          x: 0
+        });
+      }
     });
-  };
 
-  stack.addEventListener('click', () => {
+    if (counterEl) {
+      counterEl.textContent = `${activeIndex + 1} / ${total}`;
+    }
+  }
+
+  // Initial layout set
+  updateStackLayout(false);
+
+  // Click on image stack to swipe top card away & show next
+  deckArea.onclick = (e) => {
+    e.stopPropagation();
     if (isAnimating) return;
-    const cards = stack.querySelectorAll('.deck-card');
-    if (cards.length < 2) return;
-
     isAnimating = true;
-    const topCard = cards[0];
 
-    // Smooth physics-based card swipe out
-    gsap.to(topCard, {
+    const currentTopCard = cards[activeIndex];
+
+    // Animate top card flying off to the right with physics
+    gsap.to(currentTopCard, {
       x: 280,
       rotation: 16,
       opacity: 0,
-      scale: 0.88,
       duration: 0.32,
       ease: 'power2.in',
       onComplete: () => {
-        // Move to the back of the stack
-        stack.appendChild(topCard);
-        gsap.set(topCard, { x: 0, rotation: 0, opacity: 0, scale: 0.92 });
-        updateCardLayers();
-        
-        currentIndex = (currentIndex + 1) % totalImages;
-        if (counter) counter.textContent = currentIndex + 1;
-
-        // Fade in at the back smoothly
-        gsap.to(topCard, { opacity: 0.7, duration: 0.2, onComplete: () => {
+        // Advance active index
+        activeIndex = (activeIndex + 1) % cards.length;
+        // Reset old top card coordinates behind
+        gsap.set(currentTopCard, { x: 0 });
+        // Update all cards in stack
+        updateStackLayout(true);
+        setTimeout(() => {
           isAnimating = false;
-        }});
+        }, 250);
       }
     });
-  });
+  };
 }
 
 export async function renderTimeline() {
