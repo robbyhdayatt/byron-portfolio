@@ -127,9 +127,9 @@
       "title": "Undian Event & Stage Raffle",
       "subtitle": "Dual-Screen Realtime Sync Raffle App",
       "period": "2026",
-      "image": "./assets/images/undian-preview.jpg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166119481_screenshot_2026-08-27_172025.png",
       "images": [
-        "./assets/images/undian-preview.jpg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166119481_screenshot_2026-08-27_172025.png",
         "./assets/images/undian-operator.svg"
       ],
       "stack": [
@@ -145,7 +145,8 @@
         "Animasi Gulungan Tiket Berputar & Dynamic Confetti"
       ],
       "description": "Aplikasi web undian offline-first berlatensi 0ms dengan arsitektur dua layar independen (Panel Operator + Layar Proyektor Penonton) dengan animasi gulungan tiket berputar dan efek confetti dinamis untuk event besar Yamaha & Festival Krakatau.",
-      "impact": "Menjalankan pengundian ribuan nomor rangka motor secara transparan, aman, dan tanpa lag di panggung festival besar."
+      "impact": "Menjalankan pengundian ribuan nomor rangka motor secara transparan, aman, dan tanpa lag di panggung festival besar.",
+      "github": "https://github.com/robbyhdayatt/undian"
     },
     {
       "id": 6,
