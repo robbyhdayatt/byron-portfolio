@@ -45,9 +45,9 @@
       "title": "QMSERVICE",
       "subtitle": "Query Master Service & Workshop Analytics Engine",
       "period": "2026",
-      "image": "./assets/images/qmservice-preview.svg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788159677666_screenshot_2026-08-31_140105.png",
       "images": [
-        "./assets/images/qmservice-preview.svg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788159677666_screenshot_2026-08-31_140105.png",
         "./assets/images/qmservice-mechanic.svg"
       ],
       "stack": [
@@ -64,7 +64,7 @@
       ],
       "description": "Sistem analitik performa bengkel resmi Yamaha se-provinsi Lampung yang mengelola produktivitas mekanik, kalkulasi achievement target servis bulanan, visualisasi performa dealer, hingga ekspor data transaksi API DPACK.",
       "impact": "Mengotomatisasi monitoring performa ratusan mekanik dan 34+ bengkel dengan metrik baku real-time.",
-      "github": "https://github.com/robbyhdayatt/qmservice"
+      "github": ""
     },
     {
       "id": 3,
