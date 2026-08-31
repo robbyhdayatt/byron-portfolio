@@ -101,9 +101,9 @@
       "title": "Sistem Alokasi Unit PLN",
       "subtitle": "Logistik & Pemantauan Distribusi Unit Kendaraan",
       "period": "2026",
-      "image": "./assets/images/alokasi-unit-preview.svg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788163748891_screenshot_2026-08-31_150857.png",
       "images": [
-        "./assets/images/alokasi-unit-preview.svg"
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788163748891_screenshot_2026-08-31_150857.png"
       ],
       "stack": [
         "PHP",
