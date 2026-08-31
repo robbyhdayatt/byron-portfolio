@@ -2,9 +2,17 @@ export const projects = [
   {
     title: "SPARTAN LTI",
     subtitle: "Sistem Manajemen Sparepart, Inventori & Bengkel Dealer Yamaha",
+    category: "enterprise",
+    featured: true,
+    statusBadge: "Production Active",
     period: "2024 – Sekarang",
     image: "./assets/images/spartan-preview.jpg",
     stack: ["Laravel 8", "MySQL", "AdminLTE 3", "DomPDF", "Doctrine DBAL"],
+    highlights: [
+      "ERP Main Dealer Yamaha Lampung & 34+ Jaringan Dealer",
+      "Multi-Warehouse Realtime Inventory & Stok Sparepart",
+      "Otomatisasi PO, Delivery Order, Faktur & Klaim Garansi"
+    ],
     description: "Aplikasi Enterprise Resource Planning (ERP) berstandar industri untuk Main Dealer Yamaha (PT Lautan Teduh Interniaga) dan 34+ jaringan dealer & bengkel resmi di Lampung. Mengelola stok sparepart multi-gudang, purchase order (PO), delivery order (DO), invoice, serta klaim garansi.",
     impact: "Mendigitalkan dan menyinkronkan seluruh rantai pasok sparepart serta operasional servis 34+ dealer resmi se-provinsi Lampung.",
     github: "https://github.com/robbyhdayatt/spartann"
@@ -12,9 +20,16 @@ export const projects = [
   {
     title: "QMSERVICE",
     subtitle: "Query Master Service & Workshop Analytics Engine",
+    category: "enterprise",
+    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/qmservice-preview.svg",
     stack: ["PHP", "MySQL", "PhpSpreadsheet", "SimpleXLSX", "JavaScript"],
+    highlights: [
+      "Formulasi Baku Parameter Produktivitas Mekanik",
+      "Monitoring Pencapaian Target Servis (UE) Bulanan",
+      "Ekspor Realtime Raw Data Transaksi & API DPACK"
+    ],
     description: "Sistem analitik performa bengkel resmi Yamaha se-provinsi Lampung yang mengelola produktivitas mekanik, kalkulasi achievement target servis bulanan, visualisasi performa dealer, hingga ekspor data transaksi API DPACK.",
     impact: "Mengotomatisasi monitoring performa ratusan mekanik dan 34+ bengkel dengan metrik baku real-time.",
     github: "https://github.com/robbyhdayatt/qmservice"
@@ -22,9 +37,16 @@ export const projects = [
   {
     title: "Repeat Order (RO) System",
     subtitle: "CRM Retensi Pelanggan & Verifikasi STU Yamaha",
+    category: "enterprise",
+    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/repeat-order-preview.svg",
     stack: ["PHP", "MySQL", "PhpSpreadsheet", "Bootstrap", "JavaScript"],
+    highlights: [
+      "Tiered Runtime Deduplication (KTP & No. Rangka)",
+      "Penugasan Salesman & Tracking Follow-up CRM",
+      "Verifikasi Digital STU & Batch Download ZIP Arsip"
+    ],
     description: "Sistem CRM retensi pelanggan dealer Yamaha untuk penugasan follow-up salesman, pencatatan hasil prospek, verifikasi digital dokumen STU (Surat Tanda Terima Unit), dan deduplikasi cerdas berbasis KTP & No. Rangka.",
     impact: "Mencegah duplikasi data prospek dan mempercepat verifikasi dokumen STU penjualan antar level manajemen (Kacab hingga Main Dealer).",
     github: "https://github.com/robbyhdayatt/repeat-order-system"
@@ -32,9 +54,16 @@ export const projects = [
   {
     title: "Sistem Alokasi Unit PLN",
     subtitle: "Logistik & Pemantauan Distribusi Unit Kendaraan",
+    category: "enterprise",
+    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/alokasi-unit-preview.svg",
     stack: ["PHP", "MySQL Views", "SimpleXLSX", "Bootstrap"],
+    highlights: [
+      "Realtime Sync ke Database Maxwheels & DPACK",
+      "Tracking Status Unit dari Main Warehouse hingga STU",
+      "Monitoring Alokasi Multi-Dealer Se-Lampung"
+    ],
     description: "Aplikasi web pemantauan distribusi dan alokasi unit motor Yamaha dari gudang utama (Main Warehouse) hingga terbit faktur STU, tersinkronisasi langsung dengan database eksternal Maxwheels & DPACK.",
     impact: "Memberikan visibilitas real-time terhadap status ribuan unit kendaraan yang dialokasikan ke 34+ jaringan dealer.",
     github: "https://github.com/robbyhdayatt/alokasi_unit"
@@ -42,18 +71,32 @@ export const projects = [
   {
     title: "Undian Event & Stage Raffle",
     subtitle: "Dual-Screen Realtime Sync Raffle App",
+    category: "modern_web",
+    statusBadge: "0ms Dual-Screen Sync",
     period: "2026",
     image: "./assets/images/undian-preview.jpg",
     stack: ["JavaScript ES6+", "BroadcastChannel API", "HTML5 Canvas", "SheetJS", "Tailwind CSS"],
+    highlights: [
+      "100% Offline-First Architecture (Zero Latency)",
+      "Sinkronisasi Dua Layar Operator & Proyektor Panggung",
+      "Animasi Gulungan Tiket Berputar & Dynamic Confetti"
+    ],
     description: "Aplikasi web undian offline-first berlatensi 0ms dengan arsitektur dua layar independen (Panel Operator + Layar Proyektor Penonton) dengan animasi gulungan tiket berputar dan efek confetti dinamis untuk event besar Yamaha & Festival Krakatau.",
     impact: "Menjalankan pengundian ribuan nomor rangka motor secara transparan, aman, dan tanpa lag di panggung festival besar."
   },
   {
     title: "Dreamride",
     subtitle: "Modern Vehicle Rental & Fleet Booking Platform",
+    category: "modern_web",
+    statusBadge: "Next.js 15 SSR",
     period: "2025 – 2026",
     image: "./assets/images/dreamride-preview.jpg",
     stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma ORM", "Framer Motion"],
+    highlights: [
+      "Server-Side Rendering & Modern App Router",
+      "Katalog Armada Interaktif & Kalkulasi Tarif Sewa",
+      "Verifikasi Identitas Penyewa & Admin Control Panel"
+    ],
     description: "Platform rental kendaraan dan manajemen armada mobil modern dengan katalog interaktif, verifikasi identitas penyewa, kalkulasi durasi & tarif sewa otomatis, serta dashboard admin terpadu.",
     impact: "Menyediakan pengalaman booking mobil yang seamless dengan performa tinggi (SSR) dan antarmuka modern.",
     github: "https://github.com/robbyhdayatt/dream-ride"
@@ -61,9 +104,16 @@ export const projects = [
   {
     title: "SIGAP",
     subtitle: "Sistem Generator Akta PPAT Otomatis",
+    category: "automation",
+    statusBadge: "Docx Automation",
     period: "2026",
     image: "./assets/images/sigap-preview.jpg",
     stack: ["Laravel", "MySQL", "PHPWord", "Bootstrap"],
+    highlights: [
+      "Otomatisasi Akta Kenotariatan & Pertanahan Instan",
+      "Validasi Form Terstruktur Multi-Pihak & Saksi",
+      "Ekspor Format Standar PPAT Siap Cetak"
+    ],
     description: "Aplikasi web untuk menghasilkan dokumen akta PPAT (Pejabat Pembuat Akta Tanah) secara otomatis berbasis form terstruktur dan template standar kenotariatan.",
     impact: "Mempercepat proses pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten dan akurat.",
     github: "https://github.com/robbyhdayatt/sigap"
@@ -71,18 +121,32 @@ export const projects = [
   {
     title: "AGATHA",
     subtitle: "Automated SPK & Document Generator Engine",
+    category: "automation",
+    statusBadge: "Automation Engine",
     period: "2026",
     image: "./assets/images/agatha-preview.svg",
     stack: ["PHP", "PHPWord", "PhpSpreadsheet", "MySQL"],
+    highlights: [
+      "Template Placeholder Replacement DOCX Engine",
+      "Integrasi Data Transaksi Dealer YIS / DPACK",
+      "Batch Annual Target Uploader & DOA Verification"
+    ],
     description: "Sistem otomatisasi pembuatan dokumen Surat Pesanan Kendaraan (SPK) berbasis template Microsoft Word (.docx), upload target tahunan dealer, dan validasi DOA (Delegation of Authority).",
     impact: "Mengotomatisasi pembuatan ribuan dokumen SPK bulanan secara instan dari input data transaksi YIS/DPACK."
   },
   {
     title: "Company Profile PT. Lautan Teduh Interniaga",
     subtitle: "Website Profil Perusahaan Main Dealer Yamaha Lampung",
+    category: "automation",
+    statusBadge: "Live Official Site",
     period: "2025",
     image: "./assets/images/lautan-teduh-preview.jpg",
     stack: ["PHP Native", "Bootstrap 5", "MySQL", "JavaScript"],
+    highlights: [
+      "Katalog Produk Motor Yamaha Terkini",
+      "Informasi Jaringan 34+ Dealer & Bengkel Resmi",
+      "Layanan Purna Jual & Hubungi Kami Terintegrasi"
+    ],
     description: "Website resmi profil perusahaan PT. Lautan Teduh Interniaga sebagai Main Dealer resmi Yamaha wilayah Lampung untuk menyajikan katalog motor, jaringan dealer, dan layanan purna jual.",
     impact: "Meningkatkan brand authority dan mempermudah akses informasi produk bagi konsumen di seluruh Lampung.",
     link: "https://lautanteduh.co.id"

@@ -1,3 +1,4 @@
+import gsap from 'gsap';
 import { projects as fallbackProjects, experiences as fallbackExperiences, organizations as fallbackOrganizations, personal as fallbackPersonal, skills as fallbackSkills } from '../data/content.js';
 import { fetchContent } from './github-cms.js';
 
@@ -86,17 +87,12 @@ const DEVICON_MAP = {
   'laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
   'react': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   'reactjs': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  'react.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   'vue': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
-  'vuejs': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
   'nextjs': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
   'next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
   'nodejs': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-  'node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
   'mysql': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
   'postgresql': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-  'postgres': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-  'mongodb': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
   'html': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   'html5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   'css': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
@@ -106,22 +102,22 @@ const DEVICON_MAP = {
   'bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
   'git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
   'github': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-  'git/github': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
   'figma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
   'docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
   'composer': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/composer/composer-original.svg',
-  'rest api': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-  'api': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-  'livewire': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
-  'wordpress': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg',
-  'flutter': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
-  'dart': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
-  'c++': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
-  'c': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
-  'java': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
-  'sass': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
-  'linux': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+  'prisma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg',
 };
+
+function getTechIcon(tech) {
+  const clean = tech.toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const [mapKey, url] of Object.entries(DEVICON_MAP)) {
+    const cleanMap = mapKey.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (clean.includes(cleanMap) || cleanMap.includes(clean)) {
+      return `<img src="${url}" alt="${tech}" class="pill-icon" loading="lazy" />`;
+    }
+  }
+  return '';
+}
 
 export async function renderSkills() {
   const data = await fetchLiveData();
@@ -164,31 +160,101 @@ export async function renderProjects() {
 
   const data = await fetchLiveData();
   const list = (data && data.projects) ? data.projects : fallbackProjects;
+  if (!list || list.length === 0) return;
 
-  grid.innerHTML = list.map(project => `
-    <div class="project-card reveal">
-      ${project.image ? `
-        <div class="project-image-window">
-          <div class="window-bar">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-            <span class="window-url">${project.title ? project.title.toLowerCase().replace(/\s+/g, '') : 'app'}.app</span>
+  grid.innerHTML = list.map((project, idx) => {
+    const isFeatured = !!project.featured;
+    const category = project.category || 'enterprise';
+    const statusBadge = project.statusBadge || (isFeatured ? 'Production Active' : '');
+    const stackArr = project.stack ? (Array.isArray(project.stack) ? project.stack : project.stack.split(',')) : [];
+    const highlights = project.highlights || [];
+    const domainUrl = project.title ? project.title.toLowerCase().replace(/[^a-z0-9]/g, '') + '.app' : 'app.system';
+
+    if (isFeatured) {
+      return `
+        <div class="project-card featured-project-card reveal" data-category="${category}" data-index="${idx}">
+          <div class="featured-badge-top">
+            <span>⭐</span>
+            <span>FEATURED FLAGSHIP ENTERPRISE PROJECT</span>
           </div>
-          <div class="window-body">
-            <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
+          <div class="featured-card-layout">
+            <div class="project-image-window featured-image-window">
+              <div class="window-bar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="window-url">${domainUrl}</span>
+                ${statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${statusBadge}</span>` : ''}
+              </div>
+              <div class="window-body">
+                <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
+              </div>
+            </div>
+            <div class="project-content featured-content">
+              <div class="featured-header">
+                <h3>${project.title}</h3>
+                ${project.subtitle ? `<h4>${project.subtitle}</h4>` : ''}
+              </div>
+              <div class="stack-pills">
+                ${stackArr.map(tech => `<span class="pill">${getTechIcon(tech)}<span>${tech.trim()}</span></span>`).join('')}
+              </div>
+              ${highlights.length > 0 ? `
+                <ul class="project-highlights">
+                  ${highlights.map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
+                </ul>
+              ` : ''}
+              <p>${project.description || ''}</p>
+              ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
+              <div class="project-links">
+                ${project.link ? `
+                  <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo">
+                    <span>🌐</span> Live Site ↗
+                  </a>
+                ` : ''}
+                ${project.github ? `
+                  <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github">
+                    <span>📂</span> GitHub Repo ↗
+                  </a>
+                ` : ''}
+                <button type="button" class="project-link-btn btn-spec" data-project-idx="${idx}">
+                  <span>🔍</span> Detail Arsitektur
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      ` : ''}
-      <div class="project-content">
-        <h3>${project.title}</h3>
-        ${project.subtitle ? `<h4>${project.subtitle}</h4>` : ''}
-        <div class="stack-pills">
-          ${project.stack ? (Array.isArray(project.stack) ? project.stack : project.stack.split(',')).map(tech => `<span class="pill">${tech.trim()}</span>`).join('') : ''}
-        </div>
-        <p>${project.description || ''}</p>
-        ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
-        ${(project.link || project.github) ? `
+      `;
+    }
+
+    return `
+      <div class="project-card regular-project-card reveal" data-category="${category}" data-index="${idx}">
+        ${project.image ? `
+          <div class="project-image-window">
+            <div class="window-bar">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="window-url">${domainUrl}</span>
+              ${statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${statusBadge}</span>` : ''}
+            </div>
+            <div class="window-body">
+              <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
+            </div>
+          </div>
+        ` : ''}
+        <div class="project-content">
+          <h3>${project.title}</h3>
+          ${project.subtitle ? `<h4>${project.subtitle}</h4>` : ''}
+          <div class="stack-pills">
+            ${stackArr.map(tech => `<span class="pill">${getTechIcon(tech)}<span>${tech.trim()}</span></span>`).join('')}
+          </div>
+          ${highlights.length > 0 ? `
+            <ul class="project-highlights">
+              ${highlights.slice(0, 2).map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
+            </ul>
+          ` : ''}
+          <p>${project.description || ''}</p>
+          ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
           <div class="project-links">
             ${project.link ? `
               <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo">
@@ -200,11 +266,112 @@ export async function renderProjects() {
                 <span>📂</span> GitHub ↗
               </a>
             ` : ''}
+            <button type="button" class="project-link-btn btn-spec" data-project-idx="${idx}">
+              <span>🔍</span> Detail
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // 1. Initialize Category Filter Tabs
+  initProjectFilters();
+
+  // 2. Initialize Detail Modal
+  initProjectModal(list);
+}
+
+function initProjectFilters() {
+  const tabs = document.querySelectorAll('.filter-tab-btn');
+  const cards = document.querySelectorAll('.project-card');
+  if (!tabs.length || !cards.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        if (filter === 'all' || cat === filter) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+function initProjectModal(projectList) {
+  const overlay = document.querySelector('.modal-overlay');
+  const modalContentWrapper = overlay ? overlay.querySelector('.modal-content') : null;
+  if (!overlay || !modalContentWrapper) return;
+
+  document.querySelectorAll('.btn-spec').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.dataset.projectIdx, 10);
+      const proj = projectList[idx];
+      if (!proj) return;
+
+      const stackArr = proj.stack ? (Array.isArray(proj.stack) ? proj.stack : proj.stack.split(',')) : [];
+      const highlights = proj.highlights || [];
+
+      modalContentWrapper.innerHTML = `
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <div class="project-modal-header">
+          ${proj.statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${proj.statusBadge}</span>` : ''}
+          <h2>${proj.title}</h2>
+          ${proj.subtitle ? `<p class="project-modal-sub">${proj.subtitle}</p>` : ''}
+        </div>
+        ${proj.image ? `
+          <div class="project-modal-preview">
+            <img src="${proj.image}" alt="${proj.title}" />
           </div>
         ` : ''}
-      </div>
-    </div>
-  `).join('');
+        <div class="project-modal-body">
+          <div class="modal-stack-pills">
+            ${stackArr.map(t => `<span class="pill">${getTechIcon(t)}<span>${t.trim()}</span></span>`).join('')}
+          </div>
+          <div class="modal-section-title">Deskripsi Sistem &amp; Arsitektur</div>
+          <p style="color: var(--ink-navy); line-height: 1.7; font-size: 0.9rem;">${proj.description}</p>
+          ${highlights.length > 0 ? `
+            <div class="modal-section-title">Fitur Unggulan &amp; Spesifikasi</div>
+            <ul class="project-highlights">
+              ${highlights.map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
+            </ul>
+          ` : ''}
+          ${proj.impact ? `
+            <div class="modal-section-title">Dampak Bisnis (Business Impact)</div>
+            <p class="impact" style="color: #B45309; font-weight: 600; font-size: 0.9rem;">${proj.impact}</p>
+          ` : ''}
+          <div class="project-links modal-actions">
+            ${proj.link ? `<a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo"><span>🌐</span> Kunjungi Website ↗</a>` : ''}
+            ${proj.github ? `<a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github"><span>📂</span> Lihat Source Code (GitHub) ↗</a>` : ''}
+          </div>
+        </div>
+      `;
+
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      const closeBtn = modalContentWrapper.querySelector('.modal-close');
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        };
+      }
+
+      gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+      gsap.fromTo(modalContentWrapper, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.4)' });
+    });
+  });
 }
 
 export async function renderTimeline() {
