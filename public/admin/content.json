@@ -17,9 +17,9 @@
       "title": "SPARTAN LTI",
       "subtitle": "Sistem Manajemen Sparepart, Inventori & Bengkel Dealer Yamaha",
       "period": "2024 – Sekarang",
-      "image": "./assets/images/spartan-preview.jpg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788156824744_screenshot_2026-08-31_130439.png",
       "images": [
-        "./assets/images/spartan-preview.jpg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788156824744_screenshot_2026-08-31_130439.png",
         "./assets/images/spartan-inventory.svg",
         "./assets/images/spartan-invoice.svg"
       ],
