@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgDR2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#18181B"/>
+      <stop offset="100%" stop-color="#27272A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgDR2)"/>
+  <rect x="0" y="0" width="800" height="45" fill="#27272A"/>
+  <text x="30" y="28" fill="#FAFAFA" font-family="monospace" font-size="13" font-weight="bold">DREAMRIDE // FLEET BOOKING &amp; RESERVATION MANAGEMENT</text>
+  
+  <g transform="translate(30, 70)">
+    <rect x="0" y="0" width="740" height="340" rx="10" fill="#18181B" stroke="#3F3F46" stroke-width="1"/>
+    <text x="25" y="35" fill="#FAFAFA" font-family="sans-serif" font-size="14" font-weight="bold">Live Vehicle Fleet Availability</text>
+    
+    <rect x="25" y="60" width="215" height="240" rx="8" fill="#27272A"/>
+    <rect x="35" y="70" width="195" height="110" rx="6" fill="#3F3F46"/>
+    <text x="132" y="130" text-anchor="middle" fill="#A1A1AA" font-size="12">SUV / INNOVA ZENIX</text>
+    <text x="35" y="205" fill="#FAFAFA" font-family="sans-serif" font-size="13" font-weight="bold">Innova Zenix Hybrid</text>
+    <text x="35" y="225" fill="#A1A1AA" font-family="sans-serif" font-size="11">Rp 850.000 / hari</text>
+    <rect x="35" y="245" width="80" height="22" rx="4" fill="#059669"/>
+    <text x="45" y="260" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold">AVAILABLE</text>
+
+    <rect x="260" y="60" width="215" height="240" rx="8" fill="#27272A"/>
+    <rect x="270" y="70" width="195" height="110" rx="6" fill="#3F3F46"/>
+    <text x="367" y="130" text-anchor="middle" fill="#A1A1AA" font-size="12">SEDAN / CIVIC RS</text>
+    <text x="270" y="205" fill="#FAFAFA" font-family="sans-serif" font-size="13" font-weight="bold">Honda Civic RS Turbo</text>
+    <text x="270" y="225" fill="#A1A1AA" font-family="sans-serif" font-size="11">Rp 1.200.000 / hari</text>
+    <rect x="270" y="245" width="80" height="22" rx="4" fill="#D97706"/>
+    <text x="282" y="260" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold">BOOKED</text>
+
+    <rect x="495" y="60" width="215" height="240" rx="8" fill="#27272A"/>
+    <rect x="505" y="70" width="195" height="110" rx="6" fill="#3F3F46"/>
+    <text x="602" y="130" text-anchor="middle" fill="#A1A1AA" font-size="12">COMPACT / YARIS</text>
+    <text x="505" y="205" fill="#FAFAFA" font-family="sans-serif" font-size="13" font-weight="bold">Toyota Yaris GR Sport</text>
+    <text x="505" y="225" fill="#A1A1AA" font-family="sans-serif" font-size="11">Rp 550.000 / hari</text>
+    <rect x="505" y="245" width="80" height="22" rx="4" fill="#059669"/>
+    <text x="515" y="260" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold">AVAILABLE</text>
+  </g>
+</svg>

@@ -2,11 +2,12 @@ export const projects = [
   {
     title: "SPARTAN LTI",
     subtitle: "Sistem Manajemen Sparepart, Inventori & Bengkel Dealer Yamaha",
-    category: "enterprise",
-    featured: true,
-    statusBadge: "Production Active",
     period: "2024 – Sekarang",
     image: "./assets/images/spartan-preview.jpg",
+    images: [
+      "./assets/images/spartan-preview.jpg",
+      "./assets/images/spartan-detail.svg"
+    ],
     stack: ["Laravel 8", "MySQL", "AdminLTE 3", "DomPDF", "Doctrine DBAL"],
     highlights: [
       "ERP Main Dealer Yamaha Lampung & 34+ Jaringan Dealer",
@@ -20,10 +21,12 @@ export const projects = [
   {
     title: "QMSERVICE",
     subtitle: "Query Master Service & Workshop Analytics Engine",
-    category: "enterprise",
-    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/qmservice-preview.svg",
+    images: [
+      "./assets/images/qmservice-preview.svg",
+      "./assets/images/qmservice-detail.svg"
+    ],
     stack: ["PHP", "MySQL", "PhpSpreadsheet", "SimpleXLSX", "JavaScript"],
     highlights: [
       "Formulasi Baku Parameter Produktivitas Mekanik",
@@ -37,10 +40,11 @@ export const projects = [
   {
     title: "Repeat Order (RO) System",
     subtitle: "CRM Retensi Pelanggan & Verifikasi STU Yamaha",
-    category: "enterprise",
-    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/repeat-order-preview.svg",
+    images: [
+      "./assets/images/repeat-order-preview.svg"
+    ],
     stack: ["PHP", "MySQL", "PhpSpreadsheet", "Bootstrap", "JavaScript"],
     highlights: [
       "Tiered Runtime Deduplication (KTP & No. Rangka)",
@@ -54,10 +58,11 @@ export const projects = [
   {
     title: "Sistem Alokasi Unit PLN",
     subtitle: "Logistik & Pemantauan Distribusi Unit Kendaraan",
-    category: "enterprise",
-    statusBadge: "Production Active",
     period: "2026",
     image: "./assets/images/alokasi-unit-preview.svg",
+    images: [
+      "./assets/images/alokasi-unit-preview.svg"
+    ],
     stack: ["PHP", "MySQL Views", "SimpleXLSX", "Bootstrap"],
     highlights: [
       "Realtime Sync ke Database Maxwheels & DPACK",
@@ -71,10 +76,11 @@ export const projects = [
   {
     title: "Undian Event & Stage Raffle",
     subtitle: "Dual-Screen Realtime Sync Raffle App",
-    category: "modern_web",
-    statusBadge: "0ms Dual-Screen Sync",
     period: "2026",
     image: "./assets/images/undian-preview.jpg",
+    images: [
+      "./assets/images/undian-preview.jpg"
+    ],
     stack: ["JavaScript ES6+", "BroadcastChannel API", "HTML5 Canvas", "SheetJS", "Tailwind CSS"],
     highlights: [
       "100% Offline-First Architecture (Zero Latency)",
@@ -87,10 +93,12 @@ export const projects = [
   {
     title: "Dreamride",
     subtitle: "Modern Vehicle Rental & Fleet Booking Platform",
-    category: "modern_web",
-    statusBadge: "Next.js 15 SSR",
     period: "2025 – 2026",
     image: "./assets/images/dreamride-preview.jpg",
+    images: [
+      "./assets/images/dreamride-preview.jpg",
+      "./assets/images/dreamride-detail.svg"
+    ],
     stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma ORM", "Framer Motion"],
     highlights: [
       "Server-Side Rendering & Modern App Router",
@@ -104,10 +112,11 @@ export const projects = [
   {
     title: "SIGAP",
     subtitle: "Sistem Generator Akta PPAT Otomatis",
-    category: "automation",
-    statusBadge: "Docx Automation",
     period: "2026",
     image: "./assets/images/sigap-preview.jpg",
+    images: [
+      "./assets/images/sigap-preview.jpg"
+    ],
     stack: ["Laravel", "MySQL", "PHPWord", "Bootstrap"],
     highlights: [
       "Otomatisasi Akta Kenotariatan & Pertanahan Instan",
@@ -119,28 +128,13 @@ export const projects = [
     github: "https://github.com/robbyhdayatt/sigap"
   },
   {
-    title: "AGATHA",
-    subtitle: "Automated SPK & Document Generator Engine",
-    category: "automation",
-    statusBadge: "Automation Engine",
-    period: "2026",
-    image: "./assets/images/agatha-preview.svg",
-    stack: ["PHP", "PHPWord", "PhpSpreadsheet", "MySQL"],
-    highlights: [
-      "Template Placeholder Replacement DOCX Engine",
-      "Integrasi Data Transaksi Dealer YIS / DPACK",
-      "Batch Annual Target Uploader & DOA Verification"
-    ],
-    description: "Sistem otomatisasi pembuatan dokumen Surat Pesanan Kendaraan (SPK) berbasis template Microsoft Word (.docx), upload target tahunan dealer, dan validasi DOA (Delegation of Authority).",
-    impact: "Mengotomatisasi pembuatan ribuan dokumen SPK bulanan secara instan dari input data transaksi YIS/DPACK."
-  },
-  {
     title: "Company Profile PT. Lautan Teduh Interniaga",
     subtitle: "Website Profil Perusahaan Main Dealer Yamaha Lampung",
-    category: "automation",
-    statusBadge: "Live Official Site",
     period: "2025",
     image: "./assets/images/lautan-teduh-preview.jpg",
+    images: [
+      "./assets/images/lautan-teduh-preview.jpg"
+    ],
     stack: ["PHP Native", "Bootstrap 5", "MySQL", "JavaScript"],
     highlights: [
       "Katalog Produk Motor Yamaha Terkini",

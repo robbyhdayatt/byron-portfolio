@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgSP2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgSP2)"/>
+  <rect x="0" y="0" width="800" height="45" fill="#334155"/>
+  <text x="30" y="28" fill="#F8FAFC" font-family="monospace" font-size="13" font-weight="bold">SPARTAN LTI // MULTI-WAREHOUSE STOCK &amp; INVENTORY</text>
+  <rect x="660" y="10" width="110" height="25" rx="12" fill="#D97706"/>
+  <text x="675" y="27" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold">WAREHOUSE 01</text>
+  
+  <g transform="translate(30, 70)">
+    <rect x="0" y="0" width="740" height="340" rx="10" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+    <text x="25" y="35" fill="#F8FAFC" font-family="sans-serif" font-size="14" font-weight="bold">Stock Movement &amp; Fast-Moving Sparepart Matrix</text>
+    
+    <rect x="25" y="55" width="690" height="30" rx="6" fill="#0F172A"/>
+    <text x="40" y="75" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">PART CODE</text>
+    <text x="180" y="75" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">PART NAME</text>
+    <text x="380" y="75" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">CURRENT QTY</text>
+    <text x="530" y="75" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="bold">REORDER LEVEL</text>
+    
+    <!-- Rows -->
+    <rect x="25" y="95" width="690" height="40" rx="6" fill="#1E293B"/>
+    <text x="40" y="120" fill="#38BDF8" font-family="monospace" font-size="12">94700-00872</text>
+    <text x="180" y="120" fill="#F8FAFC" font-family="sans-serif" font-size="12">PLUG, SPARK (NGK CPR8EA-9)</text>
+    <text x="380" y="120" fill="#10B981" font-family="monospace" font-size="12" font-weight="bold">1,840 PCS</text>
+    <text x="530" y="120" fill="#94A3B8" font-family="sans-serif" font-size="12">500 PCS (Safe)</text>
+
+    <rect x="25" y="145" width="690" height="40" rx="6" fill="#1E293B"/>
+    <text x="40" y="170" fill="#38BDF8" font-family="monospace" font-size="12">90793-AJ441</text>
+    <text x="180" y="170" fill="#F8FAFC" font-family="sans-serif" font-size="12">YAMALUBE MATIC MOTOR OIL 0.8L</text>
+    <text x="380" y="170" fill="#10B981" font-family="monospace" font-size="12" font-weight="bold">3,420 BTL</text>
+    <text x="530" y="170" fill="#94A3B8" font-family="sans-serif" font-size="12">1,000 BTL (Safe)</text>
+
+    <rect x="25" y="195" width="690" height="40" rx="6" fill="#1E293B"/>
+    <text x="40" y="220" fill="#38BDF8" font-family="monospace" font-size="12">2DP-E7670-00</text>
+    <text x="180" y="220" fill="#F8FAFC" font-family="sans-serif" font-size="12">SECONDARY SLIDER (NMAX/AEROX)</text>
+    <text x="380" y="220" fill="#F59E0B" font-family="monospace" font-size="12" font-weight="bold">120 PCS</text>
+    <text x="530" y="220" fill="#EF4444" font-family="sans-serif" font-size="12">⚠ Low Stock Alert</text>
+  </g>
+</svg>

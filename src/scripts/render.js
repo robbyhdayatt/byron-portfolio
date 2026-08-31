@@ -162,149 +162,35 @@ export async function renderProjects() {
   const list = (data && data.projects) ? data.projects : fallbackProjects;
   if (!list || list.length === 0) return;
 
-  grid.innerHTML = list.map((project, idx) => {
-    const isFeatured = !!project.featured;
-    const category = project.category || 'enterprise';
-    const statusBadge = project.statusBadge || (isFeatured ? 'Production Active' : '');
-    const stackArr = project.stack ? (Array.isArray(project.stack) ? project.stack : project.stack.split(',')) : [];
-    const highlights = project.highlights || [];
-    const domainUrl = project.title ? project.title.toLowerCase().replace(/[^a-z0-9]/g, '') + '.app' : 'app.system';
-
-    if (isFeatured) {
-      return `
-        <div class="project-card featured-project-card reveal" data-category="${category}" data-index="${idx}">
-          <div class="featured-badge-top">
-            <span>⭐</span>
-            <span>FEATURED FLAGSHIP ENTERPRISE PROJECT</span>
-          </div>
-          <div class="featured-card-layout">
-            <div class="project-image-window featured-image-window">
-              <div class="window-bar">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
-                <span class="window-url">${domainUrl}</span>
-                ${statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${statusBadge}</span>` : ''}
-              </div>
-              <div class="window-body">
-                <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
-              </div>
-            </div>
-            <div class="project-content featured-content">
-              <div class="featured-header">
-                <h3>${project.title}</h3>
-                ${project.subtitle ? `<h4>${project.subtitle}</h4>` : ''}
-              </div>
-              <div class="stack-pills">
-                ${stackArr.map(tech => `<span class="pill">${getTechIcon(tech)}<span>${tech.trim()}</span></span>`).join('')}
-              </div>
-              ${highlights.length > 0 ? `
-                <ul class="project-highlights">
-                  ${highlights.map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
-                </ul>
-              ` : ''}
-              <p>${project.description || ''}</p>
-              ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
-              <div class="project-links">
-                ${project.link ? `
-                  <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo">
-                    <span>🌐</span> Live Site ↗
-                  </a>
-                ` : ''}
-                ${project.github ? `
-                  <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github">
-                    <span>📂</span> GitHub Repo ↗
-                  </a>
-                ` : ''}
-                <button type="button" class="project-link-btn btn-spec" data-project-idx="${idx}">
-                  <span>🔍</span> Detail Arsitektur
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    return `
-      <div class="project-card regular-project-card reveal" data-category="${category}" data-index="${idx}">
-        ${project.image ? `
-          <div class="project-image-window">
-            <div class="window-bar">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-              <span class="window-url">${domainUrl}</span>
-              ${statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${statusBadge}</span>` : ''}
-            </div>
-            <div class="window-body">
-              <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
-            </div>
-          </div>
-        ` : ''}
-        <div class="project-content">
-          <h3>${project.title}</h3>
-          ${project.subtitle ? `<h4>${project.subtitle}</h4>` : ''}
-          <div class="stack-pills">
-            ${stackArr.map(tech => `<span class="pill">${getTechIcon(tech)}<span>${tech.trim()}</span></span>`).join('')}
-          </div>
-          ${highlights.length > 0 ? `
-            <ul class="project-highlights">
-              ${highlights.slice(0, 2).map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
-            </ul>
-          ` : ''}
-          <p>${project.description || ''}</p>
-          ${project.impact ? `<p class="impact">${project.impact}</p>` : ''}
-          <div class="project-links">
-            ${project.link ? `
-              <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo">
-                <span>🌐</span> Live Demo ↗
-              </a>
-            ` : ''}
-            ${project.github ? `
-              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github">
-                <span>📂</span> GitHub ↗
-              </a>
-            ` : ''}
-            <button type="button" class="project-link-btn btn-spec" data-project-idx="${idx}">
-              <span>🔍</span> Detail
-            </button>
-          </div>
+  grid.innerHTML = list.map((project, idx) => `
+    <div class="project-item reveal" data-project-idx="${idx}">
+      <div class="project-image-frame" data-project-idx="${idx}" role="button" tabindex="0" aria-label="Buka detail ${project.title}">
+        <img src="${project.image}" alt="${project.title}" loading="lazy" />
+        <div class="project-image-overlay">
+          <span class="view-project-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+            Detail Sistem
+          </span>
         </div>
       </div>
-    `;
-  }).join('');
+      <div class="project-info">
+        <div class="project-title-row">
+          <h3 class="project-title">${project.title}</h3>
+          ${project.period ? `<span class="project-period">${project.period}</span>` : ''}
+        </div>
+        <p class="project-subtitle">${project.subtitle || ''}</p>
+        <div class="project-action">
+          <button type="button" class="btn-project-detail" data-project-idx="${idx}">
+            <span>Lihat Detail</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
 
-  // 1. Initialize Category Filter Tabs
-  initProjectFilters();
-
-  // 2. Initialize Detail Modal
+  // Initialize Detail Modal & Stacked Card Deck
   initProjectModal(list);
-}
-
-function initProjectFilters() {
-  const tabs = document.querySelectorAll('.filter-tab-btn');
-  const cards = document.querySelectorAll('.project-card');
-  if (!tabs.length || !cards.length) return;
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const filter = tab.dataset.filter;
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      cards.forEach(card => {
-        const cat = card.dataset.category;
-        if (filter === 'all' || cat === filter) {
-          card.style.display = 'flex';
-          card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
 }
 
 function initProjectModal(projectList) {
@@ -312,64 +198,162 @@ function initProjectModal(projectList) {
   const modalContentWrapper = overlay ? overlay.querySelector('.modal-content') : null;
   if (!overlay || !modalContentWrapper) return;
 
-  document.querySelectorAll('.btn-spec').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const idx = parseInt(btn.dataset.projectIdx, 10);
-      const proj = projectList[idx];
-      if (!proj) return;
+  const openModal = (idx) => {
+    const proj = projectList[idx];
+    if (!proj) return;
 
-      const stackArr = proj.stack ? (Array.isArray(proj.stack) ? proj.stack : proj.stack.split(',')) : [];
-      const highlights = proj.highlights || [];
+    const stackArr = proj.stack ? (Array.isArray(proj.stack) ? proj.stack : proj.stack.split(',')) : [];
+    const highlights = proj.highlights || [];
+    const images = (proj.images && proj.images.length > 0) ? proj.images : (proj.image ? [proj.image] : []);
 
-      modalContentWrapper.innerHTML = `
-        <button class="modal-close" aria-label="Close modal">&times;</button>
-        <div class="project-modal-header">
-          ${proj.statusBadge ? `<span class="project-status-chip"><span class="pulse-dot"></span> ${proj.statusBadge}</span>` : ''}
-          <h2>${proj.title}</h2>
-          ${proj.subtitle ? `<p class="project-modal-sub">${proj.subtitle}</p>` : ''}
-        </div>
-        ${proj.image ? `
-          <div class="project-modal-preview">
-            <img src="${proj.image}" alt="${proj.title}" />
+    modalContentWrapper.className = 'modal-content project-modal-dialog';
+    modalContentWrapper.innerHTML = `
+      <button class="modal-close-btn" aria-label="Tutup modal">&times;</button>
+      <div class="project-modal-grid">
+        <!-- 🎴 Left: Interactive Stacked Card Deck -->
+        <div class="deck-container">
+          <div class="deck-stack" id="deck-stack" title="Klik untuk melihat gambar berikutnya">
+            ${images.map((img, i) => `
+              <div class="deck-card layer-${i < 3 ? i : 2}" data-card-idx="${i}">
+                <img src="${img}" alt="${proj.title} Screenshot ${i + 1}" />
+              </div>
+            `).join('')}
           </div>
-        ` : ''}
-        <div class="project-modal-body">
+          <div class="deck-footer">
+            <div class="deck-hint">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 14h6m-6 0l3-3m-3 3l3 3m16-4h-6m6 0l-3-3m3 3l-3 3"/></svg>
+              <span>Klik gambar untuk geser tumpukan</span>
+            </div>
+            <div class="deck-counter">
+              <span id="deck-current">1</span> / ${images.length}
+            </div>
+          </div>
+        </div>
+
+        <!-- 📝 Right: Project Details & Tech Stack -->
+        <div class="project-modal-details">
+          <h2 class="modal-project-title">${proj.title}</h2>
+          <p class="modal-project-subtitle">${proj.subtitle || ''} ${proj.period ? `· ${proj.period}` : ''}</p>
+
+          <div class="modal-label">Teknologi &amp; Tech Stack</div>
           <div class="modal-stack-pills">
             ${stackArr.map(t => `<span class="pill">${getTechIcon(t)}<span>${t.trim()}</span></span>`).join('')}
           </div>
-          <div class="modal-section-title">Deskripsi Sistem &amp; Arsitektur</div>
-          <p style="color: var(--ink-navy); line-height: 1.7; font-size: 0.9rem;">${proj.description}</p>
+
+          <div class="modal-label">Deskripsi Sistem &amp; Arsitektur</div>
+          <p class="modal-desc">${proj.description || ''}</p>
+
           ${highlights.length > 0 ? `
-            <div class="modal-section-title">Fitur Unggulan &amp; Spesifikasi</div>
-            <ul class="project-highlights">
-              ${highlights.map(h => `<li><span class="check-icon">✓</span> <span>${h}</span></li>`).join('')}
+            <div class="modal-label">Fitur Unggulan &amp; Spesifikasi</div>
+            <ul class="modal-highlights">
+              ${highlights.map(h => `<li><span class="check">✓</span> <span>${h}</span></li>`).join('')}
             </ul>
           ` : ''}
+
           ${proj.impact ? `
-            <div class="modal-section-title">Dampak Bisnis (Business Impact)</div>
-            <p class="impact" style="color: #B45309; font-weight: 600; font-size: 0.9rem;">${proj.impact}</p>
+            <div class="modal-label">Dampak Bisnis (Business Impact)</div>
+            <div class="modal-impact">${proj.impact}</div>
           ` : ''}
-          <div class="project-links modal-actions">
-            ${proj.link ? `<a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-demo"><span>🌐</span> Kunjungi Website ↗</a>` : ''}
-            ${proj.github ? `<a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn btn-github"><span>📂</span> Lihat Source Code (GitHub) ↗</a>` : ''}
+
+          <div class="modal-links-row">
+            ${proj.link ? `
+              <a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="modal-link-btn btn-primary-link">
+                <span>🌐</span> Kunjungi Website ↗
+              </a>
+            ` : ''}
+            ${proj.github ? `
+              <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="modal-link-btn btn-secondary-link">
+                <span>📂</span> Lihat Source Code (GitHub) ↗
+              </a>
+            ` : ''}
           </div>
         </div>
-      `;
+      </div>
+    `;
 
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 
-      const closeBtn = modalContentWrapper.querySelector('.modal-close');
-      if (closeBtn) {
-        closeBtn.onclick = () => {
-          overlay.style.display = 'none';
-          document.body.style.overflow = '';
-        };
+    // GSAP Modal Entrance
+    gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
+    gsap.fromTo(modalContentWrapper, { scale: 0.92, opacity: 0, y: 20 }, { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: 'back.out(1.2)' });
+
+    // Close logic
+    const closeBtn = modalContentWrapper.querySelector('.modal-close-btn');
+    const closeModal = () => {
+      gsap.to(modalContentWrapper, { scale: 0.95, opacity: 0, duration: 0.2, ease: 'power2.in' });
+      gsap.to(overlay, { opacity: 0, duration: 0.2, onComplete: () => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }});
+    };
+    if (closeBtn) closeBtn.onclick = closeModal;
+    overlay.onclick = (e) => {
+      if (e.target === overlay) closeModal();
+    };
+
+    // 🎴 Wire Interactive Deck Card Click
+    setupDeckInteraction(modalContentWrapper, images.length);
+  };
+
+  // Open triggers
+  document.querySelectorAll('.btn-project-detail, .project-image-frame').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(el.dataset.projectIdx, 10);
+      if (!isNaN(idx)) openModal(idx);
+    });
+  });
+}
+
+function setupDeckInteraction(modalWrapper, totalImages) {
+  const stack = modalWrapper.querySelector('#deck-stack');
+  const counter = modalWrapper.querySelector('#deck-current');
+  if (!stack || totalImages <= 1) return;
+
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  const updateCardLayers = () => {
+    const cards = stack.querySelectorAll('.deck-card');
+    cards.forEach((card, idx) => {
+      card.classList.remove('layer-0', 'layer-1', 'layer-2');
+      if (idx === 0) card.classList.add('layer-0');
+      else if (idx === 1) card.classList.add('layer-1');
+      else card.classList.add('layer-2');
+    });
+  };
+
+  stack.addEventListener('click', () => {
+    if (isAnimating) return;
+    const cards = stack.querySelectorAll('.deck-card');
+    if (cards.length < 2) return;
+
+    isAnimating = true;
+    const topCard = cards[0];
+
+    // Smooth physics-based card swipe out
+    gsap.to(topCard, {
+      x: 280,
+      rotation: 16,
+      opacity: 0,
+      scale: 0.88,
+      duration: 0.32,
+      ease: 'power2.in',
+      onComplete: () => {
+        // Move to the back of the stack
+        stack.appendChild(topCard);
+        gsap.set(topCard, { x: 0, rotation: 0, opacity: 0, scale: 0.92 });
+        updateCardLayers();
+        
+        currentIndex = (currentIndex + 1) % totalImages;
+        if (counter) counter.textContent = currentIndex + 1;
+
+        // Fade in at the back smoothly
+        gsap.to(topCard, { opacity: 0.7, duration: 0.2, onComplete: () => {
+          isAnimating = false;
+        }});
       }
-
-      gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.25 });
-      gsap.fromTo(modalContentWrapper, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.4)' });
     });
   });
 }
