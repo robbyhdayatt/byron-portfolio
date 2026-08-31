@@ -153,9 +153,9 @@
       "title": "Dreamride",
       "subtitle": "Modern Vehicle Rental & Fleet Booking Platform",
       "period": "2025 – 2026",
-      "image": "./assets/images/dreamride-preview.jpg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
       "images": [
-        "./assets/images/dreamride-preview.jpg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
         "./assets/images/dreamride-booking.svg"
       ],
       "stack": [
@@ -173,7 +173,8 @@
       ],
       "description": "Platform rental kendaraan dan manajemen armada mobil modern dengan katalog interaktif, verifikasi identitas penyewa, kalkulasi durasi & tarif sewa otomatis, serta dashboard admin terpadu.",
       "impact": "Menyediakan pengalaman booking mobil yang seamless dengan performa tinggi (SSR) dan antarmuka modern.",
-      "github": ""
+      "github": "",
+      "link": "https://dreamride.byron.my.id/"
     },
     {
       "id": 7,
