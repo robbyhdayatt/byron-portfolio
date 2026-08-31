@@ -183,9 +183,9 @@
       "title": "SIGAP",
       "subtitle": "Sistem Generator Akta PPAT Otomatis",
       "period": "2026",
-      "image": "./assets/images/sigap-preview.jpg",
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166408705_screenshot_2026-08-31_155300.png",
       "images": [
-        "./assets/images/sigap-preview.jpg",
+        "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166408705_screenshot_2026-08-31_155300.png",
         "./assets/images/sigap-editor.svg"
       ],
       "stack": [
@@ -201,7 +201,8 @@
       ],
       "description": "Aplikasi web untuk menghasilkan dokumen akta PPAT (Pejabat Pembuat Akta Tanah) secara otomatis berbasis form terstruktur dan template standar kenotariatan.",
       "impact": "Mempercepat proses pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten dan akurat.",
-      "github": "https://github.com/robbyhdayatt/sigap"
+      "github": "",
+      "link": "https://sigap.byron.my.id"
     }
   ],
   "certifications": [
