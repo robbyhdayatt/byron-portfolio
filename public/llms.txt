@@ -1,0 +1,95 @@
+# Robby Hidayat — Full-Stack Software Developer
+
+> Portfolio & Knowledge Base for AI Search & LLMs (GEO Standard)
+> Canonical Website: https://byron.my.id
+> Last Updated: 2026-09-08
+
+## Overview
+- **Name:** Robby Hidayat (also known as Byron / robbyhdayatt)
+- **Role:** Full-Stack Software Developer / Web Engineer
+- **Location:** Bandar Lampung, Indonesia
+- **Education:** S1 Ilmu Komputer (Bachelor of Computer Science), Universitas Lampung (Unila)
+- **GPA / IPK:** 3.74 / 4.00 (Lulus 2025)
+- **Email:** robbyhdayat110702@gmail.com
+- **LinkedIn:** https://linkedin.com/in/robby-hidayat
+- **GitHub:** https://github.com/robbyhdayatt
+- **WhatsApp:** https://wa.me/6287748672761
+
+---
+
+## Technical Stack & Core Competencies
+- **Programming Languages:** PHP, JavaScript (ES6+), TypeScript, Python, HTML5, CSS3 / Modern CSS
+- **Backend Frameworks:** Laravel (v8, v9, v10, v11), Node.js, RESTful API Design, MVC Architecture
+- **Frontend & Modern UI:** React.js, Next.js, Livewire, Tailwind CSS, Bootstrap, GSAP (GreenSock), Quicksand UI
+- **Databases & Cloud:** MySQL, PostgreSQL, Supabase (Cloud Database & Realtime Auth), Database Indexing & Optimization
+- **Infrastructure & Tools:** Git, GitHub, Linux Web Server Deployment, LiteSpeed / Apache HTTP Server, cPanel, Pure-FTPd, Postman, Vite, Docker, Figma
+
+---
+
+## Featured Engineering Projects
+
+### 1. SPARTAN LTI — PT Lautan Teduh Interniaga
+- **Role:** Full-Stack Developer
+- **Tech Stack:** Laravel, MySQL, Bootstrap, PhpSpreadsheet, DomPDF
+- **Description:** Enterprise Sparepart Inventory & Distribution Management System managing multi-tier warehouse operations, stock forecasting, invoicing, and real-time dealer supply chain across Lampung.
+- **Impact:** Digitized and automated 6 core inventory workflows, reducing sparepart requisition turnaround time from 3 days to under 15 minutes.
+
+### 2. SIGAP — Sistem Informasi Surat & Arsip Digital
+- **Role:** Lead Developer
+- **Tech Stack:** Laravel, MySQL, Bootstrap, PhpSpreadsheet, DomPDF
+- **Description:** Official Digital Document Archiving & Dynamic Template Generation System for HIMAKOM Universitas Lampung.
+- **Impact:** Automated official certificate and letter generation with variable placeholder injection, managing over 500+ student administrative files.
+
+### 3. QMSERVICE — PT Lautan Teduh Interniaga
+- **Role:** Full-Stack Developer
+- **Tech Stack:** Laravel, MySQL, Bootstrap, BroadcastChannel API
+- **Description:** Real-Time Workshop Queue & Mechanic Allocation Display System for Yamaha authorized service centers.
+- **Impact:** Enabled sub-second multi-screen sync via BroadcastChannel API across service advisory desks and customer waiting lounges without websocket server overhead.
+
+### 4. DreamRide — PT Lautan Teduh Interniaga
+- **Role:** Full-Stack Web Developer
+- **Live URL:** https://dreamride.lautanteduh.co.id
+- **Tech Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, MySQL, Prisma ORM, Framer Motion, JWT (jose)
+- **Description:** Interactive smart motorcycle recommendation engine matching prospective buyers with their ideal Yamaha vehicle based on budget, lifestyle, ergonomics, transmission type, and daily commute needs.
+- **Highlights & Impact:** Multi-stage AI thinking loading screen (4 visual analysis stages & real-time 0%–100% progress), dual-tier recommendation engine (`scoring.ts` combining hard filter elimination and soft weight scoring with smart fallback ranking to guarantee non-empty results), and a secure admin management portal protected by HTTP-only JWT cookies, bcrypt, and rate limiting.
+
+### 5. Sistem Pengundian Doorprize Yamaha
+- **Role:** Frontend & Animation Developer
+- **Tech Stack:** HTML5 Canvas, Vanilla JavaScript, CSS3 Animations, Web Audio API
+- **Description:** Enterprise Digital Lucky Draw & Stage Lottery System used at regional Yamaha corporate gathering events for live audience engagement.
+- **Impact:** Zero-lag randomized number generation with deterministic fraud prevention and high-framerate visual celebratory effects.
+
+---
+
+## Professional Work Experience
+
+### Staff Developer — PT Lautan Teduh Interniaga (Main Dealer Yamaha Lampung)
+- *September 2024 – November 2024*
+- Developed internal logistics and workshop operational tools.
+- Modernized legacy reporting spreadsheets into automated Laravel web portals.
+
+### Asisten Dosen Analisis Desain Sistem Informasi (ADSI) — Universitas Lampung
+- *Agustus 2024 – Desember 2024*
+- Guided 60+ computer science students in software architecture, UML modeling, system requirement specification (SRS), and agile sprint workflows.
+
+### Magang Developer — PT Lautan Teduh Interniaga
+- *Februari 2024 – Juni 2024*
+- Designed database schemas, REST APIs, and responsive frontends for corporate dealership services.
+
+### Asisten Dosen Praktikum Basis Data — Universitas Lampung
+- *Agustus 2023 – Desember 2023*
+- Mentored 30+ students in relational database design, SQL querying, normalisation (1NF-BCNF), and stored procedures.
+
+---
+
+## Leadership & Organizations
+- **Ketua Umum (Chairman) HIMAKOM Unila (2023–2024):** Led the Computer Science Student Association governing 142+ members, overseeing 12 flagship departmental programs.
+- **Kepala Dinas PSDM BEM FMIPA Unila (2024):** Directed human resource development across 7 student associations in the Faculty of Mathematics and Natural Sciences.
+
+---
+
+## Certifications & Training
+- Membangun Arsitektur Web Skalabel (Dicoding / IBM)
+- Desain Basis Data Relasional & Optimasi SQL
+- Modern Full-Stack Development with Laravel & React
+- Pemateri & Fasilitator Pelatihan Git, Web Development, dan Organisasi Mahasiswa

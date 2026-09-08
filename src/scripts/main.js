@@ -14,6 +14,7 @@ import { init as initScrollReveal } from './scroll-reveal.js';
 import { init as initCertifications } from './certifications.js';
 import { init as initSkillsMarquee } from './skills-marquee.js';
 import { init as initContactForm } from './contact-form.js';
+import { initTypewriter } from './typewriter.js';
 import { init as initI18n, applyTranslations } from './i18n.js';
 import { renderPersonal, renderProjects, renderTimeline, renderSkills } from './render.js';
 
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize remaining animation modules
   initPreloader(prefersReducedMotion);
+  initTypewriter(prefersReducedMotion);
   initIdCard(prefersReducedMotion);
   initFloatingPhoto(prefersReducedMotion);
   initSkyBackground(prefersReducedMotion);

@@ -2,20 +2,20 @@ export const projects = [
   {
     title: "SPARTAN LTI",
     subtitle: "Sistem Manajemen Sparepart, Inventori & Bengkel Dealer Yamaha",
-    period: "2024 – Sekarang",
+    period: "Des 2025 – Sekarang",
     image: "./assets/images/spartan-preview.jpg",
     images: [
       "./assets/images/spartan-preview.jpg",
       "./assets/images/spartan-inventory.svg",
       "./assets/images/spartan-invoice.svg"
     ],
-    stack: ["Laravel 8", "MySQL", "AdminLTE 3", "DomPDF", "Doctrine DBAL"],
+    stack: ["Laravel 10", "Livewire", "MySQL", "AdminLTE 3", "DomPDF", "Doctrine DBAL"],
     highlights: [
       "ERP Main Dealer Yamaha Lampung & 34+ Jaringan Dealer",
       "Multi-Warehouse Realtime Inventory & Stok Sparepart",
-      "Otomatisasi PO, Delivery Order, Faktur & Klaim Garansi"
+      "Otomatisasi PO, Delivery Order, Faktur & Menggantikan Spreadsheet"
     ],
-    description: "Aplikasi Enterprise Resource Planning (ERP) berstandar industri untuk Main Dealer Yamaha (PT Lautan Teduh Interniaga) dan 34+ jaringan dealer & bengkel resmi di Lampung. Mengelola stok sparepart multi-gudang, purchase order (PO), delivery order (DO), invoice, serta klaim garansi.",
+    description: "Aplikasi Enterprise Resource Planning (ERP) internal untuk pencatatan distribusi dan penjualan sparepart Yamaha Main Dealer (PT Lautan Teduh Interniaga) ke 34+ jaringan dealer & bengkel resmi se-Lampung. Mengelola stok multi-gudang, purchase order (PO), delivery order (DO), invoice, serta menggantikan pencatatan manual berbasis spreadsheet.",
     impact: "Mendigitalkan dan menyinkronkan seluruh rantai pasok sparepart serta operasional servis 34+ dealer resmi se-provinsi Lampung.",
     github: "https://github.com/robbyhdayatt/spartann"
   },
@@ -93,118 +93,129 @@ export const projects = [
     impact: "Menjalankan pengundian ribuan nomor rangka motor secara transparan, aman, dan tanpa lag di panggung festival besar."
   },
   {
-    title: "Dreamride",
-    subtitle: "Modern Vehicle Rental & Fleet Booking Platform",
+    title: "DreamRide",
+    subtitle: "Sistem Rekomendasi Motor Yamaha — PT Lautan Teduh Interniaga",
     period: "2025 – 2026",
-    image: "./assets/images/dreamride-preview.jpg",
+    image: "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
     images: [
-      "./assets/images/dreamride-preview.jpg",
-      "./assets/images/dreamride-booking.svg"
+      "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166237788_screenshot_2026-08-31_155029.png",
+      "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166268581_screenshot_2026-08-31_155101.png",
+      "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166307167_screenshot_2026-08-31_155138.png",
+      "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/img_1788166340397_screenshot_2026-08-31_155214.png"
     ],
-    stack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma ORM", "Framer Motion"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "MySQL", "Prisma", "Framer Motion", "JWT"],
     highlights: [
-      "Server-Side Rendering & Modern App Router",
-      "Katalog Armada Interaktif & Kalkulasi Tarif Sewa",
-      "Verifikasi Identitas Penyewa & Admin Control Panel"
+      "Multi-Stage AI Thinking Loading Screen (4 Tahap Analisis Visual & Indikator 0%–100%)",
+      "Algoritma Rekomendasi Cerdas (Hard Filter, Soft Weight Scoring & Smart Fallback Ranking)",
+      "Panel Admin & Manajemen Leads Terproteksi JWT Cookie (httpOnly) + Bcrypt & Rate Limiting",
+      "Client Kuesioner Interaktif Neobrutalisme & Hasil Edge-to-Edge dengan Alternative Cards"
     ],
-    description: "Platform rental kendaraan dan manajemen armada mobil modern dengan katalog interaktif, verifikasi identitas penyewa, kalkulasi durasi & tarif sewa otomatis, serta dashboard admin terpadu.",
-    impact: "Menyediakan pengalaman booking mobil yang seamless dengan performa tinggi (SSR) dan antarmuka modern.",
+    description: "Aplikasi web rekomendasi motor cerdas dan interaktif yang dirancang untuk membantu calon pembeli menemukan pilihan motor Yamaha idaman yang paling sesuai berdasarkan budget, gaya hidup, postur tubuh, jenis transmisi, dan kebutuhan harian. Dilengkapi antarmuka neobrutalisme modern, multi-stage AI loading screen, kalkulasi scoring pintar (scoring.ts), dan panel admin manajemen leads prospek.",
+    impact: "Memberikan konsultasi digital instan yang akurat dengan garansi hasil tidak pernah kosong (Smart Fallback Ranking), serta otomatis menangkap data leads prospek calon pembeli langsung ke sistem dealer PT Lautan Teduh Interniaga.",
+    link: "https://dreamride.byron.my.id/",
+    demo: "https://dreamride.lautanteduh.co.id",
     github: "https://github.com/robbyhdayatt/dream-ride"
   },
   {
     title: "SIGAP",
-    subtitle: "Sistem Generator Akta PPAT Otomatis",
-    period: "2026",
+    subtitle: "Sistem Generator Akta PPAT & Manajemen Dokumen Legal",
+    period: "Jun 2026 – Jul 2026",
     image: "./assets/images/sigap-preview.jpg",
     images: [
       "./assets/images/sigap-preview.jpg",
       "./assets/images/sigap-editor.svg"
     ],
-    stack: ["Laravel", "MySQL", "PHPWord", "Bootstrap"],
+    stack: ["Laravel 10", "MySQL", "PHPWord", "Laravel Queue", "Bootstrap"],
     highlights: [
-      "Otomatisasi Akta Kenotariatan & Pertanahan Instan",
-      "Validasi Form Terstruktur Multi-Pihak & Saksi",
-      "Ekspor Format Standar PPAT Siap Cetak"
+      "Injeksi Data Dinamis Template Dokumen Legal (PHPWord)",
+      "Pemrosesan Asinkron Background Queue Cegah Timeout",
+      "Private Storage Route, RBAC, Audit Trail & SoftDeletes"
     ],
-    description: "Aplikasi web untuk menghasilkan dokumen akta PPAT (Pejabat Pembuat Akta Tanah) secara otomatis berbasis form terstruktur dan template standar kenotariatan.",
-    impact: "Mempercepat proses pembuatan akta dari berjam-jam menjadi hitungan menit dengan format yang konsisten dan akurat.",
+    description: "Sistem manajemen dan generator otomatis dokumen legal kantor Notaris/PPAT. Dilengkapi injeksi data dinamis ke template Word/PDF, antrean background (Laravel Queue) untuk mencegah timeout server, sistem arsip terproteksi (Private Storage Route), pembatasan hak akses (RBAC), audit trail, dan optimasi database.",
+    impact: "Mengautomasi proses penyusunan akta kompleks menjadi hitungan detik, mengamankan data klien dengan otorisasi ketat, dan menjaga stabilitas server.",
     github: "https://github.com/robbyhdayatt/sigap"
   }
 ];
 
 export const certifications = [
   {
-    title: "IBM Bootcamp: Artificial Intelligence",
+    title: "Bootcamp Student Developer Initiative – AI for Data Summarization",
     issuer: "IBM",
     year: "2024",
-    description: "Pelatihan intensif tentang dasar-dasar kecerdasan buatan dan machine learning."
+    description: "Pelatihan intensif kecerdasan buatan, NLP, dan model ringkasan data otomatis."
   },
   {
-    title: "XDemia Python for Data Science",
+    title: "Bootcamp XDemia × HIMAKOM – Python Programming",
     issuer: "XDemia",
     year: "2023",
-    description: "Kursus Python untuk analisis data dan data science."
+    description: "Pelatihan pemrograman Python untuk data science, analisis data, dan rekayasa perangkat lunak."
   },
   {
     title: "LKMM Tingkat Menengah",
-    issuer: "BEM FMIPA Universitas Lampung",
-    year: "2024",
-    description: "Latihan Keterampilan Manajemen Mahasiswa tingkat menengah."
+    issuer: "BEM-KM Universitas Andalas",
+    year: "2025",
+    description: "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah se-wilayah Sumatra."
   },
   {
     title: "LKMM Pra-Dasar & Dasar",
     issuer: "HIMAKOM Universitas Lampung",
-    year: "2022",
-    description: "Latihan Keterampilan Manajemen Mahasiswa tingkat pra-dasar dan dasar."
-  },
-  {
-    title: "Pemateri LKMM",
-    issuer: "HIMAKOM Universitas Lampung",
     year: "2024",
-    description: "Menjadi pemateri dalam kegiatan LKMM untuk mahasiswa baru."
+    description: "Latihan kepemimpinan, manajemen organisasi, dan penyusunan strategi program kerja."
   },
   {
-    title: "Pemateri Upgrading",
-    issuer: "HIMAKOM Universitas Lampung",
-    year: "2024",
-    description: "Menjadi pemateri dalam kegiatan upgrading skill mahasiswa."
+    title: "Pemateri PROMIK (Orientasi Mahasiswa Baru)",
+    issuer: "Ilmu Komputer Universitas Lampung",
+    year: "2026",
+    description: "Pemateri dan fasilitator pengenalan lingkungan akademik dan kompetensi software engineering bagi mahasiswa baru."
   },
   {
-    title: "Pemateri LKMM Dasar",
+    title: "Pemateri LKMM Tingkat Dasar",
     issuer: "HIMAKOM Universitas Lampung",
-    year: "2023",
-    description: "Menjadi pemateri dalam kegiatan LKMM tingkat dasar."
+    year: "2026",
+    description: "Pemateri manajemen organisasi, penyusunan proposal program kerja, dan problem solving."
+  },
+  {
+    title: "Pemateri Upgrading Organisasi",
+    issuer: "HIMAKOM Universitas Lampung",
+    year: "2025",
+    description: "Pemateri peningkatan kapasitas staf, etika komunikasi, dan manajemen tim kerja."
+  },
+  {
+    title: "Pemateri LKMM Tingkat Pra-Dasar",
+    issuer: "Fakultas MIPA Universitas Lampung",
+    year: "2025",
+    description: "Pemateri kepemimpinan dasar dan manajemen diri untuk mahasiswa baru FMIPA."
   }
 ];
 
 export const experiences = [
   {
-    role: "Staff Programmer",
+    role: "Staff Software Developer",
     company: "PT. Lautan Teduh Interniaga",
     period: "Sep 2025 — Sekarang",
-    type: "Kerja",
-    description: "Mengembangkan dan memelihara aplikasi internal perusahaan menggunakan Laravel dan PHP."
+    type: "Full-time",
+    description: "Divisi IT — Pengembangan Sistem Informasi. Mengembangkan arsitektur sistem informasi internal sesuai kebutuhan manajemen, pemeliharaan & optimasi performa sistem (zero critical downtime), serta penanganan troubleshooting bug aplikasi dan integritas data secara terstruktur."
   },
   {
-    role: "Asisten Dosen",
-    company: "Mata Kuliah ADSI, Universitas Lampung",
+    role: "Asisten Dosen Praktikum (ADSI)",
+    company: "Universitas Lampung (Prodi Akuntansi)",
     period: "Feb 2026 — Jun 2026",
-    type: "Mengajar",
-    description: "Membantu dosen dalam perkuliahan Analisis dan Desain Sistem Informasi."
+    type: "Akademik",
+    description: "Mendampingi 60+ mahasiswa dalam praktikum Analisis dan Desain Sistem Informasi. Membimbing penyusunan SKPL, Pitchdeck, Feasibility Analysis, metodologi Agile/Waterfall, serta perancangan antarmuka UI/UX menggunakan Figma."
   },
   {
-    role: "Software Developer (Magang)",
+    role: "Programmer (Magang)",
     company: "PT. Lautan Teduh Interniaga",
     period: "Jun 2025 — Agu 2025",
     type: "Magang",
-    description: "Magang sebagai software developer, membangun company profile dan sistem internal."
+    description: "Membangun aplikasi internal pencatatan distribusi dan penjualan sparepart Yamaha menggunakan Laravel 10 dan MySQL, merancang skema relasional database, modul CRUD, serta melakukan testing dan internal deployment."
   },
   {
-    role: "Asisten Dosen",
-    company: "Mata Kuliah Basis Data, Universitas Lampung",
+    role: "Asisten Dosen Praktikum (Basis Data)",
+    company: "Universitas Lampung (Prodi Ilmu Komputer)",
     period: "Feb 2025 — Jun 2025",
-    type: "Mengajar",
-    description: "Membantu dosen dalam perkuliahan Basis Data, membimbing praktikum mahasiswa."
+    type: "Akademik",
+    description: "Mendampingi 30+ mahasiswa dalam praktikum SQL & MySQL, memberikan materi normalisasi database (1NF–3NF), perancangan ERD, dan penulisan query SQL kompleks (JOIN, Subquery, Stored Procedure)."
   }
 ];
 
@@ -212,20 +223,16 @@ export const organizations = [
   {
     role: "Kepala Dinas PSDM",
     organization: "BEM FMIPA Universitas Lampung",
-    period: "2024 — 2025",
-    description: "Memimpin divisi Pengembangan Sumber Daya Manusia di Badan Eksekutif Mahasiswa."
+    name: "BEM FMIPA Universitas Lampung",
+    period: "Jan 2025 — Des 2025",
+    description: "Memimpin bidang Kaderisasi & Pengembangan Potensi, merancang dan mengeksekusi program strategis (Upgrading Staff, GARUDA Magang BEM, Forum Kaderisasi FMIPA), serta membangun sistem monitoring kinerja staf berkala."
   },
   {
     role: "Ketua Umum",
     organization: "HIMAKOM Universitas Lampung",
-    period: "2024 — 2025",
-    description: "Memimpin Himpunan Mahasiswa Ilmu Komputer dengan 142+ anggota aktif."
-  },
-  {
-    role: "Anggota Bidang Kaderisasi",
-    organization: "HIMAKOM Universitas Lampung",
-    period: "2023 — 2024",
-    description: "Berkontribusi dalam program kaderisasi dan pengembangan anggota."
+    name: "HIMAKOM Universitas Lampung",
+    period: "Feb 2024 — Des 2024",
+    description: "Memimpin organisasi dengan 142+ anggota aktif, mengawasi seluruh pelaksanaan program kerja tahunan, mengelola anggaran dan perencanaan strategis, serta membina kolaborasi dengan dosen, universitas, dan mitra eksternal."
   }
 ];
 
@@ -234,29 +241,30 @@ export const education = [
     institution: "Universitas Lampung",
     degree: "S1 Ilmu Komputer",
     period: "2022 — 2026",
-    gpa: "3.74/4.00"
+    gpa: "3.74 / 4.00"
   },
   {
     institution: "SMA Negeri 1 Bandar Lampung",
-    degree: "SMA",
+    degree: "Jurusan MIPA",
     period: "2019 — 2022",
-    gpa: null
+    gpa: "Nilai Akhir: 86"
   }
 ];
 
 export const skills = {
-  languages: ["PHP", "JavaScript", "Python", "HTML", "CSS"],
-  frameworks: ["Laravel", "React", "MySQL", "Git/GitHub", "Figma", "REST API", "Composer"],
-  softSkills: ["Kepemimpinan", "Problem Solving", "Manajemen Proyek", "Komunikasi", "Mengajar"]
+  languages: ["PHP", "JavaScript", "Python", "TypeScript", "HTML5", "CSS3"],
+  frameworks: ["Laravel", "React", "MySQL", "Next.js", "Git/GitHub", "REST API", "Tailwind CSS", "Bootstrap", "Figma", "Composer", "Linux / Web Server"],
+  softSkills: ["Kepemimpinan (142+ Anggota)", "Problem Solving", "Manajemen Proyek", "Komunikasi & Mengajar", "System Architecture"],
+  languagesSpoken: ["Indonesia (Fasih / Native)", "Inggris (Menengah / B1 — TOEFL 453)"]
 };
 
 export const personal = {
   name: "Robby Hidayat",
   title: "Software Developer",
-  tagline: "Software Developer yang membangun sistem dengan bebas & cermat.",
+  tagline: "Merancang & membangun sistem web performa tinggi dengan arsitektur bersih dan presisi.",
   location: "Bandar Lampung, Indonesia",
   email: "robbyhdayatt@gmail.com",
-  phone: "",
+  phone: "+62 877-4867-2761",
   linkedin: "https://www.linkedin.com/in/robby-hidayat",
   github: "https://www.github.com/robbyhdayatt",
   instagram: "https://www.instagram.com/robbyhdayatt",

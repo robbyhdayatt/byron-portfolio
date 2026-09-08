@@ -20,5 +20,20 @@ npm-debug.log*
 pas-foto-formal.jpg
 foto-bebas-wisuda.jpeg
 
+# Hosting & server credentials / deployment scripts (STRICT NEVER COMMIT)
 hosting.txt
-deploy.js
+cpanel*.txt
+*cookie*.txt
+credentials*
+secrets*
+deploy*.js
+*.ps1
+
+# Temporary office / backups
+*.bak
+*backup*
+~$*
+
+# Archives
+*.zip
+*.tar.gz

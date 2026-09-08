@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# AI Crawlers & Answer Engines (GEO & AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# LLM Knowledge Base
+# See https://byron.my.id/llms.txt for AI-readable summary
+
 Sitemap: https://byron.my.id/sitemap.xml

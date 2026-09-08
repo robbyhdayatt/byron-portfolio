@@ -11,18 +11,26 @@ export const translations = {
     // Hero
     hero_greeting: 'Halo, saya',
     hero_name: 'Robby Hidayat',
-    hero_tagline: 'Software Developer yang membangun sistem dengan bebas & cermat.',
+    hero_tagline: 'Merancang & membangun sistem web performa tinggi dengan arsitektur bersih dan presisi.',
     hero_cta_projects: 'Lihat Proyek',
     hero_cta_contact: 'Hubungi Saya',
+    hero_cta_cv: 'Unduh CV (PDF)',
     hero_role: 'Software Developer',
-    hero_scroll: 'Scroll ke bawah',
+    hero_scroll: 'Gulir ke bawah',
+    lang_prof_label: 'Kemahiran Bahasa:',
 
     // About
     about_label: 'TENTANG SAYA',
     about_title: 'Tentang Saya',
-    about_p1: 'Saya Robby Hidayat, lulusan S1 <strong>Ilmu Komputer Universitas Lampung</strong> dengan IPK <strong>3.74/4.00</strong>. Saat ini bekerja sebagai <strong>Staff Programmer</strong> di PT. Lautan Teduh Interniaga, Divisi IT.',
-    about_p2: 'Berpengalaman membangun aplikasi web menggunakan <strong>Laravel, React, PHP, MySQL</strong>, dan <strong>JavaScript</strong>. Terbiasa bekerja dari analisis kebutuhan hingga deployment.',
-    about_p3: 'Di luar coding, saya pernah memimpin <strong>HIMAKOM Universitas Lampung</strong> sebagai Ketua Umum dengan 142+ anggota aktif — pengalaman yang menempa kemampuan kepemimpinan, komunikasi, dan manajemen proyek saya.',
+    about_p1: 'Saya seorang <strong>Software Developer</strong> yang berfokus merancang dan mengembangkan sistem web enterprise berkinerja tinggi. Saat ini berkarier di <strong>PT Lautan Teduh Interniaga (Divisi IT)</strong>, berperan dalam membangun solusi digital operasional seperti sistem manajemen inventori multi-gudang dan ERP jaringan dealer.',
+    about_p2: 'Dengan spesialisasi pada arsitektur <strong>Full-stack Web (Laravel & React)</strong> serta optimasi basis data <strong>MySQL</strong>, saya mengawal siklus perangkat lunak secara <em>end-to-end</em> — mulai dari perancangan arsitektur hingga <strong>deployment dan pemeliharaan server produksi</strong> (on-premise perusahaan maupun cloud/hosting).',
+    about_p3: 'Didukung latar belakang <strong>S1 Ilmu Komputer Universitas Lampung (IPK 3.74/4.00)</strong> serta pengalaman memimpin <strong>HIMAKOM Unila (142+ anggota aktif)</strong> sebagai Ketua Umum, saya menyelaraskan ketajaman teknis dengan komunikasi tangguh dan manajemen proyek terarah.',
+    about_fact_edu_label: 'Pendidikan',
+    about_fact_edu_val: 'S1 Ilmu Komputer (IPK 3.74)',
+    about_fact_role_label: 'Karier',
+    about_fact_role_val: 'Software Dev @ Lautan Teduh',
+    about_fact_spec_label: 'Spesialisasi',
+    about_fact_spec_val: 'Full-stack & Server Deploy',
 
     // Skills
     skills_label: 'KEAHLIAN',
@@ -42,9 +50,9 @@ export const translations = {
     projects_label: 'PROYEK',
     projects_title: 'Proyek',
 
-    // Certifications
-    certs_label: 'SERTIFIKASI',
-    certs_title: 'Sertifikasi & Pelatihan',
+    // Certifications / Training & Development
+    certs_label: 'PENGEMBANGAN DIRI',
+    certs_title: 'Pelatihan & Pengembangan Diri',
 
     // Experience & Organization
     exp_label: 'PENGALAMAN',
@@ -82,7 +90,7 @@ export const translations = {
     nav_about: 'Tentang',
     nav_skills: 'Keahlian',
     nav_projects: 'Proyek',
-    nav_certs: 'Sertifikasi',
+    nav_certs: 'Pelatihan',
     nav_exp: 'Pengalaman',
     nav_contact: 'Kontak',
 
@@ -98,18 +106,26 @@ export const translations = {
     // Hero
     hero_greeting: 'Hello, I\'m',
     hero_name: 'Robby Hidayat',
-    hero_tagline: 'A Software Developer who builds systems with freedom & precision.',
+    hero_tagline: 'Designing & building high-performance web systems with clean architecture and precision.',
     hero_cta_projects: 'View Projects',
     hero_cta_contact: 'Contact Me',
+    hero_cta_cv: 'Download CV (PDF)',
     hero_role: 'Software Developer',
     hero_scroll: 'Scroll down',
+    lang_prof_label: 'Language Proficiency:',
 
     // About
     about_label: 'ABOUT ME',
     about_title: 'About Me',
-    about_p1: 'I\'m Robby Hidayat, a graduate of <strong>Computer Science at Lampung University</strong> with a GPA of <strong>3.74/4.00</strong>. Currently working as a <strong>Staff Programmer</strong> at PT. Lautan Teduh Interniaga, IT Division.',
-    about_p2: 'Experienced in building web applications using <strong>Laravel, React, PHP, MySQL</strong>, and <strong>JavaScript</strong>. Comfortable working from requirements analysis to deployment.',
-    about_p3: 'Beyond coding, I led <strong>HIMAKOM Lampung University</strong> as General Chairman with 142+ active members — an experience that forged my leadership, communication, and project management skills.',
+    about_p1: 'I am a <strong>Software Developer</strong> focused on designing and building high-performance enterprise web systems. Currently working at <strong>PT Lautan Teduh Interniaga (IT Division)</strong>, developing operational digital solutions such as multi-warehouse inventory systems and dealer-network ERP.',
+    about_p2: 'Specializing in <strong>Full-stack Web architecture (Laravel & React)</strong> and <strong>MySQL database optimization</strong>, I manage the software lifecycle end-to-end — from system architecture to <strong>production server deployment and maintenance</strong> across on-premise infrastructure and cloud platforms.',
+    about_p3: 'Backed by a degree in <strong>Computer Science from Lampung University (GPA 3.74/4.00)</strong> and leadership experience as General Chairman of <strong>HIMAKOM (142+ active members)</strong>, I combine technical precision with clear communication and project management.',
+    about_fact_edu_label: 'Education',
+    about_fact_edu_val: 'B.Sc Computer Science (GPA 3.74)',
+    about_fact_role_label: 'Career',
+    about_fact_role_val: 'Software Dev @ Lautan Teduh',
+    about_fact_spec_label: 'Specialization',
+    about_fact_spec_val: 'Full-stack & Server Deploy',
 
     // Skills
     skills_label: 'SKILLS',
@@ -129,9 +145,9 @@ export const translations = {
     projects_label: 'PROJECTS',
     projects_title: 'Projects',
 
-    // Certifications
-    certs_label: 'CERTIFICATIONS',
-    certs_title: 'Certifications & Training',
+    // Certifications / Training & Development
+    certs_label: 'DEVELOPMENT',
+    certs_title: 'Training & Professional Development',
 
     // Experience & Organization
     exp_label: 'EXPERIENCE',
@@ -169,7 +185,7 @@ export const translations = {
     nav_about: 'About',
     nav_skills: 'Skills',
     nav_projects: 'Projects',
-    nav_certs: 'Certifications',
+    nav_certs: 'Training',
     nav_exp: 'Experience',
     nav_contact: 'Contact',
 

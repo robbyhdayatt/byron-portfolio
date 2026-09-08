@@ -3,16 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Byron Portfolio — Admin CMS</title>
+    <title>Byron Admin CMS — Studio Manajemen Portofolio</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: { sans: ['Quicksand', 'sans-serif'] },
+            fontFamily: {
+              sans: ['Quicksand', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
             colors: {
               'sky-deep':    '#1565C0',
               'sky-bright':  '#42A5F5',
@@ -26,93 +31,104 @@
       }
     </script>
     <style>
-      body { font-family: 'Quicksand', sans-serif; background-color: #F0F7FF; color: #0D1B2A; }
-      .nav-tab.active, .nav-tab[class*="bg-sky-deep"] { background-color: #1565C0; color: white; }
+      body {
+        font-family: 'Quicksand', sans-serif;
+        background-color: #F8FAFC;
+        color: #0F172A;
+      }
+      .nav-tab.active {
+        background-color: #1565C0;
+        color: #FFFFFF;
+        box-shadow: 0 4px 14px rgba(21, 101, 192, 0.28);
+      }
       details > summary { list-style: none; }
       details > summary::-webkit-details-marker { display: none; }
+      
+      /* Smooth transitions */
+      .item-card {
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .item-card:hover {
+        border-color: rgba(66, 165, 245, 0.4);
+      }
+      .thumb-preview {
+        transition: transform 0.2s ease;
+      }
+      .thumb-preview:hover {
+        transform: scale(1.04);
+      }
     </style>
 </head>
-<body class="min-h-screen antialiased flex flex-col">
+<body class="min-h-screen antialiased flex flex-col selection:bg-sky-bright selection:text-white">
 
     <!-- ════════════════════════════════════════════ -->
     <!-- LOGIN SCREEN                                  -->
     <!-- ════════════════════════════════════════════ -->
-    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-sky-navy/80 backdrop-blur-md p-4">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-sky-bright/30 space-y-6">
+    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-sky-navy/85 backdrop-blur-md p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 sm:p-10 max-w-md w-full border border-sky-bright/30 space-y-6">
 
             <!-- Header -->
-            <div class="text-center">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sky-bright/10 text-sky-deep mb-3">
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-deep text-white shadow-lg shadow-sky-deep/30 mb-2">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
                 </div>
-                <h1 class="text-2xl font-bold text-sky-navy">Byron Admin CMS</h1>
-                <p class="text-sm text-gray-500 mt-1">Masuk menggunakan GitHub Personal Access Token</p>
+                <h1 class="text-2xl font-bold text-sky-navy tracking-tight">Byron Studio CMS</h1>
+                <p class="text-sm text-slate-500">Panel Manajemen Konten &amp; Proyek Portofolio</p>
             </div>
 
-            <!-- Alert -->
-            <div id="login-alert" class="hidden p-3 rounded-lg text-sm bg-red-50 text-red-700 border border-red-200"></div>
+            <!-- Alert Box -->
+            <div id="login-alert" class="hidden p-3.5 rounded-xl text-sm bg-red-50 text-red-700 border border-red-200"></div>
 
             <!-- Form -->
             <form id="login-form" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                         GitHub Personal Access Token
                         <span class="text-red-500">*</span>
                     </label>
                     <input type="password" id="gh-token"
-                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-sky-bright focus:ring-2 focus:ring-sky-bright/20 outline-none transition text-sm font-mono"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-deep focus:ring-4 focus:ring-sky-deep/10 outline-none transition text-sm font-mono"
                         placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required autocomplete="off">
                 </div>
                 <button type="submit"
-                    class="w-full py-3 bg-sky-deep hover:bg-sky-bright text-white font-bold rounded-xl shadow-lg transition duration-200">
-                    Masuk Dashboard →
+                    class="w-full py-3.5 bg-sky-deep hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-sky-deep/25 transition duration-200 flex items-center justify-center gap-2">
+                    <span>Masuk ke Dashboard</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </button>
             </form>
 
-            <!-- Help accordion -->
-            <details class="text-xs text-gray-500 border border-gray-200 rounded-xl overflow-hidden">
-                <summary class="px-4 py-3 cursor-pointer font-semibold hover:bg-gray-50 flex items-center justify-between">
-                    <span>🔑 Cara membuat GitHub Token</span>
-                    <span class="details-arrow">▾</span>
-                </summary>
-                <div class="px-4 pb-4 pt-2 space-y-2 border-t border-gray-100 bg-gray-50/50">
-                    <ol class="list-decimal list-inside space-y-1">
-                        <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" class="text-sky-deep underline">GitHub → Settings → Fine-grained tokens</a></li>
-                        <li>Token name: <code class="bg-gray-100 px-1 rounded">byron-cms</code></li>
-                        <li>Repository access: <strong>Only select repositories</strong> → pilih <code class="bg-gray-100 px-1 rounded">byron-portfolio</code></li>
-                        <li>Permissions → Contents: <strong>Read and write</strong> (untuk simpan data &amp; upload gambar)</li>
-                        <li>Generate token → copy hasilnya di sini</li>
-                    </ol>
-                    <p class="mt-2 text-gray-400">Token disimpan di <code>sessionStorage</code> browser — hilang otomatis saat tab ditutup.</p>
-                </div>
-            </details>
-
-            <div class="text-center">
-                <a href="../" class="text-xs text-sky-deep hover:underline">← Kembali ke Website Utama</a>
+            <div class="text-center pt-2">
+                <a href="../" class="text-xs font-semibold text-slate-500 hover:text-sky-deep transition">← Kembali ke Website Utama</a>
             </div>
         </div>
     </div>
 
     <!-- ════════════════════════════════════════════ -->
-    <!-- ADMIN APP                                     -->
+    <!-- ADMIN APP MAIN DASHBOARD                      -->
     <!-- ════════════════════════════════════════════ -->
     <div id="admin-app" class="hidden flex-1 flex flex-col">
 
         <!-- Top Navbar -->
-        <header class="bg-white border-b border-sky-bright/20 shadow-sm sticky top-0 z-30">
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-xl text-sky-deep">Byron CMS</span>
-                    <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
-                        GitHub API
-                    </span>
+                    <div class="w-9 h-9 rounded-xl bg-sky-deep text-white flex items-center justify-center font-bold shadow-md shadow-sky-deep/20">
+                        B
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg text-sky-navy tracking-tight">Byron Studio</span>
+                        <span id="sync-badge" class="ml-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-sky-deep border border-sky-deep/20">
+                            GitHub Direct Sync
+                        </span>
+                    </div>
                 </div>
+                
                 <div class="flex items-center gap-2 sm:gap-3">
                     <button id="save-all-btn"
-                        class="flex items-center gap-2 px-4 py-2 bg-sky-deep hover:bg-sky-bright text-white font-bold rounded-xl shadow-md transition text-sm">
+                        class="flex items-center gap-2 px-4 sm:px-5 py-2 bg-sky-deep hover:bg-blue-700 text-white font-bold rounded-xl shadow-md shadow-sky-deep/20 transition text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
@@ -121,8 +137,9 @@
                         <span class="sm:hidden">Simpan</span>
                     </button>
                     <a href="../" target="_blank"
-                        class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition hidden sm:block">
-                        Pratinjau ↗
+                        class="px-3 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition flex items-center gap-1.5">
+                        <span>Pratinjau Web</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     </a>
                     <button id="logout-btn"
                         class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-semibold rounded-xl text-sm transition">
@@ -132,164 +149,275 @@
             </div>
         </header>
 
-        <!-- Toast -->
-        <div id="toast" class="fixed bottom-6 right-6 z-40 hidden px-6 py-3 rounded-xl shadow-xl text-sm font-semibold duration-300"></div>
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-5 py-3 rounded-2xl shadow-2xl text-sm font-semibold duration-300 flex items-center gap-3"></div>
 
-        <!-- Main grid -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Main Workspace -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 space-y-6">
 
-            <!-- Sidebar -->
-            <nav class="space-y-1.5 lg:sticky lg:top-24 self-start">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Menu</p>
-                <button data-tab="personal" class="nav-tab active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition bg-sky-deep text-white shadow-md">
-                    <span>👤</span> Bio &amp; Data Diri
-                </button>
-                <button data-tab="projects" class="nav-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition text-gray-700 hover:bg-white">
-                    <span>💻</span> Proyek Portfolio
-                </button>
-                <button data-tab="experiences" class="nav-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition text-gray-700 hover:bg-white">
-                    <span>💼</span> Pengalaman Kerja
-                </button>
-                <button data-tab="organizations" class="nav-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition text-gray-700 hover:bg-white">
-                    <span>🏛️</span> Organisasi
-                </button>
-                <button data-tab="skills" class="nav-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition text-gray-700 hover:bg-white">
-                    <span>🌟</span> Keahlian &amp; Skills
-                </button>
-                <button data-tab="certifications" class="nav-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-semibold text-sm transition text-gray-700 hover:bg-white">
-                    <span>🏆</span> Sertifikasi
-                </button>
-
-                <!-- Info box -->
-                <div class="mt-6 p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-700 space-y-1">
-                    <p class="font-semibold">💡 Info</p>
-                    <p>Setiap "Simpan Perubahan" membuat commit baru di GitHub repo-mu secara otomatis.</p>
-                </div>
-            </nav>
-
-            <!-- Main content -->
-            <main class="lg:col-span-3 space-y-6">
-
-                <!-- TAB: PERSONAL -->
-                <div id="tab-personal" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <h2 class="text-xl font-bold text-sky-navy border-b pb-3">Edit Bio &amp; Informasi Kontak</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
-                            <input type="text" id="p-name" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Robby Hidayat">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Profesi / Title</label>
-                            <input type="text" id="p-title" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Software Developer">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tagline Hero</label>
-                            <input type="text" id="p-tagline" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Software Developer yang...">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-                            <input type="email" id="p-email" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="email@gmail.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Lokasi</label>
-                            <input type="text" id="p-location" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Bandar Lampung, Indonesia">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">URL LinkedIn</label>
-                            <input type="url" id="p-linkedin" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="https://linkedin.com/in/...">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">URL GitHub</label>
-                            <input type="url" id="p-github" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="https://github.com/...">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">URL Instagram</label>
-                            <input type="url" id="p-instagram" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="https://instagram.com/...">
-                        </div>
+            <!-- Metrics Overview Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-blue-50 text-sky-deep flex items-center justify-center font-bold text-lg">💻</div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Proyek</p>
+                        <p id="metric-projects" class="text-xl font-bold text-slate-800">0</p>
                     </div>
                 </div>
-
-                <!-- TAB: PROJECTS -->
-                <div id="tab-projects" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <h2 class="text-xl font-bold text-sky-navy">Kelola Proyek Portfolio</h2>
-                        <button id="add-project-btn"
-                            class="px-4 py-2 bg-sky-deep hover:bg-sky-bright text-white text-xs font-bold rounded-xl transition">
-                            + Tambah Proyek
-                        </button>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg">💼</div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pengalaman</p>
+                        <p id="metric-exp" class="text-xl font-bold text-slate-800">0</p>
                     </div>
-                    <div id="projects-list" class="space-y-4"></div>
                 </div>
-
-                <!-- TAB: EXPERIENCES -->
-                <div id="tab-experiences" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <h2 class="text-xl font-bold text-sky-navy">Kelola Pengalaman Kerja</h2>
-                        <button id="add-exp-btn"
-                            class="px-4 py-2 bg-sky-deep hover:bg-sky-bright text-white text-xs font-bold rounded-xl transition">
-                            + Tambah Pengalaman
-                        </button>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-lg">🏛️</div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Organisasi</p>
+                        <p id="metric-org" class="text-xl font-bold text-slate-800">0</p>
                     </div>
-                    <div id="exp-list" class="space-y-4"></div>
                 </div>
-
-                <!-- TAB: ORGANIZATIONS -->
-                <div id="tab-organizations" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <h2 class="text-xl font-bold text-sky-navy">Kelola Pengalaman Organisasi</h2>
-                        <button id="add-org-btn"
-                            class="px-4 py-2 bg-sky-deep hover:bg-sky-bright text-white text-xs font-bold rounded-xl transition">
-                            + Tambah Organisasi
-                        </button>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">🏆</div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Sertifikasi</p>
+                        <p id="metric-certs" class="text-xl font-bold text-slate-800">0</p>
                     </div>
-                    <div id="org-list" class="space-y-4"></div>
                 </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs col-span-2 sm:col-span-1 flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold text-lg">🌟</div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Skills</p>
+                        <p id="metric-skills" class="text-xl font-bold text-slate-800">0</p>
+                    </div>
+                </div>
+            </div>
 
-                <!-- TAB: SKILLS -->
-                <div id="tab-skills" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <div class="border-b pb-3 flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-bold text-sky-navy">Kelola Keahlian &amp; Skills</h2>
-                            <p class="text-xs text-gray-500 mt-1">Pisahkan setiap keahlian dengan koma (contoh: PHP, JavaScript, Python)</p>
+            <!-- Content Grid with Sidebar -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+
+                <!-- Sidebar Navigation -->
+                <nav class="space-y-1.5 lg:sticky lg:top-24 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs">
+                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5">Navigasi Studio</p>
+                    
+                    <button data-tab="personal" class="nav-tab active w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">👤</span> Bio &amp; Data Diri
+                    </button>
+                    <button data-tab="projects" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">💻</span> Proyek Portfolio
+                    </button>
+                    <button data-tab="experiences" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">💼</span> Pengalaman Kerja
+                    </button>
+                    <button data-tab="organizations" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">🏛️</span> Organisasi
+                    </button>
+                    <button data-tab="skills" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">🌟</span> Keahlian &amp; Stack
+                    </button>
+                    <button data-tab="certifications" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">🏆</span> Sertifikasi
+                    </button>
+                    <button data-tab="raw-json" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left font-semibold text-sm transition text-slate-700 hover:bg-slate-50">
+                        <span class="text-base">⚙️</span> Backup &amp; JSON Editor
+                    </button>
+
+                    <!-- Quick Help Card -->
+                    <div class="mt-4 p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-blue-800 space-y-1">
+                        <p class="font-bold flex items-center gap-1.5">
+                            <span>💡</span> Auto Commit
+                        </p>
+                        <p class="text-[11px] leading-relaxed text-blue-700">Setiap klik "Simpan Perubahan" otomatis membuat commit di GitHub repository Anda.</p>
+                    </div>
+                </nav>
+
+                <!-- Main Content Area -->
+                <main class="lg:col-span-3 space-y-6">
+
+                    <!-- TAB: PERSONAL -->
+                    <div id="tab-personal" class="tab-content bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Informasi Profil &amp; Kontak</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Data diri utama yang tampil pada Hero Section dan ID Pass.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap</label>
+                                <input type="text" id="p-name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Robby Hidayat">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Profesi / Title</label>
+                                <input type="text" id="p-title" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Software Developer">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Tagline Hero</label>
+                                <input type="text" id="p-tagline" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Software Developer yang membangun sistem dengan bebas & cermat.">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email</label>
+                                <input type="email" id="p-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="robbyhdayatt@gmail.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Lokasi</label>
+                                <input type="text" id="p-location" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Bandar Lampung, Indonesia">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">URL LinkedIn</label>
+                                <input type="url" id="p-linkedin" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="https://www.linkedin.com/in/robby-hidayat">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">URL GitHub</label>
+                                <input type="url" id="p-github" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="https://github.com/robbyhdayatt">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">URL Instagram</label>
+                                <input type="url" id="p-instagram" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="https://instagram.com/robbyhdayatt">
+                            </div>
                         </div>
                     </div>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Bahasa Pemrograman (Languages)</label>
-                            <input type="text" id="skills-languages" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="PHP, JavaScript, Python, HTML, CSS">
-                            <p class="text-xs text-gray-400 mt-1">Bahasa pemrograman yang Anda kuasai.</p>
+
+                    <!-- TAB: PROJECTS -->
+                    <div id="tab-projects" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Manajemen Proyek Portofolio</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Kelola gambar utama, tumpukan galeri pop-up, tech stack, dan spesifikasi sistem.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button id="add-project-btn"
+                                    class="px-4 py-2 bg-sky-deep hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+                                    <span>+ Tambah Proyek Baru</span>
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Framework &amp; Tools</label>
-                            <input type="text" id="skills-frameworks" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Laravel, React, MySQL, Git/GitHub, Figma, REST API, Composer">
-                            <p class="text-xs text-gray-400 mt-1">Framework, database, dan tools pendukung.</p>
+
+                        <!-- Search Bar -->
+                        <div class="relative">
+                            <input type="text" id="project-search-input"
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm"
+                                placeholder="🔍 Cari proyek berdasarkan judul atau tech stack...">
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Soft Skills</label>
-                            <input type="text" id="skills-soft" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-sky-bright outline-none transition text-sm" placeholder="Kepemimpinan, Problem Solving, Manajemen Proyek, Komunikasi, Mengajar">
-                            <p class="text-xs text-gray-400 mt-1">Soft skill yang ditampilkan pada chip interaktif di website utama.</p>
+
+                        <!-- Projects List Accordion -->
+                        <div id="projects-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- TAB: EXPERIENCES -->
+                    <div id="tab-experiences" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Pengalaman Kerja</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Riwayat karir profesional yang tampil pada timeline portofolio.</p>
+                            </div>
+                            <button id="add-exp-btn"
+                                class="px-4 py-2 bg-sky-deep hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition">
+                                + Tambah Pengalaman
+                            </button>
+                        </div>
+                        <div id="exp-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- TAB: ORGANIZATIONS -->
+                    <div id="tab-organizations" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Pengalaman Organisasi</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Kepemimpinan dan keaktifan organisasi yang membentuk soft skills.</p>
+                            </div>
+                            <button id="add-org-btn"
+                                class="px-4 py-2 bg-sky-deep hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition">
+                                + Tambah Organisasi
+                            </button>
+                        </div>
+                        <div id="org-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- TAB: SKILLS -->
+                    <div id="tab-skills" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="border-b pb-4">
+                            <h2 class="text-xl font-bold text-sky-navy">Keahlian &amp; Tech Stack</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Pisahkan setiap keahlian dengan tanda koma (contoh: PHP, JavaScript, Laravel).</p>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Bahasa Pemrograman (Languages)</label>
+                                <input type="text" id="skills-languages" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="PHP, JavaScript, TypeScript, Python, HTML5, CSS3">
+                                <div id="preview-skills-languages" class="flex flex-wrap gap-1.5 mt-2"></div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Framework, Database &amp; Tools</label>
+                                <input type="text" id="skills-frameworks" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Laravel, React, Next.js, MySQL, Tailwind CSS, Bootstrap, Prisma, Git, Figma, Docker">
+                                <div id="preview-skills-frameworks" class="flex flex-wrap gap-1.5 mt-2"></div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Soft Skills (Chips Interaktif)</label>
+                                <input type="text" id="skills-soft" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-sky-deep outline-none transition text-sm font-medium" placeholder="Kepemimpinan, Problem Solving, Manajemen Proyek, Komunikasi, Mengajar">
+                                <div id="preview-skills-soft" class="flex flex-wrap gap-1.5 mt-2"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- TAB: CERTIFICATIONS -->
-                <div id="tab-certifications" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-sky-bright/20 space-y-6">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <h2 class="text-xl font-bold text-sky-navy">Kelola Sertifikasi &amp; Pelatihan</h2>
-                        <button id="add-cert-btn"
-                            class="px-4 py-2 bg-sky-deep hover:bg-sky-bright text-white text-xs font-bold rounded-xl transition">
-                            + Tambah Sertifikasi
-                        </button>
+                    <!-- TAB: CERTIFICATIONS -->
+                    <div id="tab-certifications" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Sertifikasi &amp; Pelatihan</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Kredensial dan lisensi keahlian resmi.</p>
+                            </div>
+                            <button id="add-cert-btn"
+                                class="px-4 py-2 bg-sky-deep hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition">
+                                + Tambah Sertifikasi
+                            </button>
+                        </div>
+                        <div id="cert-list" class="space-y-4"></div>
                     </div>
-                    <div id="cert-list" class="space-y-4"></div>
-                </div>
 
-            </main>
+                    <!-- TAB: BACKUP & RAW JSON EDITOR -->
+                    <div id="tab-raw-json" class="tab-content hidden bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200 space-y-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-sky-navy">Backup &amp; Raw JSON Editor</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Ekspor cadangan, impor file, atau edit skema content.json langsung.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" id="btn-download-json"
+                                    class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+                                    <span>📥 Unduh Backup JSON</span>
+                                </button>
+                                <label class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl shadow-xs transition cursor-pointer flex items-center gap-1.5">
+                                    <span>📤 Unggah JSON</span>
+                                    <input type="file" id="json-file-input" class="hidden" accept=".json">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Raw JSON Content</label>
+                                <button type="button" id="btn-format-json" class="text-xs font-semibold text-sky-deep hover:underline">
+                                    Format Indentasi ✨
+                                </button>
+                            </div>
+                            <textarea id="raw-json-editor" rows="18"
+                                class="w-full p-4 font-mono text-xs bg-slate-900 text-emerald-400 rounded-2xl border border-slate-700 focus:border-sky-bright outline-none transition shadow-inner leading-relaxed"></textarea>
+                            <div class="flex justify-end mt-3">
+                                <button type="button" id="btn-apply-json"
+                                    class="px-5 py-2.5 bg-sky-deep hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md transition">
+                                    Terapkan JSON ke Formulir Studio →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
         </div>
     </div>
 
-    <!-- Load admin logic as ES module -->
+    <!-- Script Module -->
     <script type="module" src="./admin.js"></script>
-
 </body>
 </html>
