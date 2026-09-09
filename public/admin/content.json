@@ -217,56 +217,64 @@
       "title": "Bootcamp Student Developer Initiative – AI for Data Summarization",
       "issuer": "IBM",
       "year": "2024",
-      "description": "Pelatihan intensif kecerdasan buatan, NLP, dan model ringkasan data otomatis."
+      "description": "Pelatihan intensif kecerdasan buatan, NLP, dan model ringkasan data otomatis.",
+      "image": ""
     },
     {
       "id": 2,
       "title": "Bootcamp XDemia × HIMAKOM – Python Programming",
       "issuer": "XDemia",
       "year": "2023",
-      "description": "Pelatihan pemrograman Python untuk data science, analisis data, dan rekayasa perangkat lunak."
+      "description": "Pelatihan pemrograman Python untuk data science, analisis data, dan rekayasa perangkat lunak.",
+      "image": ""
     },
     {
       "id": 3,
       "title": "LKMM Tingkat Menengah",
       "issuer": "BEM-KM Universitas Andalas",
       "year": "2025",
-      "description": "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah se-wilayah Sumatra."
+      "description": "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah se-wilayah Sumatra.",
+      "image": ""
     },
     {
       "id": 4,
       "title": "LKMM Pra-Dasar & Dasar",
       "issuer": "HIMAKOM Universitas Lampung",
       "year": "2024",
-      "description": "Latihan kepemimpinan, manajemen organisasi, dan penyusunan strategi program kerja."
+      "description": "Latihan kepemimpinan, manajemen organisasi, dan penyusunan strategi program kerja.",
+      "image": ""
     },
     {
       "id": 5,
       "title": "Pemateri PROMIK (Orientasi Mahasiswa Baru)",
       "issuer": "Ilmu Komputer Universitas Lampung",
       "year": "2026",
-      "description": "Pemateri dan fasilitator pengenalan lingkungan akademik dan kompetensi software engineering bagi mahasiswa baru."
+      "description": "Pemateri dan fasilitator pengenalan lingkungan akademik dan kompetensi software engineering bagi mahasiswa baru.",
+      "image": ""
     },
     {
       "id": 6,
       "title": "Pemateri LKMM Tingkat Dasar",
       "issuer": "HIMAKOM Universitas Lampung",
       "year": "2026",
-      "description": "Pemateri manajemen organisasi, penyusunan proposal program kerja, dan problem solving."
+      "description": "Pemateri manajemen organisasi, penyusunan proposal program kerja, dan problem solving.",
+      "image": ""
     },
     {
       "id": 7,
       "title": "Pemateri Upgrading Organisasi",
       "issuer": "HIMAKOM Universitas Lampung",
       "year": "2025",
-      "description": "Pemateri peningkatan kapasitas staf, etika komunikasi, dan manajemen tim kerja."
+      "description": "Pemateri peningkatan kapasitas staf, etika komunikasi, dan manajemen tim kerja.",
+      "image": ""
     },
     {
       "id": 8,
       "title": "Pemateri LKMM Tingkat Pra-Dasar",
       "issuer": "Fakultas MIPA Universitas Lampung",
       "year": "2025",
-      "description": "Pemateri kepemimpinan dasar dan manajemen diri untuk mahasiswa baru FMIPA."
+      "description": "Pemateri kepemimpinan dasar dan manajemen diri untuk mahasiswa baru FMIPA.",
+      "image": ""
     }
   ],
   "experiences": [

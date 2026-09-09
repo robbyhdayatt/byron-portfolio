@@ -36,18 +36,45 @@ export async function init(prefersReducedMotion) {
     if (!cert) return;
 
     modalContentWrapper.innerHTML = `
-      <button class="modal-close" aria-label="Close modal">&times;</button>
-      <h2>${cert.title}</h2>
-      <p><strong>Issuer:</strong> ${cert.issuer}</p>
-      <p><strong>Year:</strong> ${cert.year}</p>
-      ${cert.description ? `<p>${cert.description}</p>` : ''}
-      ${cert.link ? `
-        <div>
-          <a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="cert-modal-link">
-            <span>🏆</span> Lihat Kredensial / Sertifikat ↗
-          </a>
+      <div class="cert-modal-dialog">
+        <button class="cert-modal-close" aria-label="Close modal">&times;</button>
+        
+        <div class="cert-modal-header">
+          <div class="cert-modal-badges">
+            <span class="cert-badge-issuer">${cert.issuer || 'Sertifikasi'}</span>
+            <span class="cert-badge-year">${cert.year || ''}</span>
+          </div>
+          <h2 class="cert-modal-title">${cert.title || ''}</h2>
         </div>
-      ` : ''}
+
+        <div class="cert-modal-media">
+          ${cert.image ? `
+            <div class="cert-image-frame">
+              <img src="${cert.image}" alt="Sertifikat ${cert.title}" class="cert-modal-img" loading="lazy" />
+              <div class="cert-image-actions">
+                <a href="${cert.image}" target="_blank" rel="noopener noreferrer" class="cert-btn-zoom" title="Buka Gambar Penuh">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                  </svg>
+                  <span>Buka Ukuran Penuh</span>
+                </a>
+              </div>
+            </div>
+          ` : `
+            <div class="cert-empty-placeholder">
+              <div class="cert-empty-icon">📜</div>
+              <p class="cert-empty-title">Pratinjau Dokumen Sertifikat</p>
+              <p class="cert-empty-sub">Dokumen digital sertifikat resmi ini terdaftar atas nama <strong>Robby Hidayat</strong>. Foto sertifikat belum diunggah.</p>
+            </div>
+          `}
+        </div>
+
+        ${cert.description ? `
+          <div class="cert-modal-footer">
+            <p class="cert-modal-desc">${cert.description}</p>
+          </div>
+        ` : ''}
+      </div>
     `;
 
     overlay.style.display = 'flex';
@@ -86,7 +113,7 @@ export async function init(prefersReducedMotion) {
   });
 
   overlay.addEventListener('click', (e) => {
-    if (e.target === overlay || e.target.classList.contains('modal-close')) {
+    if (e.target === overlay || e.target.classList.contains('modal-close') || e.target.closest('.cert-modal-close')) {
       closeModal();
     }
   });

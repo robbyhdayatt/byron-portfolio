@@ -142,48 +142,56 @@ export const certifications = [
     title: "Bootcamp Student Developer Initiative – AI for Data Summarization",
     issuer: "IBM",
     year: "2024",
+    image: "",
     description: "Pelatihan intensif kecerdasan buatan, NLP, dan model ringkasan data otomatis."
   },
   {
     title: "Bootcamp XDemia × HIMAKOM – Python Programming",
     issuer: "XDemia",
     year: "2023",
+    image: "",
     description: "Pelatihan pemrograman Python untuk data science, analisis data, dan rekayasa perangkat lunak."
   },
   {
     title: "LKMM Tingkat Menengah",
     issuer: "BEM-KM Universitas Andalas",
     year: "2025",
+    image: "",
     description: "Latihan Keterampilan Manajemen Mahasiswa Tingkat Menengah se-wilayah Sumatra."
   },
   {
     title: "LKMM Pra-Dasar & Dasar",
     issuer: "HIMAKOM Universitas Lampung",
     year: "2024",
+    image: "",
     description: "Latihan kepemimpinan, manajemen organisasi, dan penyusunan strategi program kerja."
   },
   {
     title: "Pemateri PROMIK (Orientasi Mahasiswa Baru)",
     issuer: "Ilmu Komputer Universitas Lampung",
     year: "2026",
+    image: "",
     description: "Pemateri dan fasilitator pengenalan lingkungan akademik dan kompetensi software engineering bagi mahasiswa baru."
   },
   {
     title: "Pemateri LKMM Tingkat Dasar",
     issuer: "HIMAKOM Universitas Lampung",
     year: "2026",
+    image: "",
     description: "Pemateri manajemen organisasi, penyusunan proposal program kerja, dan problem solving."
   },
   {
     title: "Pemateri Upgrading Organisasi",
     issuer: "HIMAKOM Universitas Lampung",
     year: "2025",
+    image: "",
     description: "Pemateri peningkatan kapasitas staf, etika komunikasi, dan manajemen tim kerja."
   },
   {
     title: "Pemateri LKMM Tingkat Pra-Dasar",
     issuer: "Fakultas MIPA Universitas Lampung",
     year: "2025",
+    image: "",
     description: "Pemateri kepemimpinan dasar dan manajemen diri untuk mahasiswa baru FMIPA."
   }
 ];

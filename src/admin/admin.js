@@ -1040,9 +1040,44 @@ function renderCertifications() {
         <input type="text" value="${escHtml(cert.year || '')}"
           oninput="state.certifications[${idx}].year = this.value"
           placeholder="Tahun" class="${inputCls}">
-        <input type="url" value="${escHtml(cert.link || '')}"
-          oninput="state.certifications[${idx}].link = this.value"
-          placeholder="URL Kredensial (https://...)" class="${inputCls}">
+        
+        <!-- Foto Sertifikat (Uploader & Preview) -->
+        <div class="sm:col-span-2 bg-white p-3.5 rounded-xl border border-slate-200 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <span>🖼️</span> Foto / Scan Sertifikat (Muncul di Pop-up)
+            </span>
+            ${cert.image ? `
+              <button type="button" onclick="state.certifications[${idx}].image = ''; renderCertifications();" class="text-xs text-red-500 hover:underline font-semibold">Hapus Foto</button>
+            ` : ''}
+          </div>
+          <div class="flex items-center gap-3">
+            ${cert.image ? `
+              <a href="${escHtml(cert.image)}" target="_blank" class="w-20 h-14 rounded-lg border border-slate-200 overflow-hidden shrink-0 bg-slate-900 flex items-center justify-center hover:opacity-90 transition group relative" title="Klik untuk pratinjau">
+                <img src="${escHtml(cert.image)}" class="w-full h-full object-contain" />
+              </a>
+            ` : `
+              <div class="w-20 h-14 rounded-lg border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-400 text-2xs shrink-0">
+                <span>Belum Ada</span>
+                <span>Foto</span>
+              </div>
+            `}
+            <div class="flex-1 space-y-1.5">
+              <div class="flex items-center gap-2">
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold hover:bg-indigo-100 transition shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  Upload Foto Sertifikat
+                  <input type="file" accept="image/*" class="hidden" onchange="handleCertUpload(this, ${idx})">
+                </label>
+                <span class="text-xs text-slate-400">atau URL langsung:</span>
+              </div>
+              <input type="text" value="${escHtml(cert.image || '')}"
+                oninput="state.certifications[${idx}].image = this.value"
+                placeholder="https://raw.githubusercontent.com/... atau URL foto" class="${inputCls} text-xs py-1.5">
+            </div>
+          </div>
+        </div>
+
         <textarea rows="2" oninput="state.certifications[${idx}].description = this.value"
           placeholder="Keterangan kompetensi..."
           class="sm:col-span-2 ${inputCls}">${escHtml(cert.description || '')}</textarea>
@@ -1050,6 +1085,32 @@ function renderCertifications() {
     </div>
   `).join('');
 }
+
+window.handleCertUpload = async (fileInput, certIdx) => {
+  if (!fileInput.files?.[0]) return;
+  const token = getToken();
+
+  if (!token) {
+    showToast('Sesi token tidak ditemukan. Silakan login kembali.', false);
+    showLoginScreen();
+    return;
+  }
+
+  showToast('Mengunggah foto sertifikat ke GitHub...', true);
+  try {
+    const url = await uploadImage(fileInput.files[0], token);
+    state.certifications[certIdx].image = url;
+    renderCertifications();
+
+    showToast('Menyimpan perubahan ke website live...', true);
+    await saveContent(state, token);
+    showToast('✅ Foto sertifikat berhasil diunggah & langsung aktif!');
+  } catch (err) {
+    showToast('Gagal upload: ' + err.message, false);
+  } finally {
+    fileInput.value = '';
+  }
+};
 
 window.moveCert = (idx, dir) => {
   const target = idx + dir;
@@ -1069,7 +1130,7 @@ window.removeCert = (idx) => {
 
 document.getElementById('add-cert-btn').addEventListener('click', () => {
   if (!state.certifications) state.certifications = [];
-  state.certifications.unshift({ title: 'Sertifikasi Baru', issuer: 'Penyelenggara', year: '2026', link: '', description: '' });
+  state.certifications.unshift({ title: 'Sertifikasi Baru', issuer: 'Penyelenggara', year: '2026', image: '', description: '' });
   renderCertifications();
   updateMetrics();
 });
