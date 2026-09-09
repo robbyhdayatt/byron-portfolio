@@ -213,20 +213,12 @@
   ],
   "certifications": [
     {
-      "id": 1,
-      "title": "Bootcamp Student Developer Initiative – AI for Data Summarization",
-      "issuer": "IBM",
-      "year": "2024",
-      "description": "Pelatihan intensif kecerdasan buatan, NLP, dan model ringkasan data otomatis.",
-      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/doc_1788950765131_peserta_bootcamp_xdemia.pdf"
-    },
-    {
       "id": 2,
       "title": "Bootcamp XDemia × HIMAKOM – Python Programming",
       "issuer": "XDemia",
       "year": "2023",
       "description": "Pelatihan pemrograman Python untuk data science, analisis data, dan rekayasa perangkat lunak.",
-      "image": ""
+      "image": "https://raw.githubusercontent.com/robbyhdayatt/byron-portfolio/main/public/assets/images/doc_1788951801248_peserta_bootcamp_xdemia_compressed.pdf"
     },
     {
       "id": 3,
