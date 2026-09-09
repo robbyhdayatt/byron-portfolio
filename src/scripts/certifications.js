@@ -7,11 +7,84 @@ function isPdf(url) {
   return url.toLowerCase().split('?')[0].endsWith('.pdf') || url.includes('.pdf');
 }
 
+let _pdfJsPromise = null;
+
+function loadPdfJs() {
+  if (window.pdfjsLib) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    return Promise.resolve(window.pdfjsLib);
+  }
+  if (_pdfJsPromise) return _pdfJsPromise;
+
+  _pdfJsPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.async = true;
+    script.onload = () => {
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        resolve(window.pdfjsLib);
+      } else {
+        reject(new Error('PDF.js not loaded'));
+      }
+    };
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+  return _pdfJsPromise;
+}
+
+async function renderPdfToCanvas(url, canvasEl, loaderEl) {
+  try {
+    const pdfjs = await loadPdfJs();
+    const loadingTask = pdfjs.getDocument({
+      url,
+      cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+      cMapPacked: true,
+    });
+    const pdf = await loadingTask.promise;
+    const page = await pdf.getPage(1);
+
+    const parent = canvasEl.parentElement;
+    const containerWidth = Math.min((parent ? parent.clientWidth : 800) || 800, 860);
+    const unscaledViewport = page.getViewport({ scale: 1 });
+    const pixelRatio = Math.max(window.devicePixelRatio || 1.5, 1.5);
+    const scale = (containerWidth / unscaledViewport.width) * pixelRatio;
+    const viewport = page.getViewport({ scale });
+
+    canvasEl.width = viewport.width;
+    canvasEl.height = viewport.height;
+    canvasEl.style.width = '100%';
+    canvasEl.style.height = 'auto';
+
+    const ctx = canvasEl.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    if (loaderEl) loaderEl.style.display = 'none';
+    canvasEl.style.display = 'block';
+  } catch (err) {
+    console.error('Failed to render PDF to canvas:', err);
+    if (loaderEl) {
+      loaderEl.innerHTML = `
+        <div class="cert-empty-icon">📜</div>
+        <p class="cert-empty-title">Pratinjau Dokumen Sertifikat</p>
+        <p class="cert-empty-sub">Dokumen digital sertifikat resmi terdaftar atas nama <strong>Robby Hidayat</strong>.</p>
+      `;
+    }
+  }
+}
+
 export async function init(prefersReducedMotion) {
   const grid = document.querySelector('#certs-grid');
   const overlay = document.querySelector('.modal-overlay');
   
   if (!grid) return;
+
+  // Pre-initialize PDF.js worker in background
+  loadPdfJs().catch(() => {});
 
   let certList = fallbackCerts;
   try {
@@ -50,7 +123,7 @@ export async function init(prefersReducedMotion) {
           <div class="cert-modal-badges">
             <span class="cert-badge-issuer">${cert.issuer || 'Sertifikasi'}</span>
             <span class="cert-badge-year">${cert.year || ''}</span>
-            ${isDocumentPdf ? '<span class="cert-badge-pdf-tag">📄 PDF Dokumen</span>' : ''}
+            ${isDocumentPdf ? '<span class="cert-badge-pdf-tag">📄 Dokumen Resmi</span>' : ''}
           </div>
           <h2 class="cert-modal-title">${cert.title || ''}</h2>
         </div>
@@ -58,34 +131,16 @@ export async function init(prefersReducedMotion) {
         <div class="cert-modal-media">
           ${cert.image ? (
             isDocumentPdf ? `
-              <div class="cert-pdf-frame-wrapper">
-                <iframe src="${cert.image}#toolbar=0&navpanes=0" class="cert-modal-pdf" title="Sertifikat ${cert.title}"></iframe>
-                <div class="cert-pdf-fallback">
-                  <div class="cert-pdf-badge-row">
-                    <span class="cert-badge-pdf">📄 DOKUMEN PDF RESMI</span>
-                  </div>
-                  <a href="${cert.image}" target="_blank" rel="noopener noreferrer" class="cert-btn-pdf" title="Buka Dokumen PDF">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                    <span>Buka / Unduh PDF di Tab Baru ↗</span>
-                  </a>
+              <div class="cert-pdf-canvas-container">
+                <div class="cert-pdf-loader" id="cert-pdf-loader">
+                  <div class="cert-spinner"></div>
+                  <span>Memuat lembar sertifikat...</span>
                 </div>
+                <canvas id="cert-pdf-canvas" class="cert-modal-canvas" style="display: none;"></canvas>
               </div>
             ` : `
               <div class="cert-image-frame">
                 <img src="${cert.image}" alt="Sertifikat ${cert.title}" class="cert-modal-img" loading="lazy" />
-                <div class="cert-image-actions">
-                  <a href="${cert.image}" target="_blank" rel="noopener noreferrer" class="cert-btn-zoom" title="Buka Gambar Penuh">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                    </svg>
-                    <span>Buka Ukuran Penuh</span>
-                  </a>
-                </div>
               </div>
             `
           ) : `
@@ -104,6 +159,14 @@ export async function init(prefersReducedMotion) {
         ` : ''}
       </div>
     `;
+
+    if (isDocumentPdf && cert.image) {
+      const canvasEl = modalContentWrapper.querySelector('#cert-pdf-canvas');
+      const loaderEl = modalContentWrapper.querySelector('#cert-pdf-loader');
+      if (canvasEl) {
+        renderPdfToCanvas(cert.image, canvasEl, loaderEl);
+      }
+    }
 
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';

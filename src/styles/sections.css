@@ -2115,66 +2115,50 @@ section {
   border: 1px solid #FECACA;
 }
 
-.cert-pdf-frame-wrapper {
+.cert-pdf-canvas-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  background: #0B132B;
+  position: relative;
+  background: #0F172A;
   border-radius: 16px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
   border: 1px solid #CBD5E1;
 }
 
-.cert-modal-pdf {
+.cert-modal-canvas {
+  display: block;
   width: 100%;
-  height: 62vh;
-  min-height: 440px;
-  border: none;
+  max-height: 70vh;
+  object-fit: contain;
   background: #FFFFFF;
 }
 
-.cert-pdf-fallback {
+.cert-pdf-loader {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
-  padding: 10px 16px;
-  background: #F8FAFC;
-  border-top: 1px solid #E2E8F0;
+  padding: var(--space-8);
+  color: #94A3B8;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-.cert-badge-pdf {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #DC2626;
-  background: #FEE2E2;
-  border: 1px solid #FECACA;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
+.cert-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #38BDF8;
+  border-radius: 50%;
+  animation: certSpin 0.8s linear infinite;
 }
 
-.cert-btn-pdf {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  background: #0284C7;
-  color: #FFFFFF;
-  font-size: 0.78rem;
-  font-weight: 700;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.cert-btn-pdf:hover {
-  background: #0369A1;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+@keyframes certSpin {
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 640px) {
@@ -2189,9 +2173,8 @@ section {
   .cert-modal-img {
     max-height: 50vh;
   }
-  .cert-modal-pdf {
-    height: 48vh;
-    min-height: 300px;
+  .cert-modal-canvas {
+    max-height: 55vh;
   }
 }
 
