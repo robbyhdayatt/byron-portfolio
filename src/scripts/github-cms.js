@@ -164,8 +164,8 @@ export async function saveContent(data, token) {
 export async function uploadImage(file, token) {
   if (!token) throw new Error('GitHub Token tidak ditemukan.');
 
-  if (file.size > 5 * 1024 * 1024) {
-    throw new Error('Ukuran gambar terlalu besar (maksimum 5 MB).');
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error('Ukuran file terlalu besar (maksimum 10 MB).');
   }
 
   // Convert file to base64
@@ -174,7 +174,8 @@ export async function uploadImage(file, token) {
   // Generate safe filename
   const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
   const safeName = file.name.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_').toLowerCase();
-  const filename = `img_${Date.now()}_${safeName}.${ext}`;
+  const prefix = ext === 'pdf' ? 'doc' : 'img';
+  const filename = `${prefix}_${Date.now()}_${safeName}.${ext}`;
   const targetRepoPath = `public/assets/images/${filename}`;
   const uploadApiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${targetRepoPath}`;
 
@@ -186,7 +187,7 @@ export async function uploadImage(file, token) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      message: `feat(assets): upload image ${filename} via CMS`,
+      message: `feat(assets): upload ${ext === 'pdf' ? 'document' : 'image'} ${filename} via CMS`,
       content: base64Data,
       branch: GITHUB_BRANCH,
     }),

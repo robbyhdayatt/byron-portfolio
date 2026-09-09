@@ -1041,39 +1041,46 @@ function renderCertifications() {
           oninput="state.certifications[${idx}].year = this.value"
           placeholder="Tahun" class="${inputCls}">
         
-        <!-- Foto Sertifikat (Uploader & Preview) -->
+        <!-- Foto / PDF Sertifikat (Uploader & Preview) -->
         <div class="sm:col-span-2 bg-white p-3.5 rounded-xl border border-slate-200 space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-              <span>🖼️</span> Foto / Scan Sertifikat (Muncul di Pop-up)
+              <span>🖼️ / 📄</span> Foto atau Dokumen PDF Sertifikat (Muncul di Pop-up)
             </span>
             ${cert.image ? `
-              <button type="button" onclick="state.certifications[${idx}].image = ''; renderCertifications();" class="text-xs text-red-500 hover:underline font-semibold">Hapus Foto</button>
+              <button type="button" onclick="state.certifications[${idx}].image = ''; renderCertifications();" class="text-xs text-red-500 hover:underline font-semibold">Hapus File</button>
             ` : ''}
           </div>
           <div class="flex items-center gap-3">
-            ${cert.image ? `
-              <a href="${escHtml(cert.image)}" target="_blank" class="w-20 h-14 rounded-lg border border-slate-200 overflow-hidden shrink-0 bg-slate-900 flex items-center justify-center hover:opacity-90 transition group relative" title="Klik untuk pratinjau">
-                <img src="${escHtml(cert.image)}" class="w-full h-full object-contain" />
-              </a>
-            ` : `
+            ${cert.image ? (
+              cert.image.toLowerCase().includes('.pdf') ? `
+                <a href="${escHtml(cert.image)}" target="_blank" class="w-20 h-14 rounded-lg border border-red-200 bg-red-50 text-red-700 flex flex-col items-center justify-center text-xs font-bold shrink-0 hover:bg-red-100 transition group relative" title="Klik untuk buka file PDF">
+                  <span class="text-lg">📄</span>
+                  <span class="text-2xs font-extrabold text-red-600 tracking-wider">PDF DOC</span>
+                </a>
+              ` : `
+                <a href="${escHtml(cert.image)}" target="_blank" class="w-20 h-14 rounded-lg border border-slate-200 overflow-hidden shrink-0 bg-slate-900 flex items-center justify-center hover:opacity-90 transition group relative" title="Klik untuk pratinjau gambar">
+                  <img src="${escHtml(cert.image)}" class="w-full h-full object-contain" />
+                </a>
+              `
+            ) : `
               <div class="w-20 h-14 rounded-lg border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-400 text-2xs shrink-0">
                 <span>Belum Ada</span>
-                <span>Foto</span>
+                <span>Foto/PDF</span>
               </div>
             `}
             <div class="flex-1 space-y-1.5">
               <div class="flex items-center gap-2">
                 <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold hover:bg-indigo-100 transition shadow-2xs">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                  Upload Foto Sertifikat
-                  <input type="file" accept="image/*" class="hidden" onchange="handleCertUpload(this, ${idx})">
+                  Upload Foto / PDF
+                  <input type="file" accept="image/*,.pdf,application/pdf" class="hidden" onchange="handleCertUpload(this, ${idx})">
                 </label>
                 <span class="text-xs text-slate-400">atau URL langsung:</span>
               </div>
               <input type="text" value="${escHtml(cert.image || '')}"
                 oninput="state.certifications[${idx}].image = this.value"
-                placeholder="https://raw.githubusercontent.com/... atau URL foto" class="${inputCls} text-xs py-1.5">
+                placeholder="https://raw.githubusercontent.com/... (URL Foto atau PDF)" class="${inputCls} text-xs py-1.5">
             </div>
           </div>
         </div>
@@ -1096,7 +1103,7 @@ window.handleCertUpload = async (fileInput, certIdx) => {
     return;
   }
 
-  showToast('Mengunggah foto sertifikat ke GitHub...', true);
+  showToast('Mengunggah dokumen sertifikat ke GitHub...', true);
   try {
     const url = await uploadImage(fileInput.files[0], token);
     state.certifications[certIdx].image = url;
@@ -1104,7 +1111,7 @@ window.handleCertUpload = async (fileInput, certIdx) => {
 
     showToast('Menyimpan perubahan ke website live...', true);
     await saveContent(state, token);
-    showToast('✅ Foto sertifikat berhasil diunggah & langsung aktif!');
+    showToast('✅ Dokumen sertifikat (Foto/PDF) berhasil diunggah & langsung aktif!');
   } catch (err) {
     showToast('Gagal upload: ' + err.message, false);
   } finally {
