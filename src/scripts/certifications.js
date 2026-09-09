@@ -9,22 +9,28 @@ function isPdf(url) {
 
 let _pdfJsPromise = null;
 
+function getWorkerSrc() {
+  try {
+    return new URL('assets/pdf.worker.min.js', window.location.href).href;
+  } catch (e) {
+    return './assets/pdf.worker.min.js';
+  }
+}
+
 function loadPdfJs() {
   if (window.pdfjsLib) {
-    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = getWorkerSrc();
     return Promise.resolve(window.pdfjsLib);
   }
   if (_pdfJsPromise) return _pdfJsPromise;
 
   _pdfJsPromise = new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.src = './assets/pdf.min.js';
     script.async = true;
     script.onload = () => {
       if (window.pdfjsLib) {
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = getWorkerSrc();
         resolve(window.pdfjsLib);
       } else {
         reject(new Error('PDF.js not loaded'));
@@ -37,13 +43,39 @@ function loadPdfJs() {
   return _pdfJsPromise;
 }
 
+async function fetchPdfBuffer(url) {
+  // Strategy 1: Fetch direct URL
+  try {
+    const res = await fetch(url);
+    if (res.ok) {
+      return await res.arrayBuffer();
+    }
+  } catch (err) {
+    console.warn('[PDF] Direct fetch failed, trying local fallback:', err);
+  }
+
+  // Strategy 2: Fallback to local /assets/images/
+  try {
+    const filename = url.split('/').pop().split('?')[0];
+    const localUrl = `./assets/images/${filename}`;
+    const res = await fetch(localUrl);
+    if (res.ok) {
+      return await res.arrayBuffer();
+    }
+  } catch (err) {
+    console.warn('[PDF] Local fallback fetch failed:', err);
+  }
+
+  throw new Error(`Gagal mengunduh file PDF dari ${url}`);
+}
+
 async function renderPdfToCanvas(url, canvasEl, loaderEl) {
   try {
     const pdfjs = await loadPdfJs();
+    const arrayBuffer = await fetchPdfBuffer(url);
+
     const loadingTask = pdfjs.getDocument({
-      url,
-      cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-      cMapPacked: true,
+      data: arrayBuffer,
     });
     const pdf = await loadingTask.promise;
     const page = await pdf.getPage(1);
